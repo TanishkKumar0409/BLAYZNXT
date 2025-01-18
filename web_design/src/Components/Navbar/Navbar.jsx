@@ -24,10 +24,7 @@ export default function Navbar() {
   const APIurl = process.env.REACT_APP_API;
 
   return (
-    <header
-      className={`responsiveNavbar sticky-top bg-white`}
-      style={{ zIndex: 999 }}
-    >
+    <header className={`shadow-sm sticky-top bg-white`} style={{ zIndex: 999 }}>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand textDeep fs-4 fw-bold" to="/">
@@ -36,7 +33,7 @@ export default function Navbar() {
 
           <div className="d-flex align-items-center">
             <button
-              className="btn btn-outline-light d-lg-none me-2"
+              className="btn btn-outline-deep d-lg-none me-2"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasProfile"
@@ -52,7 +49,7 @@ export default function Navbar() {
             </button>
 
             <button
-              className="navbar-toggler border-light"
+              className="navbar-toggler btn-outline-deep"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"

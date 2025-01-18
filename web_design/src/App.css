@@ -291,88 +291,6 @@
   font-size: 7rem;
 }
 
-@keyframes animatedIconsMove {
-  0% {
-    top: var(--start-top);
-    left: var(--start-left);
-  }
-
-  6.25% {
-    top: var(--end-top);
-    left: var(--end-left);
-  }
-
-  12.5% {
-    top: var(--end-left);
-    left: var(--start-top);
-  }
-
-  18.75% {
-    top: var(--start-left);
-    left: var(--end-top);
-  }
-
-  25% {
-    top: var(--end-left);
-    left: var(--start-left);
-  }
-
-  31.25% {
-    top: var(--start-top);
-    left: var(--end-left);
-  }
-
-  37.5% {
-    top: var(--end-top);
-    left: var(--start-left);
-  }
-
-  43.75% {
-    top: var(--end-left);
-    left: var(--end-top);
-  }
-
-  50% {
-    top: var(--start-top);
-    left: var(--end-top);
-  }
-
-  56.25% {
-    top: var(--start-left);
-    left: var(--end-left);
-  }
-
-  62.5% {
-    top: var(--end-top);
-    left: var(--start-top);
-  }
-
-  68.75% {
-    top: var(--start-left);
-    left: var(--start-top);
-  }
-
-  75% {
-    top: var(--start-top);
-    left: var(--end-top);
-  }
-
-  81.25% {
-    top: var(--end-top);
-    left: var(--start-top);
-  }
-
-  87.5% {
-    top: var(--start-top);
-    left: var(--end-left);
-  }
-
-  100% {
-    top: var(--start-left);
-    left: var(--end-top);
-  }
-}
-
 .table-responsive {
   scrollbar-width: thin;
 }
@@ -673,15 +591,15 @@ footer a:hover {
 
 /* new Css */
 .textDeep {
-  color: #0a0921;
+  color: #0d0c22;
 }
 
 .textDeepBlue {
-  color: #0d0c22aa;
+  color: #0e0966be;
   background: white;
 }
 .textDeepBlue.active {
-  color: #0a0921 !important;
+  color: #0d0c22 !important;
   background: white;
   font-weight: 700;
 }
@@ -691,22 +609,22 @@ footer a:hover {
 
 .btn-outline-deep {
   background: white;
-  border: 2px solid #0a0921;
+  border: 2px solid #0d0c22;
   color: #0a0921;
   font-weight: 600;
 }
 .btn-outline-deep:hover {
-  background: #0a0921;
+  background: #0d0c22;
   color: white;
 }
 
 .btn-deep {
-  background: #0a0921;
+  background: #0d0c22;
   color: white;
   font-weight: 600;
 }
 .btn-deep:hover {
-  background: #0a0921;
+  background: #0d0c22;
   color: white;
   opacity: 0.9;
 }
