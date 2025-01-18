@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function LoginNavbar() {
   const location = useLocation();
-  const navCondition = location.pathname === "/form" ? "d-none" : "";
-
-  const [navClass, setNavclass] = useState("");
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      var pageScroll = window.scrollY;
-      setNavclass(pageScroll > 100 ? "navbarCustom" : "");
-    });
-  });
 
   const isActive = (path) => (location.pathname === path ? "active" : "");
 
   return (
     <header
-      className={`responsiveNavbar position-fixed w-100 ${navClass} ${navCondition}`}
+      className={`responsiveNavbar sticky-top bg-white`}
       style={{ zIndex: 999 }}
     >
-      <nav className="navbar navbar-expand-lg navbar-dark">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <Link className="navbar-brand fs-4 fw-bold" to="/">
+          <Link className="navbar-brand textDeep fs-4 fw-bold" to="/">
             Project TK
           </Link>
 
@@ -31,7 +21,9 @@ export default function LoginNavbar() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive("/")}`}
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
+                    "/"
+                  )}`}
                   to="/"
                 >
                   Home
@@ -39,7 +31,9 @@ export default function LoginNavbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive("/contact")}`}
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
+                    "/contact"
+                  )}`}
                   to="/contact"
                 >
                   Contact

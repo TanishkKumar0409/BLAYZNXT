@@ -637,7 +637,6 @@ iframe {
   transform: scale(1.2) translateY(-5px);
 }
 
-/*?  Design Fixing CSS ?*/
 footer {
   background-color: #f8f9fa;
   color: #343a40;
@@ -670,4 +669,22 @@ footer .fa-brands:hover {
 
 footer a:hover {
   transform: translateX(5px);
+}
+
+/* new Css */
+.textDeep {
+  color: #0a0921;
+}
+
+.textDeepBlue {
+  color: #0d0c22aa;
+  background: white;
+}
+.textDeepBlue.active {
+  color: #0a0921 !important;
+  background: white;
+  font-weight: 700;
+}
+.nav-link.textDeepBlue:hover {
+  color: #0d0c22cf;
 }

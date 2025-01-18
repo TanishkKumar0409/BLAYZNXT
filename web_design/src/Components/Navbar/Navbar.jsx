@@ -4,19 +4,8 @@ import Profile from "../Profile/Profile";
 import { noFileAPI } from "../../Services/API/API";
 
 export default function Navbar() {
-  const [navClass, setNavclass] = useState("");
   const location = useLocation();
   const adminToken = localStorage.getItem("adminToken");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const pageScroll = window.scrollY;
-      setNavclass(pageScroll > 50 ? "navbarCustom" : "");
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const isActive = (path) => (location.pathname === path ? "active" : "");
 
@@ -29,21 +18,19 @@ export default function Navbar() {
       setUserData(response.data);
     };
 
-    const intervalId = setInterval(() => getData(), 1000);
-
-    return () => clearInterval(intervalId);
+    getData();
   }, [username]);
 
   const APIurl = process.env.REACT_APP_API;
 
   return (
     <header
-      className={`responsiveNavbar position-fixed w-100 ${navClass}`}
+      className={`responsiveNavbar sticky-top bg-white`}
       style={{ zIndex: 999 }}
     >
-      <nav className="navbar navbar-expand-lg navbar-dark">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <Link className="navbar-brand fs-4 fw-bold" to="/">
+          <Link className="navbar-brand textDeep fs-4 fw-bold" to="/">
             Project TK
           </Link>
 
@@ -81,7 +68,9 @@ export default function Navbar() {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive("/main")}`}
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
+                    "/main"
+                  )}`}
                   to="/main"
                 >
                   Home
@@ -89,7 +78,7 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive(
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
                     "/main/history"
                   )}`}
                   to="/main/history"
@@ -99,7 +88,7 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive(
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
                     "/main/storage"
                   )}`}
                   to="/main/storage"
@@ -109,7 +98,9 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <Link
-                  className={`nav-link fw-bold fs-5 ${isActive("/contact")}`}
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
+                    "/contact"
+                  )}`}
                   to="/contact"
                 >
                   Contact
@@ -117,58 +108,73 @@ export default function Navbar() {
               </li>
 
               {adminToken ? (
-                <>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link fw-bold fs-5 ${isActive(
-                        "/admin/dashboard"
-                      )}`}
-                      to="/admin/dashboard"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link fw-bold fs-5 ${isActive(
-                        "/admin/dashboard/info"
-                      )}`}
-                      to="/admin/dashboard/info"
-                    >
-                      Admins
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link fw-bold fs-5 ${isActive(
-                        "/admin/dashboard/user"
-                      )}`}
-                      to="/admin/dashboard/user"
-                    >
-                      Users
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link fw-bold fs-5 ${isActive(
-                        "/admin/dashboard/query"
-                      )}`}
-                      to="/admin/dashboard/query"
-                    >
-                      Queries
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link fw-bold fs-5 ${isActive(
-                        "/admin/dashboard/newsletter"
-                      )}`}
-                      to="/admin/dashboard/newsletter"
-                    >
-                      Newsletters
-                    </Link>
-                  </li>
-                </>
+                <div className="nav-item dropdown">
+                  <span
+                    className={`nav-link dropdown-toggle fw-bold fs-5 ${
+                      location.pathname.startsWith("/admin/dashboard")
+                        ? "active"
+                        : ""
+                    }`}
+                    id="adminDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Admins
+                  </span>
+                  <ul className="dropdown-menu" aria-labelledby="adminDropdown">
+                    <li>
+                      <Link
+                        className={`dropdown-item textDeepBlue ${isActive(
+                          "/admin/dashboard"
+                        )}`}
+                        to="/admin/dashboard"
+                      >
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`dropdown-item textDeepBlue ${isActive(
+                          "/admin/dashboard/info"
+                        )}`}
+                        to="/admin/dashboard/info"
+                      >
+                        Admins
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`dropdown-item textDeepBlue ${isActive(
+                          "/admin/dashboard/user"
+                        )}`}
+                        to="/admin/dashboard/user"
+                      >
+                        Users
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`dropdown-item textDeepBlue ${isActive(
+                          "/admin/dashboard/query"
+                        )}`}
+                        to="/admin/dashboard/query"
+                      >
+                        Queries
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`dropdown-item textDeepBlue ${isActive(
+                          "/admin/dashboard/newsletter"
+                        )}`}
+                        to="/admin/dashboard/newsletter"
+                      >
+                        Newsletters
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               ) : (
                 ""
               )}
