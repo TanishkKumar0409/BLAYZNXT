@@ -1,0 +1,30 @@
+{
+  "info": {
+    "icon": "user-secret",
+    "heading": "Admin Informations",
+    "para": "Details about admins, including their roles, permissions, and responsibilities for managing the platform.",
+    "mainHeading": "Admins",
+    "sectionPara": "Admins oversee the platform, ensuring smooth operation and implementing necessary updates or security measures."
+  },
+  "user": {
+    "icon": "user-tie",
+    "heading": "Users Informations",
+    "para": "Information about users that admins can manage, including profiles, activities, and account security.",
+    "mainHeading": "Users",
+    "sectionPara": "Admins manage user accounts and ensure security while maintaining a positive user experience."
+  },
+  "query": {
+    "icon": "user-check",
+    "heading": "Queries Information",
+    "para": "Admins can view and manage user queries, track their resolution, and ensure timely responses.",
+    "mainHeading": "Queries",
+    "sectionPara": "Admins handle user queries, ensuring quick and effective resolution to maintain platform quality."
+  },
+  "newsletter": {
+    "icon": "user-pen",
+    "heading": "Newsletter Information",
+    "para": "Admins manage newsletters, tracking their distribution and engagement to keep users informed.",
+    "mainHeading": "Newsletter",
+    "sectionPara": "Admins create and send newsletters to keep users updated on platform news and features."
+  }
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "title": "File Sharing",
+    "description": "Easily upload and share your files with end-to-end encryption, ensuring complete data security.",
+    "iconClass": "fa fa-cloud-upload"
+  },
+  {
+    "title": "Store Files",
+    "description": "Store large files securely and access them from any device, anytime, with ease.",
+    "iconClass": "fa fa-database"
+  },
+  {
+    "title": "Access Files Anytime, Anywhere",
+    "description": "Access your files from any location and share them with users or through public links securely.",
+    "iconClass": "fa fa-share-alt"
+  },
+  {
+    "title": "Secure Files",
+    "description": "Track file modifications and revert to previous versions when necessary, keeping your files protected.",
+    "iconClass": "fa fa-history"
+  },
+  {
+    "title": "Shared Files History",
+    "description": "View and manage the history of shared files, enabling easy collaboration with teammates.",
+    "iconClass": "fa fa-users"
+  }
+]
