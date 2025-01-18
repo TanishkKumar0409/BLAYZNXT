@@ -126,26 +126,6 @@
   text-overflow: ellipsis;
 }
 
-.owl-stage-outer {
-  padding: 20px 0;
-}
-
-.owl-dot span {
-  background: var(--primary-dark-blue) !important;
-  transition: 0.3s !important;
-}
-
-.owl-dot.active span {
-  width: 15px !important;
-  border-radius: 3px !important;
-  background: linear-gradient(
-    315deg,
-    var(--error-red) 0%,
-    var(--warning-yellow) 50%,
-    var(--success-green) 75%
-  ) !important;
-}
-
 .mainHeading {
   z-index: 0;
   position: relative;
@@ -609,4 +589,8 @@ footer a:hover {
 
 .bg-deep {
   background: #0d0c22;
+}
+
+.owl-stage-outer {
+  padding: 20px 0;
 }

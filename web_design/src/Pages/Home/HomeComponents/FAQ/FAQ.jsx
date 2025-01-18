@@ -14,14 +14,14 @@ export default function FAQ() {
       <section className="bg-white py-5">
         <div className="container">
           <div className="row justify-content-center py-3">
-            <div className="col-md-8">
+            <div className="col-md-8 textDeep">
               <h2
-                className="text-center textDeep mb-4 mainHeading text-uppercase fw-bold"
+                className="text-center mb-4 mainHeading text-uppercase fw-bold"
                 style={{ "--text": "'FAQs'" }}
               >
                 FAQs
               </h2>
-              <p className="text-center textDeepBlue">
+              <p className="text-center">
                 Here are some frequently asked questions to help you get started
                 with our file sharing and storage system.
               </p>

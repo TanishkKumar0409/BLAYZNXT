@@ -2,14 +2,12 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import img from "../../../../Image/Wave.jpg";
-
 import MyFeatures from "./MyFeatures.json";
 
 export default function Features() {
   const owlOptions = {
     loop: true,
-    margin: 20,
+    margin: 10,
     dots: true,
     autoplay: true,
     autoplayTimeout: 3000,
@@ -21,63 +19,35 @@ export default function Features() {
     },
   };
 
-  const getColor = (index) => {
-    switch ((index + 1) % 5) {
-      case 0:
-        return "#a78bfa";
-      case 4:
-        return "#10b981";
-      case 3:
-        return "#fbbf24";
-      case 2:
-        return "#ef4444";
-      default:
-        return "#06b6d4";
-    }
-  };
-
   return (
-    <section className="bg-white py-5">
+    <section className="py-5">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-md-8">
+          <div className="col-md-8 textDeep">
             <h2
               className="text-center mb-4 mainHeading text-uppercase fw-bold"
-              style={{ "--text": "'Our Key Features'" }}
+              style={{ "--text": "'OUR FEATURES'" }}
             >
-              Our Key Features
+              OUR FEATURES
             </h2>
             <p className="text-center">
-              Explore the innovative features that set us apart. We offer a
-              range of solutions designed to enhance your experience, with
-              top-quality performance and user-friendly design.
+              Here are some frequently asked questions to help you get started
+              with our file sharing and storage system.
             </p>
           </div>
         </div>
         <OwlCarousel className="owl-theme" {...owlOptions}>
           {MyFeatures.map((feature, index) => (
             <div className="item" key={index}>
-              <div
-                className="featureCard position-relative rounded overflow-hidden border align-content-center minHeigth300"
-                style={{ "--cardColor": getColor(index) }}
-              >
-                <img
-                  src={img}
-                  className="position-absolute top-0 start-0 w-100 h-100 featureImg"
-                  alt="Feature Background"
-                />
-                <div className="featureCardContent p-4 text-center text-white">
-                  <div className="featureCardIcon mb-3">
-                    <i
-                      className={`fa ${feature.iconClass} p-3 fs-2 rounded-4 shadow`}
-                      style={{
-                        background: "rgba(255, 255, 255, 0.7)",
-                        color: getColor(index),
-                      }}
-                    ></i>
-                  </div>
-                  <h3 className="featureCardTitle mb-2">{feature.title}</h3>
-                  <p className="featureCardText">{feature.description}</p>
+              <div className="card border-0 shadow-sm rounded-lg h-100">
+                <div className="card-header bg-transparent text-center py-4">
+                  <i
+                    className={`fa ${feature.iconClass} text-white bg-deep rounded p-3 fs-2`}
+                  ></i>
+                </div>
+                <div className="card-body textDeep text-center">
+                  <h5 className="fw-bold">{feature.title}</h5>
+                  <p>{feature.description}</p>
                 </div>
               </div>
             </div>

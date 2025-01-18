@@ -8,26 +8,21 @@ import MyTestimonials from "./MyTestimonials.json";
 export default function Testimonials() {
   const owlOptions = {
     loop: true,
-    margin: 20,
+    margin: 10,
     dots: true,
     autoplay: true,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
     responsive: {
       0: { items: 1 },
-      600: { items: 1 },
-      1000: { items: 2 },
+      600: { items: 2 },
+      1000: { items: 3 },
     },
-  };
-
-  const getValue = () => {
-    const createRandom = Math.floor(Math.random() * 999999);
-    return createRandom;
   };
 
   return (
     <>
-      <section className="bg-light py-5">
+      <section className="py-5">
         <div className="container testimonials">
           <h2
             className="text-center mb-4 mainHeading text-uppercase fw-bold"
@@ -45,10 +40,9 @@ export default function Testimonials() {
               <div className="item" key={index}>
                 <div className="testimonialCard d-flex flex-column bg-white shadow-sm">
                   <div
-                    className="testimonialCardHead py-3 text-white p-3 textJustify align-content-center"
+                    className="p-3 textDeep border-bottom textJustify align-content-center"
                     style={{
-                      minHeight: "350px",
-                      filter: `hue-rotate(${getValue()}deg)`,
+                      minHeight: "400px",
                     }}
                   >
                     <p>{testimonial.text}</p>
