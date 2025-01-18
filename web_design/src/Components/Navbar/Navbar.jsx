@@ -181,7 +181,7 @@ export default function Navbar() {
             </ul>
 
             <button
-              className="btn btn-custom custom-btn p-2 px-4 shadow-sm d-none d-lg-flex align-items-center ms-1"
+              className="btn btn-outline-deep p-2 px-4 shadow-sm d-none d-lg-flex align-items-center ms-1"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasProfile"

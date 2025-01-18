@@ -688,3 +688,25 @@ footer a:hover {
 .nav-link.textDeepBlue:hover {
   color: #0d0c22cf;
 }
+
+.btn-outline-deep {
+  background: white;
+  border: 2px solid #0a0921;
+  color: #0a0921;
+  font-weight: 600;
+}
+.btn-outline-deep:hover {
+  background: #0a0921;
+  color: white;
+}
+
+.btn-deep {
+  background: #0a0921;
+  color: white;
+  font-weight: 600;
+}
+.btn-deep:hover {
+  background: #0a0921;
+  color: white;
+  opacity: 0.9;
+}

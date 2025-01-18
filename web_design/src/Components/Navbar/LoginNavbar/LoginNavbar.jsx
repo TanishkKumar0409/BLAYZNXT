@@ -42,7 +42,7 @@ export default function LoginNavbar() {
             </ul>
           </div>
 
-          <Link to="/form" className="btn btn-custom custom-btn ms-2">
+          <Link to="/form" className="btn btn-outline-deep ms-2">
             Login
           </Link>
         </div>
