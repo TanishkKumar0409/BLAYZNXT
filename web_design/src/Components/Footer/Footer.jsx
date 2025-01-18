@@ -47,9 +47,8 @@ export default function Footer() {
   const socialLinks = ["facebook", "instagram", "youtube"];
 
   return (
-    <footer className="py-5 bg-white text-dark">
+    <footer className="py-5">
       <div className="container">
-        <hr className="mb-4 border-secondary" />
         <div className="row mb-4 gy-4 ">
           <div className="col-md-3 text-center align-content-center">
             <Link to="/">
@@ -65,7 +64,7 @@ export default function Footer() {
                 <a
                   key={platform}
                   href={`https://${platform}.com`}
-                  className="text-dark mx-2"
+                  className="textDeep mx-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -76,11 +75,11 @@ export default function Footer() {
           </div>
 
           <div className="col-md-3">
-            <h5 className="fw-bold mb-3">Navigation</h5>
+            <h5 className="fw-bold mb-3 textDeep">Navigation</h5>
             <ul className="list-unstyled">
               {navLinks.map((link, index) => (
                 <li key={index} className="mb-2 footer-nav-link">
-                  <Link to={link.to} className="text-dark text-decoration-none">
+                  <Link to={link.to} className="textDeep text-decoration-none">
                     {link.label}
                   </Link>
                 </li>
@@ -89,42 +88,45 @@ export default function Footer() {
           </div>
 
           <div className="col-md-3">
-            <h5 className="fw-bold mb-3">Contact Us</h5>
-            <p className="mb-1 fw-semibold">Email:</p>
+            <h5 className="fw-bold mb-3 textDeep">Contact Us</h5>
+            <p className="mb-1 fw-semibold textDeep">Email:</p>
             <a
               href="mailto:tanishkk60@gmail.com"
-              className="text-dark text-decoration-none mb-3 d-block"
+              className="textDeep text-decoration-none mb-3 d-block"
             >
               tanishkk60@gmail.com
             </a>
-            <p className="mb-1 fw-semibold">Contact:</p>
+            <p className="mb-1 fw-semibold textDeep">Contact:</p>
             <a
               href="tel:95576213131"
-              className="text-dark text-decoration-none mb-3 d-block"
+              className="textDeep text-decoration-none mb-3 d-block"
             >
               95576213131
             </a>
           </div>
 
           <div className="col-md-3">
-            <div className="p-4 rounded bg-white border">
-              <h5 className="fw-bold fs-6 text-center mb-3">
+            <div className="p-4 rounded border-deep">
+              <h5 className="fw-bold fs-6 text-center textDeep mb-3">
                 Subscribe to our Newsletter
               </h5>
-              <p className="text-center text-secondary mb-4 fs-6">
+              <p className="text-center textDeep mb-4 fs-6">
                 Stay updated with the latest news and exclusive offers.
               </p>
               <form onSubmit={handleNewsletterSubmit}>
                 <div className="input-group">
                   <input
                     type="email"
-                    className="form-control border-secondary-subtle"
+                    className="form-control border-deep"
                     placeholder="Enter your email"
                     aria-label="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <button className="btn btn-custom custom-btn" type="submit">
+                  <button
+                    className="btn btn-outline-deep border-1"
+                    type="submit"
+                  >
                     <i className="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -135,10 +137,10 @@ export default function Footer() {
 
         <div className="row">
           <div className="col-12 text-center">
-            <hr className="border-secondary" />
-            <p className="mb-0 text-secondary">
+            <hr />
+            <p className="mb-0 textDeep">
               &copy; {new Date().getFullYear()}{" "}
-              <Link to={`/`} className="fw-bold text-dark text-decoration-none">
+              <Link to={`/`} className="fw-bold text-decoration-none">
                 ProjectTK
               </Link>
               . All Rights Reserved.

@@ -16,12 +16,12 @@ export default function FAQ() {
           <div className="row justify-content-center py-3">
             <div className="col-md-8">
               <h2
-                className="text-center mb-4 mainHeading text-uppercase fw-bold"
+                className="text-center textDeep mb-4 mainHeading text-uppercase fw-bold"
                 style={{ "--text": "'FAQs'" }}
               >
                 FAQs
               </h2>
-              <p className="text-center">
+              <p className="text-center textDeepBlue">
                 Here are some frequently asked questions to help you get started
                 with our file sharing and storage system.
               </p>
@@ -32,16 +32,20 @@ export default function FAQ() {
             className="carousel slide"
             data-bs-ride="carousel"
           >
-            <div className="carousel-inner bg-light rounded-5 shadow-sm">
+            <div className="carousel-inner rounded-5 textDeep">
               {selectedFAQs.map((faq, index) => (
                 <div
                   key={index}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
                   data-bs-interval="5000"
                 >
-                  <div className="text-center p-5">
-                    <h3 className="mb-3">{faq.question}</h3>
-                    <p className="text-muted">{faq.answer}</p>
+                  <div className="row justify-content-center">
+                    <div className="col-md-8">
+                      <div className="text-center p-5">
+                        <h3 className="mb-3">{faq.question}</h3>
+                        <p>{faq.answer}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}

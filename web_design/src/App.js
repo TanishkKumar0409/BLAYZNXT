@@ -26,6 +26,7 @@ import DeleteAccount from "./Pages/UserProfile/DeleteAccount/DeleteAccount";
 import UpdateProfile from "./Pages/UserProfile/UpdateProfile/UpdateProfile";
 import ChangePassword from "./Pages/UserProfile/ChangePassword/ChangePassword";
 import SendVerifyMail from "./Pages/VerifyUser/SendVerifyMail";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const loginToken = localStorage.getItem("loginToken");
@@ -60,6 +61,7 @@ function App() {
         <Route path="/admin/dashboard/:type" element={<ProtectedRoutes><Admin /></ProtectedRoutes>} />
         <Route path="/admin/dashboard/user/:username" element={<ProtectedRoutes><ViewUser /></ProtectedRoutes>} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

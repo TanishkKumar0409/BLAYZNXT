@@ -3,7 +3,7 @@ import React from "react";
 export default function AboutUs() {
   return (
     <>
-      <section className="bg-light py-5">
+      <section className="py-5">
         <div className="container">
           <div className="row">
             <div className="col-md-6 text-center">
@@ -14,7 +14,7 @@ export default function AboutUs() {
                 alt="Project Logo"
               />
             </div>
-            <div className="col-md-6 align-content-center py-md-0 py-5">
+            <div className="col-md-6 align-content-center textDeep py-md-0 py-5">
               <h2>ABOUT THIS PROJECT</h2>
               <p>
                 This is a personal effort aimed at revolutionizing how people
