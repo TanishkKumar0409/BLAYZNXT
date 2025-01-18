@@ -206,16 +206,6 @@
   }
 }
 
-.dropzone {
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dropzone:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
 .selected {
   color: var(--warning-yellow);
 }
@@ -226,44 +216,6 @@
 
 .form-box {
   z-index: 1;
-}
-
-.form-box:after {
-  content: "";
-  position: absolute;
-  background: var(--error-red);
-  opacity: 0.3;
-  top: -20%;
-  left: -10%;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  transform: scale(1.5);
-  z-index: -1;
-}
-
-.form-box::before {
-  content: "";
-  transform: scale(1.5);
-  position: absolute;
-  background: var(--warning-yellow);
-  opacity: 0.3;
-  bottom: -20%;
-  right: -10%;
-  width: 200px;
-  height: 200px;
-  z-index: -1;
-  border-radius: 50%;
-}
-
-.AnimatedIcons {
-  z-index: -1;
-}
-
-.AnimatedIcons i {
-  font-size: 5rem;
-  color: rgba(255, 255, 255, 0.3);
-  animation: animatedIconsMove 80s ease-in-out infinite;
 }
 
 .cardCustom {
@@ -627,4 +579,30 @@ footer a:hover {
   background: #0d0c22;
   color: white;
   opacity: 0.9;
+}
+
+.border-deep {
+  border: 1px solid #0d0c22;
+}
+
+.border-deep:focus {
+  border: 1px solid #0d0c22;
+  box-shadow: none;
+}
+
+.dropzone {
+  border-radius: 10px;
+  border: 1px dashed #0d0c22;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dropzone:hover {
+  transform: scale(1.02);
+}
+
+.blurBg-1 {
+  backdrop-filter: blur(10px);
+}
+.modalBg-1 {
+  background-color: #0d0c22a6;
 }

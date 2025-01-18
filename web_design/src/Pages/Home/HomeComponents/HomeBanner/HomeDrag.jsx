@@ -36,7 +36,7 @@ export default function HomeDrag() {
 
   return (
     <div className="container-fluid py-5">
-      <div className="bg-white text-dark p-md-5 p-3 rounded shadow form-box position-relative overflow-hidden">
+      <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm border-deep form-box position-relative overflow-hidden">
         <form onSubmit={handleSubmit}>
           <div
             {...getRootProps()}
@@ -51,41 +51,8 @@ export default function HomeDrag() {
             </p>
           </div>
 
-          {files.length > 0 && (
-            <div className="mt-3">
-              <strong className="selected fs-4">
-                Selected Files: <span>{files.length}</span>
-              </strong>
-              <ul
-                className="list-group mt-2"
-                style={{ maxHeight: "70px", overflow: "auto" }}
-              >
-                {files.map((file, index) => (
-                  <li
-                    key={index}
-                    className="list-group-item d-flex justify-content-between align-items-center shadow-sm"
-                  >
-                    <span className="truncated-file-name">{file.name}</span>
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => {
-                        const updatedFiles = files.filter(
-                          (_, i) => i !== index
-                        );
-                        setFiles(updatedFiles);
-                      }}
-                    >
-                      <i className="fa fa-x"></i>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          <div className="row mt-4">
-            <div className="col-md-6">
+          <div className="row mt-4 flex-column">
+            <div className="col mb-3">
               <label htmlFor="email" className="form-label">
                 Email
               </label>
@@ -93,7 +60,7 @@ export default function HomeDrag() {
                 type="email"
                 id="email"
                 name="email"
-                className="form-control"
+                className="form-control border-deep"
                 placeholder="Enter Receiver Email"
                 autoComplete="email"
                 value={email}
@@ -101,14 +68,14 @@ export default function HomeDrag() {
               />
             </div>
 
-            <div className="col-md-6">
+            <div className="col">
               <label htmlFor="message" className="form-label">
                 Message
               </label>
               <textarea
                 id="message"
                 name="message"
-                className="form-control"
+                className="form-control border-deep"
                 placeholder="Enter your message"
                 rows="1"
                 maxLength={"500"}
@@ -123,10 +90,7 @@ export default function HomeDrag() {
           )}
 
           <div className="mt-4 text-center">
-            <button
-              type="submit"
-              className="btn custom-btn btn-custom border-0 overflow-hidden"
-            >
+            <button type="submit" className="btn btn-deep">
               Submit
             </button>
           </div>
@@ -134,29 +98,37 @@ export default function HomeDrag() {
       </div>
 
       <div
-        className={`modal fade ${showModal ? "show d-block" : ""}`}
+        className={`modal fade ${
+          showModal ? "show d-block" : ""
+        } blurBg-1 modalBg-1`}
         tabIndex="-1"
         role="dialog"
-        style={{
-          background: "rgba(0, 0, 0, 0.5)",
-          backdropFilter: "blur(5px)",
-        }}
       >
         <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Please Login</h5>
-              <button
-                type="button"
-                className="btn-close"
-                onClick={() => setShowModal(false)}
-              ></button>
+          <div className="modal-content border-0 p-3">
+            <div className="modal-header border-0 p-0 justify-content-center">
+              <h5 className="modal-title text-center textDeep fs-2 m-0 fw-bold">
+                Please Login
+              </h5>
             </div>
+
             <div className="modal-body text-center">
-              <p>You need to login to continue.</p>
-              <Link to={`form`} className="btn btn-custom custom-btn">
+              <p className="m-0 fs-6 textDeepBlue">
+                You need to log in to continue.
+              </p>
+            </div>
+
+            <div className="modal-footer p-0 justify-content-center border-0">
+              <Link to="/form" className="btn btn-deep">
                 Login
               </Link>
+              <button
+                type="button"
+                className="btn btn-outline-deep"
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
