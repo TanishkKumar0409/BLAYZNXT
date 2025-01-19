@@ -41,7 +41,7 @@ export default function Navbar() {
             >
               <img
                 src={`${APIurl}${userData.profile}`}
-                className="rounded-circle"
+                className="rounded"
                 width={"25px"}
                 height={"25px"}
                 alt="User Avatar"
@@ -186,7 +186,7 @@ export default function Navbar() {
             >
               <img
                 src={`${APIurl}${userData.profile}`}
-                className="rounded-circle"
+                className="rounded"
                 style={{ width: "30px", height: "30px" }}
                 alt="User Avatar"
               />

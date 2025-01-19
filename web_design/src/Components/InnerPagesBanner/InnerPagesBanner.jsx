@@ -7,16 +7,22 @@ export default function InnerPagesBanner({ heading }) {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-6">
-            <h3 className="mb-0" style={{ textTransform: "capitalize" }}>
+            <h3
+              className="mb-0 fs-md-2 fs-5"
+              style={{ textTransform: "capitalize" }}
+            >
               {heading}
             </h3>
           </div>
-          <div className="col-6 text-end">
-            <h4 className="mb-0">
-              <Link to="/" className="text-decoration-none text-white">
+          <div className="col-6 text-end px-2">
+            <h4 className="mb-0 text-nowrap align-content-center fs-md-3 fs-6">
+              <Link
+                to="/"
+                className="text-decoration-none fs-md-3 fs-6 text-white"
+              >
                 Home
               </Link>
-              <span className="mx-2">/</span>
+              <span className="mx-2 fs-md-3 fs-6">/</span>
               {heading}
             </h4>
           </div>

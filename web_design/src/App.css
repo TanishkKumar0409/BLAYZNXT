@@ -226,7 +226,8 @@
   text-shadow: 0 0 0.2rem gray;
 }
 
-.tableBodyCustom tr td {
+.tableBodyCustom tr td,
+.tableBodyCustom tr th {
   font-weight: 700;
   color: #0d0c22;
   transition: 0.2s;

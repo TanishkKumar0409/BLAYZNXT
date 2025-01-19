@@ -211,7 +211,7 @@ export default function ShareFilesTable() {
 
               <div className="table-responsive shadow-sm rounded">
                 <table className="table table-hover m-0 text-center">
-                  <thead className="tableHeadCustom">
+                  <thead className="tableHeadCustom text-nowrap">
                     <tr>
                       <th>Id</th>
                       <th>Shared Date</th>

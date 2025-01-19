@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { noFileAPI } from "../../../Services/API/API";
 import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function DeleteAccount() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -100,21 +100,21 @@ export default function DeleteAccount() {
   };
 
   return (
-    <section className="bgGradient align-content-center py-5 vh-100">
+    <section>
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-6 bg-white rounded p-5 shadow mx-auto">
+          <div className="col-md-6 bg-white rounded p-5 shadow-sm mx-auto">
             <h3 className="text-center mb-4 text-dark">Delete Account</h3>
 
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="fw-bold textDeep">
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label text-muted">
+                  <label htmlFor="email" className="form-label">
                     Email address
                   </label>
                   <input
                     type="email"
-                    className="form-control"
+                    className="form-control border-deep"
                     id="email"
                     placeholder="Enter your email"
                     value={email}
@@ -125,12 +125,12 @@ export default function DeleteAccount() {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label text-muted">
+                  <label htmlFor="password" className="form-label">
                     Password
                   </label>
                   <input
                     type="password"
-                    className="form-control"
+                    className="form-control border-deep"
                     id="password"
                     placeholder="Enter your password"
                     value={password}
@@ -138,24 +138,32 @@ export default function DeleteAccount() {
                     required
                   />
                 </div>
+                <div className="mb-3 text-end">
+                  <Link
+                    to={`/main/user/account/password/${username || "forgot"}`}
+                    className="forgotBtn text-decoration-none textDeep"
+                  >
+                    Forgot Password
+                  </Link>
+                </div>
 
                 <button
                   type="submit"
-                  className="btn btn-custom custom-btn w-100"
+                  className="btn btn-deep w-100"
                   disabled={loading}
                 >
                   {loading ? "Sending..." : "Submit"}
                 </button>
               </form>
             ) : (
-              <form onSubmit={handleOtpSubmit}>
+              <form onSubmit={handleOtpSubmit} className="textDeep fw-bold">
                 <div className="mb-3">
-                  <label htmlFor="otp" className="form-label text-muted">
+                  <label htmlFor="otp" className="form-label">
                     OTP (One-Time Password)
                   </label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control border-deep"
                     id="otp"
                     placeholder="Enter OTP sent to your email"
                     value={otp}
@@ -163,13 +171,16 @@ export default function DeleteAccount() {
                     required
                   />
                 </div>
-                <div className="text-danger my-3">
-                  Time left: {formatTime(timeLeft)}
+                <div className="my-3">
+                  Time left:
+                  <span className="text-danger ms-2">
+                    {formatTime(timeLeft)}
+                  </span>
                 </div>
 
                 <button
                   type="submit"
-                  className="btn btn-custom custom-btn w-100"
+                  className="btn btn-deep w-100"
                   disabled={loading}
                 >
                   {loading ? "Sending..." : "Verify OTP"}

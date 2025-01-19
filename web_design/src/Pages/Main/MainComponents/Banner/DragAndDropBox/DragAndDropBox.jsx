@@ -151,7 +151,7 @@ export default function DragAndDropBox(props) {
                 value={formik.values.message}
                 onChange={formik.handleChange}
               />
-              <small id="messageHelp" class="form-text textDeep">
+              <small id="messageHelp" className="form-text textDeep">
                 Max <strong>500</strong> characters allowed.
               </small>
             </div>

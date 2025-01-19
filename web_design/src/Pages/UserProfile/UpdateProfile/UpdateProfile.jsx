@@ -111,20 +111,21 @@ export default function UpdateProfile() {
   };
 
   return (
-    <section className="bgGradient py-5">
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-6 bg-white rounded p-5 shadow mx-auto">
-            <h3 className="text-center mb-4 text-dark">Update Account</h3>
-            <form onSubmit={formik.handleSubmit}>
+    <section>
+      <div className="container py-4">
+        <div className="row justify-content-center">
+          <div className="col-md-6 rounded p-5 shadow-sm">
+            <h3 className="text-center mb-4 textDeep fw-bold">
+              Update Account
+            </h3>
+            <form onSubmit={formik.handleSubmit} className="textDeep fw-bold">
               <div className="text-center mb-2 mt-4">
                 <img
                   src={profileImage}
                   alt="Profile"
-                  className="rounded-circle shadow"
+                  className="rounded cursorPointer"
                   width="150px"
                   height="150px"
-                  style={{ cursor: "pointer" }}
                   onClick={() =>
                     document.getElementById("image-upload").click()
                   }
@@ -144,7 +145,7 @@ export default function UpdateProfile() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${
+                  className={`form-control border-deep ${
                     formik.touched.name && formik.errors.name
                       ? "is-invalid"
                       : ""
@@ -167,7 +168,7 @@ export default function UpdateProfile() {
                 </label>
                 <input
                   type="email"
-                  className={`form-control ${
+                  className={`form-control border-deep ${
                     formik.touched.email && formik.errors.email
                       ? "is-invalid"
                       : ""
@@ -190,7 +191,7 @@ export default function UpdateProfile() {
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${
+                  className={`form-control border-deep ${
                     formik.touched.contact && formik.errors.contact
                       ? "is-invalid"
                       : ""
@@ -210,7 +211,7 @@ export default function UpdateProfile() {
               </div>
 
               <div className="d-grid">
-                <button type="submit" className="btn btn-custom custom-btn">
+                <button type="submit" className="btn btn-deep">
                   Update Profile
                 </button>
               </div>

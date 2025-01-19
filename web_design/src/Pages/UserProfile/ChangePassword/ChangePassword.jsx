@@ -20,7 +20,8 @@ export default function ChangePassword() {
         setTimer((prev) => prev - 1);
       }, 1000);
     } else if (timer === 0) {
-      redirector("/");
+      toast.info("OTP Has Been Expired");
+      redirector("/main");
     }
     return () => clearInterval(interval);
   }, [isTimerActive, timer, redirector]);
@@ -109,22 +110,22 @@ export default function ChangePassword() {
   });
 
   return (
-    <section className="bgGradient py-5">
-      <div className="container vh-100 align-content-center">
+    <section>
+      <div className="container mt-5 align-content-center">
         <div className="row">
-          <div className="col-md-6 p-5 bg-light rounded mx-auto">
-            <h3 className="text-center text-dark">
+          <div className="col-md-6 p-5 shadow-sm textDeep rounded mx-auto">
+            <h3 className="text-center">
               {step === 1
                 ? "Enter Your Email"
                 : "Verify OTP and Set New Password"}
             </h3>
-            <p className="text-center mb-4 text-dark">
+            <p className="text-center mb-4">
               {step === 1
                 ? "Please enter your email to receive a password reset OTP."
                 : "Enter the OTP sent to your email and set your new password."}
             </p>
             {apiError && <div className="text-danger mb-3">{apiError}</div>}
-            <form onSubmit={formik.handleSubmit}>
+            <form onSubmit={formik.handleSubmit} className="textDeep fw-bold">
               {step === 1 && (
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
@@ -134,7 +135,8 @@ export default function ChangePassword() {
                     type="email"
                     id="email"
                     name="email"
-                    className="form-control"
+                    className="form-control border-deep"
+                    placeholder="Enter Your Email"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
@@ -156,7 +158,8 @@ export default function ChangePassword() {
                       type="text"
                       id="otp"
                       name="otp"
-                      className="form-control"
+                      className="form-control border-deep"
+                      placeholder="Enter the Received OTP on Your Email"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.otp}
@@ -164,13 +167,6 @@ export default function ChangePassword() {
                     {formik.touched.otp && formik.errors.otp && (
                       <div className="text-danger">{formik.errors.otp}</div>
                     )}
-                    <div className="mt-2 text-muted">
-                      Time remaining:{" "}
-                      <span className="text-danger">
-                        {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
-                        {timer % 60}
-                      </span>
-                    </div>
                   </div>
 
                   <div className="mb-3">
@@ -181,7 +177,8 @@ export default function ChangePassword() {
                       type="password"
                       id="password"
                       name="password"
-                      className="form-control"
+                      className="form-control border-deep"
+                      placeholder="Enter New Password"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.password}
@@ -201,7 +198,8 @@ export default function ChangePassword() {
                       type="password"
                       id="confirmPassword"
                       name="confirmPassword"
-                      className="form-control"
+                      className="form-control border-deep"
+                      placeholder="Re-Enter the Password"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.confirmPassword}
@@ -212,13 +210,20 @@ export default function ChangePassword() {
                           {formik.errors.confirmPassword}
                         </div>
                       )}
+                    <div className="mt-2 fw-normal text-end">
+                      Time remaining:{" "}
+                      <span className="text-danger fw-bold">
+                        {Math.floor(timer / 60)}:{timer % 60 < 10 ? "0" : ""}
+                        {timer % 60}
+                      </span>
+                    </div>
                   </div>
                 </>
               )}
 
               <button
                 type="submit"
-                className="btn btn-custom custom-btn w-100"
+                className="btn btn-deep w-100"
                 disabled={isLoading}
               >
                 {isLoading

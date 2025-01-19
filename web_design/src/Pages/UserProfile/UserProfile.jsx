@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { noFileAPI } from "../../Services/API/API";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Footer from "../../Components/Footer/Footer";
 
 export default function UserProfile() {
   const [data, setData] = useState([]);
@@ -15,23 +14,19 @@ export default function UserProfile() {
     }
   }, [username, localUsername, redirector]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await noFileAPI.get(`/user/${username}`);
-        setData(response.data);
-      } catch (error) {
-        redirector("/");
-        console.error(error.response.data.error);
-      }
-    };
-
-    const intervalID = setInterval(() => {
-      getData();
-    }, 100);
-
-    return () => clearInterval(intervalID);
+  const getData = useCallback(async () => {
+    try {
+      const response = await noFileAPI.get(`/user/${username}`);
+      setData(response.data);
+    } catch (error) {
+      redirector("/");
+      console.error(error.response.data.error);
+    }
   }, [username, redirector]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const APIurl = process.env.REACT_APP_API;
 
@@ -52,68 +47,50 @@ export default function UserProfile() {
 
   return (
     <>
-      <section className="py-5 bgGradient">
-        <div className="container rounded mt-5 shadow-sm p-4 bg-light">
-          <div className="row">
-            <div className="col-md-5 text-center d-flex justify-content-center align-items-center">
+      <section className="py-5">
+        <div className="container">
+          <div className="row rounded shadow-sm p-4">
+            <div className="col-md-4 text-center d-flex justify-content-center align-items-center">
               <img
                 src={`${APIurl}${data.profile}`}
-                className="img-fluid rounded shadow-sm"
-                style={{
-                  aspectRatio: "4/3",
-                  maxWidth: "100%",
-                  objectFit: "cover",
-                }}
-                alt="User Profile"
+                className="img-fluid rounded w-100"
+                style={{ aspectRatio: "4/4" }}
+                alt={data.username || "User Profile"}
               />
             </div>
-            <div className="col-md-7">
+            <div className="col-md-8">
               <h3 className="mb-4 fw-bold">
                 {data.username || "User Details"}
               </h3>
               <div className="table-responsive " style={{ overflow: "unset" }}>
-                <table className="table table-bordered table-hover">
-                  <tbody>
+                <table className="table table-hover">
+                  <tbody className="tableBodyCustom">
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Name
-                      </th>
+                      <th scope="row">Name</th>
                       <td>{data.name || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Email
-                      </th>
+                      <th scope="row">Email</th>
                       <td>{data.email || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Contact
-                      </th>
+                      <th scope="row">Contact</th>
                       <td>{data.contact || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Role
-                      </th>
+                      <th scope="row">Role</th>
                       <td>{data.role || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Status
-                      </th>
+                      <th scope="row">Status</th>
                       <td>{data.status || "N/A"}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Used Storage
-                      </th>
+                      <th scope="row">Used Storage</th>
                       <td>{formatStorage(data.usedStorage)}</td>
                     </tr>
                     <tr>
-                      <th scope="row" className="text-secondary">
-                        Total Storage
-                      </th>
+                      <th scope="row">Total Storage</th>
                       <td>{formatStorage(data.totalStorage)}</td>
                     </tr>
                     <tr>
@@ -121,12 +98,12 @@ export default function UserProfile() {
                         <div className="btn-group w-100">
                           <Link
                             to={`/main/user/update/account/${username}`}
-                            className="btn btn-custom custom-btn rounded-start w-100"
+                            className="btn btn-deep rounded-start w-100"
                           >
                             Update Profile
                           </Link>
                           <button
-                            className="btn btn-custom custom-btn rounded-end w-100"
+                            className="btn btn-deep rounded-end w-100"
                             type="button"
                             id="dropdownMenuButton"
                             data-bs-toggle="dropdown"
@@ -135,12 +112,12 @@ export default function UserProfile() {
                             Actions
                           </button>
                           <ul
-                            className="dropdown-menu dropdown-menu-end text-center p-0 overflow-hidden"
+                            className="dropdown-menu dropdown-menu-end text-center border-0 shadow overflow-hidden"
                             aria-labelledby="dropdownMenuButton"
                           >
                             <li>
                               <button
-                                className="dropdown-item btn btn-custom custom-btn"
+                                className="dropdown-item textDeep fw-bold"
                                 onClick={handleLogout}
                               >
                                 Logout
@@ -149,7 +126,7 @@ export default function UserProfile() {
                             <li>
                               <Link
                                 to={`/main/user/account/password/${username}`}
-                                className="dropdown-item btn btn-custom custom-btn"
+                                className="dropdown-item textDeep fw-bold"
                               >
                                 Change Password
                               </Link>
@@ -157,14 +134,17 @@ export default function UserProfile() {
                             <li>
                               <Link
                                 to={`/main/user/delete/account/${username}`}
-                                className="dropdown-item btn btn-custom custom-btn"
+                                className="dropdown-item textDeep fw-bold"
                               >
                                 Delete Account
                               </Link>
                             </li>
                             <li>
                               {data.status === "UNVERIFIED" ? (
-                                <Link to={`/verify/send/${username}`} className="dropdown-item btn btn-custom custom-btn">
+                                <Link
+                                  to={`/verify/send/${username}`}
+                                  className="dropdown-item textDeep fw-bold"
+                                >
                                   Verify {data.username}
                                 </Link>
                               ) : (
@@ -182,7 +162,6 @@ export default function UserProfile() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

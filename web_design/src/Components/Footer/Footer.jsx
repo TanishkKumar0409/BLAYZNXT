@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,14 +8,24 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const location = useLocation();
   const [isForm, setIsForm] = useState("");
+  const username = JSON.parse(localStorage.getItem(`user`));
+
+  const noFooter = useMemo(
+    () => [
+      "/form",
+      `/main/user/delete/account/${username}`,
+      `/main/user/account/password/${username}`,
+    ],
+    [username]
+  );
 
   useEffect(() => {
-    if (location.pathname === "/form") {
+    if (noFooter.includes(location.pathname)) {
       setIsForm("d-none");
     } else {
       setIsForm("");
     }
-  }, [location]);
+  }, [location, noFooter]);
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
