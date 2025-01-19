@@ -36,18 +36,17 @@ export default function HomeDrag() {
 
   return (
     <div className="container-fluid py-5">
-      <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm border-deep form-box position-relative overflow-hidden">
+      <div className="p-md-5 p-3 rounded shadow-sm border-deep">
         <form onSubmit={handleSubmit}>
           <div
             {...getRootProps()}
             onClick={() => setShowModal(true)}
-            className="dropzone cursorPointer bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
+            className="dropzone cursorPointer position-relative align-content-center rounded text-center border-2 p-5"
           >
             <input {...getInputProps()} />
-            <p className="text-muted">
+            <p className="textDeep">
               Drag and drop {files.length ? "more" : "a"} files here or
-              <span className="text-primary fw-bold ms-1">click</span> to select
-              files
+              <span className="fw-bold ms-1">click</span> to select files
             </p>
           </div>
 
@@ -93,7 +92,7 @@ export default function HomeDrag() {
           )}
 
           <div className="mt-4 text-center">
-            <button type="submit" className="btn btn-deep">
+            <button type="submit" className="btn btn-deep w-100">
               Submit
             </button>
           </div>

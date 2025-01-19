@@ -60,17 +60,16 @@ export default function DragAndDropBox(props) {
 
   return (
     <div className="container-fluid py-5">
-      <div className="bg-white text-dark p-md-5 p-3 rounded shadow form-box position-relative overflow-hidden">
+      <div className="p-md-5 p-3 rounded shadow-sm border-deep">
         <form onSubmit={formik.handleSubmit}>
           <div
             {...getRootProps()}
-            className="dropzone cursorPointer bg-white position-relative align-content-center rounded text-center p-5 border-dashed-1 overflow-hidden"
+            className="dropzone cursorPointer position-relative align-content-center rounded border-2 text-center p-5"
           >
             <input {...getInputProps()} />
-            <p className="text-muted">
+            <p className="textDeep">
               Drag and drop {files.length ? "more" : "a"} files here or
-              <span className="text-primary fw-bold ms-1">click</span> to select
-              files
+              <span className="fw-bold ms-1">click</span> to select files
             </p>
           </div>
 
@@ -80,7 +79,7 @@ export default function DragAndDropBox(props) {
 
           {files.length > 0 && (
             <div className="mt-3">
-              <strong className="selected fs-4">
+              <strong className="textDeepB fs-6">
                 Selected Files: <span>{files.length}</span>
               </strong>
               <ul
@@ -90,12 +89,12 @@ export default function DragAndDropBox(props) {
                 {files.map((file, index) => (
                   <li
                     key={index}
-                    className="list-group-item d-flex justify-content-between align-items-center shadow-sm"
+                    className="list-group-item d-flex justify-content-between border-deep fw-bold align-items-center shadow-sm"
                   >
                     <span className="truncated-file-name">{file.name}</span>
                     <button
                       type="button"
-                      className="btn btn-danger"
+                      className="btn btn-outline-deep"
                       onClick={() => {
                         const updatedFiles = files.filter(
                           (_, i) => i !== index
@@ -111,8 +110,8 @@ export default function DragAndDropBox(props) {
             </div>
           )}
 
-          <div className="row mt-4">
-            <div className="col-md-6">
+          <div className="row mt-2 fw-bold textDeep flex-column">
+            <div className="col mb-1">
               <label htmlFor="email" className="form-label">
                 Email
               </label>
@@ -120,7 +119,7 @@ export default function DragAndDropBox(props) {
                 type="email"
                 id="email"
                 name="email"
-                className={`form-control ${
+                className={`form-control border-deep ${
                   formik.touched.email && formik.errors.email
                     ? "is-invalid"
                     : ""
@@ -138,20 +137,23 @@ export default function DragAndDropBox(props) {
               ) : null}
             </div>
 
-            <div className="col-md-6">
+            <div className="col mb-1">
               <label htmlFor="message" className="form-label">
                 Message
               </label>
               <textarea
                 id="message"
                 name="message"
-                className="form-control"
+                className="form-control border-deep"
                 placeholder="Enter your message"
-                rows="1"
+                rows="3"
                 maxLength={"500"}
                 value={formik.values.message}
                 onChange={formik.handleChange}
               />
+              <small id="messageHelp" class="form-text textDeep">
+                Max <strong>500</strong> characters allowed.
+              </small>
             </div>
           </div>
 
@@ -159,10 +161,10 @@ export default function DragAndDropBox(props) {
             <div className="text-danger mt-3">{errorMessage}</div>
           )}
 
-          <div className="mt-4 text-center">
+          <div className="text-center">
             <button
               type="submit"
-              className="btn custom-btn btn-custom border-0 overflow-hidden"
+              className="btn btn-deep w-100 border-0 overflow-hidden"
             >
               Submit
             </button>

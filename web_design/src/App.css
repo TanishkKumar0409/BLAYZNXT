@@ -112,13 +112,6 @@
   min-height: 300px;
 }
 
-.truncated-file-name {
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .truncated-profile {
   max-width: 250px;
   white-space: nowrap;
@@ -599,4 +592,17 @@ footer a:hover {
 
 .forgotBtn:hover {
   text-decoration: underline !important;
+}
+
+.truncated-file-name {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+input,
+textarea {
+  color: #0d0c22 !important;
+  font-weight: 700 !important;
 }
