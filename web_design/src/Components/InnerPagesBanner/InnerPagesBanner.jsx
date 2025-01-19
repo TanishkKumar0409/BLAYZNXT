@@ -1,24 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function InnerPagesBanner({ BannerData }) {
+export default function InnerPagesBanner({ heading }) {
   return (
-    <>
-      <section
-        className="bgGradient py-5 overflow-hidden position-relative align-content-center"
-        style={{ zIndex: "0", minHeight: "100vh" }}
-      >
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-10 text-center text-light historyBanner">
-              <h2>
-                <i className={`fa-solid fa-${BannerData.icon}`}></i>
-              </h2>
-              <h3>{BannerData.heading}</h3>
-              <p>{BannerData.para}</p>
-            </div>
+    <section className="py-3 bg-deep text-white">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-6">
+            <h3 className="mb-0">{heading}</h3>
+          </div>
+          <div className="col-6 text-end">
+            <h4 className="mb-0">
+              <Link to="/" className="text-decoration-none text-white">
+                Home
+              </Link>
+              <span className="mx-2">/</span>
+              {heading}
+            </h4>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
