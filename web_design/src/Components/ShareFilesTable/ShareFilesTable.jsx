@@ -101,7 +101,7 @@ export default function ShareFilesTable() {
     <>
       <section>
         <div className="container py-5">
-          <div className="row">
+          <div className="row textDeep">
             <h2
               className="text-center mb-4 mainHeading text-uppercase fw-bold"
               style={{ "--text": "'Shared History'" }}
@@ -117,7 +117,7 @@ export default function ShareFilesTable() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="dropdown w-100 text-end">
                   <button
-                    className="btn btn-custom custom-btn text-light px-4"
+                    className="btn btn-deep text-light px-4"
                     type="button"
                     id="filterDropdown"
                     data-bs-toggle="dropdown"
@@ -126,7 +126,7 @@ export default function ShareFilesTable() {
                     <i className="bi bi-funnel"></i> Filters
                   </button>
                   <ul
-                    className="dropdown-menu dropdown-menu-start p-3 shadow border-0"
+                    className="dropdown-menu dropdown-menu-start textDeep fw-bold p-3 shadow border-0"
                     aria-labelledby="filterDropdown"
                     style={{ zIndex: "998" }}
                   >
@@ -136,7 +136,7 @@ export default function ShareFilesTable() {
                       </label>
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control border-deep"
                         placeholder="Enter email"
                         value={searchQuery}
                         onChange={handleSearch}
@@ -148,14 +148,14 @@ export default function ShareFilesTable() {
                         Year
                       </label>
                       <select
-                        className="form-select"
+                        className="form-select border-deep"
                         value={yearFilter}
                         id="YearSearch"
                         onChange={handleYearChange}
                       >
                         <option value="">Select Year</option>
                         {years.map((year) => (
-                          <option key={year} value={year}>
+                          <option key={year} className="textDeep" value={year}>
                             {year}
                           </option>
                         ))}
@@ -166,14 +166,18 @@ export default function ShareFilesTable() {
                         Month
                       </label>
                       <select
-                        className="form-select"
+                        className="form-select border-deep"
                         value={monthFilter}
                         id="MonthSearch"
                         onChange={handleMonthChange}
                       >
                         <option value="">Select Month</option>
                         {months.map((month, index) => (
-                          <option key={index + 1} value={index + 1}>
+                          <option
+                            key={index + 1}
+                            className="textDeep"
+                            value={index + 1}
+                          >
                             {month}
                           </option>
                         ))}
@@ -184,14 +188,18 @@ export default function ShareFilesTable() {
                         Day
                       </label>
                       <select
-                        className="form-select"
+                        className="form-select border-deep"
                         value={dayFilter}
                         id="DaySearch"
                         onChange={handleDayChange}
                       >
                         <option value="">Select Day</option>
                         {Array.from({ length: 31 }, (_, index) => (
-                          <option key={index + 1} value={index + 1}>
+                          <option
+                            key={index + 1}
+                            className="textDeep"
+                            value={index + 1}
+                          >
                             {index + 1}
                           </option>
                         ))}
@@ -249,10 +257,7 @@ export default function ShareFilesTable() {
                       path === "/main" ? (
                         <tr>
                           <td colSpan={`6`}>
-                            <Link
-                              to={"/main/history"}
-                              className="btn btn-custom custom-btn"
-                            >
+                            <Link to={"/main/history"} className="btn btn-deep">
                               Show All
                             </Link>
                           </td>
@@ -272,7 +277,7 @@ export default function ShareFilesTable() {
                                 <div className="btn-group">
                                   {visibleCount < filteredData.length && (
                                     <button
-                                      className="btn btn-custom custom-btn"
+                                      className="btn btn-deep"
                                       onClick={() =>
                                         setVisibleCount((prev) => prev + 10)
                                       }
@@ -282,7 +287,7 @@ export default function ShareFilesTable() {
                                   )}
                                   {visibleCount > 10 && (
                                     <button
-                                      className="btn btn-custom custom-btn"
+                                      className="btn btn-outline-deep"
                                       onClick={() =>
                                         setVisibleCount((prev) =>
                                           Math.max(prev - 10, 10)

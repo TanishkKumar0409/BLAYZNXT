@@ -221,14 +221,14 @@
 }
 
 .tableHeadCustom tr th {
-  background: linear-gradient(var(--accent-purple), var(--accent-cyan));
+  background: #0d0c22;
   color: white;
   text-shadow: 0 0 0.2rem gray;
 }
 
 .tableBodyCustom tr td {
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: #0d0c22;
   transition: 0.2s;
 }
 

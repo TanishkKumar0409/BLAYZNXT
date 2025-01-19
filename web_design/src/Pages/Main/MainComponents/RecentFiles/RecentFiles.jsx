@@ -71,8 +71,8 @@ export default function RecentFiles() {
     <>
       {fileData.length > 0 ? (
         <section>
-          <div className="container py-5 mt-5 bg-white">
-            <div className="row">
+          <div className="container py-5 mt-5">
+            <div className="row textDeep">
               <h2
                 className="text-center mb-4 mainHeading text-uppercase fw-bold"
                 style={{ "--text": "'Recent Files'" }}
@@ -84,27 +84,24 @@ export default function RecentFiles() {
                 Recent Files section, making it easy to access and manage your
                 most relevant files.
               </p>
-              <div className="col-12">
+              <div className="col-12 mt-3">
                 <div className="row g-4 justify-content-center">
                   {fileData.map((item, index) => (
                     <div key={index} className="col-md-4">
-                      <div className="cardCustom rounded-3 overflow-hidden bg-white">
-                        <div className="cardCustomHead bgGradient h-50 d-flex justify-content-center align-items-center">
+                      <div className="card border-0 shadow-sm rounded-lg h-100">
+                        <div className="card-header bg-transparent text-center py-4">
                           <i
-                            className={`fa text-white ${getFileIcon(
+                            className={`fa ${getFileIcon(
                               item.file.root || "default"
-                            )}`}
+                            )} text-white bg-deep rounded p-3 fs-2`}
                           ></i>
                         </div>
-                        <div className="cardCustomBody h-50 d-flex justify-content-center align-items-center text-center p-4 flex-column">
-                          <h2 className=" fw-bold fs-6 text-break text-capitalize">
-                            {item.file.root}
-                          </h2>
+                        <div className="card-body textDeep text-center">
                           <Link
                             to={`/main/file/view/${item.file.folderId}`}
-                            className="btn custom-btn btn-custom border-0 overflow-hidden"
+                            className="btn textDeep fw-bold forgotBtn border-0 overflow-hidden"
                           >
-                            View
+                            {item.file.root}
                           </Link>
                         </div>
                       </div>
