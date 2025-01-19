@@ -12,6 +12,7 @@ export default function Navbar() {
   const username = JSON.parse(localStorage.getItem("user"));
 
   const [userData, setUserData] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       const response = await noFileAPI.get(`/user/${username}`);
@@ -76,21 +77,21 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link
                   className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
-                    "/main/history"
-                  )}`}
-                  to="/main/history"
-                >
-                  History
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
                     "/main/storage"
                   )}`}
                   to="/main/storage"
                 >
                   Storage
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={`nav-link textDeepBlue fw-bold fs-5 ${isActive(
+                    "/main/history"
+                  )}`}
+                  to="/main/history"
+                >
+                  History
                 </Link>
               </li>
               <li className="nav-item">
@@ -196,7 +197,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <Profile userData={userData} />
+      <Profile />
     </header>
   );
 }

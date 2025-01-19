@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import ImageView from "./ViewExt.jsx/ImageView";
 import VideoView from "./ViewExt.jsx/VideoView";
 import PdfView from "./ViewExt.jsx/PdfView";
-import Footer from "../../Components/Footer/Footer";
 import { noFileAPI } from "../../Services/API/API";
 import DocView from "./ViewExt.jsx/DocView";
 import AudioView from "./ViewExt.jsx/AudioView";
@@ -80,7 +79,6 @@ export default function FileView() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }

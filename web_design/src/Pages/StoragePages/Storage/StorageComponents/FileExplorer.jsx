@@ -23,8 +23,8 @@ export default function FileExplorer({ username }) {
         setFolderData(response.data);
       } catch (error) {
         console.warn(error.response.data.error);
-    };
       }
+    };
     getData();
   }, [username]);
 
@@ -179,13 +179,6 @@ export default function FileExplorer({ username }) {
   return (
     <section className="py-5">
       <div className="container">
-        <h2
-          className="text-center mb-4 mainHeading text-uppercase fw-bold"
-          style={{ "--text": `'${username} Files'` }}
-        >
-          {username} Files
-        </h2>
-
         <button
           onClick={handleBack}
           className="btn btn-light shadow-sm mb-4 rounded-circle"

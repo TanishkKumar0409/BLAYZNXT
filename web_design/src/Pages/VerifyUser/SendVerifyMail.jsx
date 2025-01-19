@@ -43,7 +43,7 @@ export default function SendVerifyMail() {
       });
       if (response) {
         toast.success(response.data.message);
-        setTimeout(() => redirector(`/verify/${username}`), 1000);
+        redirector(`/verify/${username}`);
       }
     } catch (error) {
       console.log(error);
@@ -53,29 +53,25 @@ export default function SendVerifyMail() {
 
   return (
     <>
-      <section className="bgGradient">
-        <div className="container vh-100 align-content-center">
-          <div className="row">
-            <div className="col-md-6 rounded shadow-sm p-5 mx-auto text-center bg-light">
-              <h3 className="text-center mb-4 text-dark">
-                Verify Your Account
-              </h3>
-              <p className="text-muted">
-                Enter your email address to receive a verification OTP.
-              </p>
+      <section>
+        <div className="container mt-5">
+          <div className="row pt-5">
+            <div className="col-md-6 rounded shadow-sm p-5 mx-auto textDeep text-center">
+              <h3 className="text-center mb-4">Verify Your Account</h3>
+              <p>Enter your email address to receive a verification OTP.</p>
               <input
                 type="email"
-                className="form-control mb-3"
+                className="form-control mb-3 border-deep bg-white"
                 placeholder="Enter your email"
                 value={email}
+                disabled
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <button
-                className="btn btn-custom custom-btn"
-                onClick={handleSendOtp}
-              >
-                {btnMessage}
-              </button>
+              <div className="btn-group">
+                <button className="btn btn-deep" onClick={handleSendOtp}>
+                  {btnMessage}
+                </button>
+              </div>
             </div>
           </div>
         </div>

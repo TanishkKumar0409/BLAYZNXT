@@ -32,7 +32,7 @@ export default function DownloadLink() {
 
   return (
     <div className="container-fluid py-5">
-      <div className="bg-white text-dark p-md-5 p-3 rounded shadow form-box position-relative overflow-hidden">
+      <div className="bg-white text-dark p-md-5 p-3 rounded shadow-sm border-deep">
         <h3
           className="text-center mb-4 mainHeading text-uppercase fw-bold"
           style={{ "--text": "'Download Link'" }}
@@ -40,38 +40,45 @@ export default function DownloadLink() {
           Download Link
         </h3>
 
-        <ul className="list-group">
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <Link className="text-truncate">{data.downloadLink}</Link>
+        <ul className="list-group fs-6 fw-bold">
+          <li className="list-group-item border-deep d-flex justify-content-between align-items-center">
+            <Link
+              to={data.downloadLink}
+              className="text-truncate forgotBtn text-decoration-none"
+            >
+              {data.downloadLink}
+            </Link>
             <button
-              className="btn btn-light"
+              className="btn btn-outline-deep"
               onClick={() => handleCopy(data.downloadLink)}
             >
               <i className="fa fa-copy"></i>
             </button>
           </li>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <p className="text-center fs-6">
+          <li className="list-group-item border-deep d-flex justify-content-between align-items-center">
+            <p className="text-center">
               Send To: <strong>{data.receiverEmail}</strong>
             </p>
           </li>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <p className="text-center fs-6">
+          <li className="list-group-item border-deep d-flex justify-content-between align-items-center">
+            <p className="text-center">
               Total Files Shared: <strong>{data.fileName.length}</strong>
             </p>
           </li>
-          <li className="list-group-item d-flex justify-content-between align-items-center">
-            <p className="text-center fs-6">
+          <li className="list-group-item border-deep d-flex justify-content-between align-items-center">
+            <p className="text-center fw-medium">
               Link will expire on{" "}
-              {new Date(data.downloadLinkExpiry).toLocaleString(undefined, {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-              })}
+              <span className="fw-bold">
+                {new Date(data.downloadLinkExpiry).toLocaleString(undefined, {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                })}
+              </span>
             </p>
           </li>
         </ul>

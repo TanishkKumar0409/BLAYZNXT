@@ -15,6 +15,8 @@ export default function Footer() {
       "/form",
       `/main/user/delete/account/${username}`,
       `/main/user/account/password/${username}`,
+      `/verify/send/${username}`,
+      `/verify/${username}`,
     ],
     [username]
   );
@@ -136,6 +138,7 @@ export default function Footer() {
               <form onSubmit={handleNewsletterSubmit}>
                 <div className="input-group">
                   <input
+                  id="newsletter"
                     type="email"
                     className="form-control border-deep"
                     placeholder="Enter your email"

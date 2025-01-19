@@ -5,10 +5,7 @@ export default function StorageAnalysis() {
   const username = JSON.parse(localStorage.getItem("user"));
 
   const [data, setData] = useState([]);
-  const [gradientColors, setGradientColors] = useState({
-    start: "#e91e63",
-    end: "#673ab7",
-  });
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -49,21 +46,6 @@ export default function StorageAnalysis() {
 
   const value = circumference - circumference * (perValue / 100);
 
-  const getGradientColors = (percentage) => {
-    if (percentage > 100) {
-      return { start: "#d3d3d3", end: "#a9a9a9" };
-    } else if (percentage <= 20) {
-      return { start: "#00bcd4", end: "#2196f3" };
-    } else if (percentage <= 40) {
-      return { start: "#4caf50", end: "#8bc34a" };
-    } else if (percentage <= 60) {
-      return { start: "#ffc107", end: "#ff9800" };
-    } else if (percentage <= 80) {
-      return { start: "#ff5722", end: "#f44336" };
-    }
-    return { start: "#e91e63", end: "#673ab7" };
-  };
-
   const displaySize = (sizeInBytes) => {
     if (sizeInBytes >= 1024 * 1024 * 1024) {
       return `${(sizeInBytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
@@ -71,14 +53,9 @@ export default function StorageAnalysis() {
       return `${(sizeInBytes / 1024 / 1024).toFixed(2)} MB`;
     }
   };
-
-  useEffect(() => {
-    setGradientColors(getGradientColors(percentage));
-  }, [percentage]);
-
   return (
-    <section className="bg-white py-5">
-      <div className="container">
+    <section>
+      <div className="container py-5 textDeep fw-semibold">
         <h2
           className="text-center mb-4 mainHeading text-uppercase fw-bold"
           style={{ "--text": `'${username} Storage'` }}
@@ -126,8 +103,8 @@ export default function StorageAnalysis() {
               >
                 <defs>
                   <linearGradient id="GradientColor">
-                    <stop offset="0%" stopColor={gradientColors.start} />
-                    <stop offset="100%" stopColor={gradientColors.end} />
+                    <stop offset="0%" stopColor={`#0d0c22`} />
+                    <stop offset="100%" stopColor={`#0d0c22`} />
                   </linearGradient>
                 </defs>
                 <circle

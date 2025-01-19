@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { noFileAPI } from "../../Services/API/API";
 
-export default function Profile(props) {
-  const userData = props.userData;
+export default function Profile() {
+  const [userData, setUser] = useState([]);
+  const username = JSON.parse(localStorage.getItem(`user`));
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await noFileAPI.get(`/user/${username}`);
+      setUser(response.data)
+    };
+    getData()
+  }, [username]);
 
   const handleLogout = () => {
     localStorage.clear();

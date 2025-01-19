@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { API } from "../../Services/API/API";
 import { Link, useLocation } from "react-router-dom";
 
@@ -25,23 +25,19 @@ export default function ShareFilesTable() {
     new Date(0, i).toLocaleString("en", { month: "long" })
   );
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const fetchData = await API.get(`/share/history/user/${username}`);
-        setData(fetchData.data);
-        setFilteredData(fetchData.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    const intervalId = setInterval(() => {
-      getData();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+  const getData = useCallback(async () => {
+    try {
+      const fetchData = await API.get(`/share/history/user/${username}`);
+      setData(fetchData.data);
+      setFilteredData(fetchData.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }, [username]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const handleSearch = (event) => {
     const query = event.target.value.toLowerCase();
@@ -117,7 +113,13 @@ export default function ShareFilesTable() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <div className="dropdown w-100 text-end">
                   <button
-                    className="btn btn-deep text-light px-4"
+                    className="btn btn-deep rounded-end-0"
+                    onClick={() => getData()}
+                  >
+                    Refresh
+                  </button>
+                  <button
+                    className="btn btn-deep rounded-start-0 text-light px-4"
                     type="button"
                     id="filterDropdown"
                     data-bs-toggle="dropdown"
@@ -248,7 +250,7 @@ export default function ShareFilesTable() {
                             )}
                           </td>
                           <td>{file.receiverEmail}</td>
-                          <td>{file.message}</td>
+                          <td className="textJustify">{file.message}</td>
                           <td>{file.fileName.length} Files</td>
                         </tr>
                       ))
