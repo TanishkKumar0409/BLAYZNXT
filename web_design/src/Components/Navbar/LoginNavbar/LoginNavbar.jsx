@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function LoginNavbar() {
   const location = useLocation();
+  const [isForm, setIsForm] = useState("");
 
   const isActive = (path) => (location.pathname === path ? "active" : "");
 
+  useEffect(() => {
+    if (location.pathname === "/form") {
+      setIsForm("d-none");
+    } else {
+      setIsForm("");
+    }
+  }, [location]);
+
   return (
-    <header className={`shadow-sm sticky-top bg-white`} style={{ zIndex: 999 }}>
+    <header
+      className={`shadow-sm sticky-top bg-white ${isForm}`}
+      style={{ zIndex: 999 }}
+    >
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand textDeep fs-4 fw-bold" to="/">

@@ -73,9 +73,21 @@ export default function Register(props) {
 
   return (
     <div className="d-flex justify-content-center align-items-center mt-5 mt-md-0">
-      <div className="w-100 p-md-5 rounded-3">
-        <h3 className="text-center mb-4">Register in Project TK</h3>
-        <form onSubmit={formik.handleSubmit} className="form-style">
+      <div className="w-100 p-md-4 rounded-3">
+        <h3 className="text-center mb-4">
+          Login to{" "}
+          <Link
+            to={`/`}
+            className="textDeep forgotBtn fw-bold text-decoration-none"
+          >
+            Project TK
+          </Link>
+        </h3>
+        <hr />
+        <form
+          onSubmit={formik.handleSubmit}
+          className="form-style textDeep fw-bold"
+        >
           <div className="mb-3 text-center">
             <input
               ref={fileInputRef}
@@ -86,12 +98,13 @@ export default function Register(props) {
               onChange={handleImageChange}
               accept="image/*"
             />
-            <div className="profile-preview" onClick={handleImageClick}>
+            <div className="profile-preview">
               <img
                 src={
                   profileImage ||
                   `${APIurl}Uploads/Users/DefaultProfiles/DefaultProfile.jpg`
                 }
+                onClick={handleImageClick}
                 alt="Profile Preview"
                 className="img-fluid rounded-circle cursorPointer"
                 style={{ width: "150px", height: "150px", objectFit: "cover" }}
@@ -112,7 +125,8 @@ export default function Register(props) {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control border-deep"
+                placeholder="Enter a Unique Username"
                 id="username"
                 name="username"
                 value={formik.values.username}
@@ -131,7 +145,8 @@ export default function Register(props) {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control border-deep"
+                placeholder="Enter Your Full Name"
                 id="name"
                 name="name"
                 value={formik.values.name}
@@ -152,7 +167,8 @@ export default function Register(props) {
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control border-deep"
+                placeholder="Enter Your Email"
                 id="email"
                 name="email"
                 value={formik.values.email}
@@ -171,7 +187,8 @@ export default function Register(props) {
               </label>
               <input
                 type="tel"
-                className="form-control"
+                className="form-control border-deep"
+                placeholder="Enter Your Contact Number"
                 id="contact"
                 name="contact"
                 value={formik.values.contact}
@@ -190,9 +207,10 @@ export default function Register(props) {
             </label>
             <input
               type="password"
-              className="form-control"
               id="password"
               name="password"
+              className="form-control border-deep"
+              placeholder="Enter a Strong Password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -205,15 +223,21 @@ export default function Register(props) {
           <div className="d-grid">
             <button
               type="submit"
-              className="btn btn-custom custom-btn overflow-hidden border-0"
+              className="btn btn-deep"
               disabled={formik.isSubmitting}
             >
               Submit
             </button>
           </div>
 
-          <p className="text-center mt-3">
-            Already have an account? <Link onClick={props.isLogin}>Login</Link>
+          <p className="text-center fw-normal mt-3">
+            Already have an account?{" "}
+            <Link
+              className="forgotBtn fw-bold text-decoration-none textDeep"
+              onClick={props.isLogin}
+            >
+              Login
+            </Link>
           </p>
         </form>
       </div>

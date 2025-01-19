@@ -76,12 +76,15 @@ export default function HomeDrag() {
                 id="message"
                 name="message"
                 className="form-control border-deep"
-                placeholder="Enter your message"
-                rows="1"
+                placeholder="Enter your message (Optional)"
+                rows="3"
                 maxLength={"500"}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
+              <small id="messageHelp" class="form-text textDeep">
+                Max <strong>500</strong> characters allowed.
+              </small>
             </div>
           </div>
 

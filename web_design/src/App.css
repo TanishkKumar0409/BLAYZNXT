@@ -20,11 +20,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: gray;
+  background: #0d0c22b1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-purple);
+  background: #0d0c22;
 }
 
 .bgGradient {
@@ -413,13 +413,6 @@ circle {
   opacity: 0.5;
 }
 
-.testimonialCardHead {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://media.istockphoto.com/id/1156309035/vector/red-speech-and-thought-bubbles-with-quote-marks.jpg?s=612x612&w=0&k=20&c=tarfzBLFuPL9X92P3Rc5kpgCsqbv1cLEi38HRvPvVcE=")
-      no-repeat fixed center center;
-  background-size: cover;
-}
-
 .doc-view-container {
   display: flex;
   flex-direction: column;
@@ -593,4 +586,18 @@ footer a:hover {
 
 .owl-stage-outer {
   padding: 20px 0;
+}
+
+.owl-dot span {
+  background: #0d0c22a6 !important;
+}
+.owl-dot:hover span {
+  background: #0d0c22c1 !important;
+}
+.owl-dot.active span {
+  background: #0d0c22 !important;
+}
+
+.forgotBtn:hover {
+  text-decoration: underline !important;
 }

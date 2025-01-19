@@ -107,7 +107,7 @@ export default function Navbar() {
               {adminToken ? (
                 <div className="nav-item dropdown">
                   <span
-                    className={`nav-link dropdown-toggle fw-bold fs-5 ${
+                    className={`nav-link textDeepBlue dropdown-toggle fw-bold fs-5 ${
                       location.pathname.startsWith("/admin/dashboard")
                         ? "active"
                         : ""

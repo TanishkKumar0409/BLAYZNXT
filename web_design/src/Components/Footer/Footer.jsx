@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { noFileAPI } from "../../Services/API/API";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const location = useLocation();
+  const [isForm, setIsForm] = useState("");
+
+  useEffect(() => {
+    if (location.pathname === "/form") {
+      setIsForm("d-none");
+    } else {
+      setIsForm("");
+    }
+  }, [location]);
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +57,7 @@ export default function Footer() {
   const socialLinks = ["facebook", "instagram", "youtube"];
 
   return (
-    <footer className="py-5">
+    <footer className={`py-5 ${isForm}`}>
       <div className="container">
         <div className="row mb-4 gy-4 ">
           <div className="col-md-3 text-center align-content-center">

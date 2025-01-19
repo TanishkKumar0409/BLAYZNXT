@@ -43,18 +43,27 @@ export default function Login(props) {
   return (
     <div className="d-flex justify-content-center align-items-center my-5 w-100">
       <div className="w-100 px-5">
-        <h3 className="text-center mb-4">Login to Project TK</h3>
+        <h3 className="text-center mb-4">
+          Login to{" "}
+          <Link
+            to={`/`}
+            className="textDeep forgotBtn fw-bold text-decoration-none"
+          >
+            Project TK
+          </Link>
+        </h3>
         <hr />
-        <form onSubmit={formik.handleSubmit} className="form-style">
+        <form onSubmit={formik.handleSubmit} className="form-style textDeep fw-bold">
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email address
             </label>
             <input
               type="email"
-              className="form-control"
+              className="form-control border-deep"
               id="email"
               name="email"
+              placeholder="Enter Your Email"
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -72,9 +81,10 @@ export default function Login(props) {
             </label>
             <input
               type="password"
-              className="form-control"
+              className="form-control border-deep"
               id="password"
               name="password"
+              placeholder="Enter Your Password"
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -87,7 +97,7 @@ export default function Login(props) {
           <div className="mb-3 text-end">
             <Link
               to={`/main/user/account/password/${username || "forgot"}`}
-              className="text-muted text-decoration-none"
+              className="forgotBtn text-decoration-none textDeep"
             >
               Forgot Password
             </Link>
@@ -96,14 +106,20 @@ export default function Login(props) {
           <div className="d-grid">
             <button
               type="submit"
-              className="btn btn-custom custom-btn overflow-hidden border-0"
+              className="btn btn-deep"
               disabled={formik.isSubmitting}
             >
               Login
             </button>
           </div>
-          <p className="text-center mt-3">
-            Don't have an account? <Link onClick={props.isLogin}>Register</Link>
+          <p className="text-center fw-normal mt-3">
+            Don't have an account?{" "}
+            <Link
+              className="forgotBtn fw-bold text-decoration-none textDeep"
+              onClick={props.isLogin}
+            >
+              Register
+            </Link>
           </p>
         </form>
       </div>
