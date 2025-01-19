@@ -1,6 +1,5 @@
 import React from "react";
 import InnerPagesBanner from "../../../Components/InnerPagesBanner/InnerPagesBanner";
-import Footer from "../../../Components/Footer/Footer";
 import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import Query from "../../BackendComponents/Query/Query";
@@ -9,12 +8,6 @@ import Newsletter from "../../BackendComponents/Newsletter/Newsletter";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {
-  const BannerData = {
-    icon: "database",
-    heading: "Backend Dashboard",
-    para: "These Pages are made for Only Admins.",
-  };
-
   const componentMapping = {
     AdminTable: <AdminTable />,
     UsersTable: <UsersTable />,
@@ -24,7 +17,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <InnerPagesBanner BannerData={BannerData} />
+      <InnerPagesBanner heading={`Dashboard`} />
       {SectionsData.map((section, index) => (
         <section className={`${section.bgColor} py-5`} key={index}>
           <div className="container">
@@ -40,7 +33,7 @@ export default function Dashboard() {
               <div className="text-center">
                 <Link
                   to={`/admin/dashboard/${section.link}`}
-                  className="btn btn-custom custom-btn"
+                  className="btn btn-deep"
                 >
                   Show All
                 </Link>
@@ -49,7 +42,6 @@ export default function Dashboard() {
           </div>
         </section>
       ))}
-      <Footer />
     </div>
   );
 }

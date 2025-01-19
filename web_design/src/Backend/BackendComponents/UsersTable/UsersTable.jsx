@@ -64,6 +64,9 @@ export default function UsersTable() {
 
   const isDisabled = (user) => user.status === "BLOCKED";
 
+  // Extract unique statuses dynamically from the data
+  const uniqueStatuses = [...new Set(data.map((user) => user.status))];
+
   const filteredData = data.filter(
     (user) =>
       (user.username.toLowerCase().includes(search.toLowerCase()) ||
@@ -85,7 +88,7 @@ export default function UsersTable() {
           <div className="input-group">
             <input
               type="text"
-              className="form-control"
+              className="form-control border-deep textDeep"
               placeholder="Search by username, name, email, or contact"
               value={search}
               id="searchUser"
@@ -93,20 +96,27 @@ export default function UsersTable() {
             />
             <select
               name="status"
-              className="form-control"
+              className="form-control border-deep fw-bold"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
               <option value="">All Status</option>
-              <option value="ACTIVE">Active</option>
-              <option value="BLOCKED">Blocked</option>
+              {uniqueStatuses.map((statusOption) => (
+                <option
+                  key={statusOption}
+                  className="textDeep fw-bold"
+                  value={statusOption}
+                >
+                  {statusOption}
+                </option>
+              ))}
             </select>
           </div>
         </div>
       </div>
       <div className="table-responsive">
         <table className="table table-hover w-100 h-100 text-nowrap align-middle rounded overflow-hidden">
-          <thead className="text-center">
+          <thead className="text-center tableHeadCustom">
             <tr>
               <th>Id</th>
               <th>Username</th>
@@ -119,7 +129,7 @@ export default function UsersTable() {
               <th>Block/Unblock</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody className="tableBodyCustom">
             {displayedData.length > 0 ? (
               displayedData.map((user, index) => (
                 <tr key={index}>
@@ -132,14 +142,14 @@ export default function UsersTable() {
                   <td className="text-center">
                     <Link
                       to={`/admin/dashboard/user/${user.username}`}
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                     >
                       View
                     </Link>
                   </td>
                   <td className="text-center">
                     <button
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                       onClick={() => handlePromote(user.username)}
                       disabled={isDisabled(user)}
                     >
@@ -148,7 +158,7 @@ export default function UsersTable() {
                   </td>
                   <td className="text-center">
                     <button
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                       onClick={() => handleBlock(user.username)}
                       disabled={isDisabled(user)}
                     >
@@ -170,7 +180,7 @@ export default function UsersTable() {
       <div className="row">
         <div className="col text-center">
           {data.length > 5 && location.pathname === "/admin/dashboard" && (
-            <button className="btn btn-custom custom-btn">Show All</button>
+            <button className="btn btn-deep">Show All</button>
           )}
         </div>
       </div>

@@ -5,25 +5,24 @@ import { toast } from "react-toastify";
 export default function Query() {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await noFileAPI.get("/user/contact/query");
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const getData = async () => {
+    try {
+      const response = await noFileAPI.get("/user/contact/query");
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     getData();
   }, []);
 
   const handleQueryDelete = async (id) => {
     try {
       const isDeleted = await noFileAPI.delete(`/user/contact/query/${id}`);
-      const response = await noFileAPI.get("/user/contact/query");
-      setData(response.data);
       toast.success(isDeleted.data.message);
+      getData();
     } catch (error) {
       console.error(error);
       toast.success(error.response.data.message);
@@ -77,7 +76,7 @@ export default function Query() {
                   </td>
                   <td className="align-content-center">
                     <button
-                      className="btn-custom custom-btn btn text-nowrap btn-sm"
+                      className="btn-deep btn text-nowrap"
                       onClick={() => handleQueryDelete(query._id)}
                     >
                       Delete Query
@@ -93,7 +92,7 @@ export default function Query() {
       {hasMoreData && (
         <div className="row">
           <div className="col text-center">
-            <button className="btn custom-btn btn-custom">Show All</button>
+            <button className="btn btn-deep">Show All</button>
           </div>
         </div>
       )}

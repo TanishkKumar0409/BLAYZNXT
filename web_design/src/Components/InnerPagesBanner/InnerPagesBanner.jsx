@@ -7,7 +7,9 @@ export default function InnerPagesBanner({ heading }) {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-6">
-            <h3 className="mb-0">{heading}</h3>
+            <h3 className="mb-0" style={{ textTransform: "capitalize" }}>
+              {heading}
+            </h3>
           </div>
           <div className="col-6 text-end">
             <h4 className="mb-0">

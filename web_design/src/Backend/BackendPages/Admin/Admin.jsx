@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InnerPagesBanner from "../../../Components/InnerPagesBanner/InnerPagesBanner";
-import Footer from "../../../Components/Footer/Footer";
 import AdminTable from "../../BackendComponents/AdminTable/AdminTable";
 import UsersTable from "../../BackendComponents/UsersTable/UsersTable";
 import Query from "../../BackendComponents/Query/Query";
@@ -31,11 +30,30 @@ export default function Admin() {
       ? Newsletter
       : null;
 
+  const getHeaidng = (value) => {
+    switch (value) {
+      case "info":
+        return "All Admins";
+
+      case "user":
+        return "All Users";
+
+      case "query":
+        return "All Queries";
+
+      case "newsletter":
+        return "All Newsletters";
+
+      default:
+        return "Unkonwn";
+    }
+  };
+
   return (
     <div>
       {pageData.icon && (
         <>
-          <InnerPagesBanner BannerData={pageData} />
+          <InnerPagesBanner heading={getHeaidng(type)} />
           <section className="bg-light py-5">
             <div className="container">
               <div className="row">
@@ -54,7 +72,6 @@ export default function Admin() {
           </section>
         </>
       )}
-      <Footer />
     </div>
   );
 }

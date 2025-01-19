@@ -9,21 +9,17 @@ export default function AdminTable() {
   const [statusFilter, setStatusFilter] = useState("");
   const location = useLocation();
 
+  const getData = async () => {
+    try {
+      const response = await noFileAPI.get("/user/admin/all");
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await noFileAPI.get("/user/admin/all");
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const intervalId = setInterval(() => {
-      getData();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+    getData();
   }, []);
 
   const handleDemote = async (username) => {
@@ -38,6 +34,7 @@ export default function AdminTable() {
     try {
       const demoteResponse = await noFileAPI.put(`/user/demote/${username}`);
       toast.success(demoteResponse.data.message);
+      getData();
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -55,6 +52,7 @@ export default function AdminTable() {
     try {
       const blockingResponse = await noFileAPI.put(`/user/block/${username}`);
       toast.success(blockingResponse.data.message);
+      getData();
     } catch (error) {
       console.error(error);
       toast.error(error.response.data.error);
@@ -89,7 +87,7 @@ export default function AdminTable() {
           <div className="input-group">
             <input
               type="text"
-              className="form-control"
+              className="form-control border-deep textDeep"
               placeholder="Search by username, name, email, or contact"
               value={search}
               id="searchAdmin"
@@ -97,13 +95,13 @@ export default function AdminTable() {
             />
             <select
               name="status"
-              className="form-select"
+              className="form-select border-deep fw-bold textDeep"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
             >
               <option value="">All Statuses</option>
               {uniqueStatuses.map((status, index) => (
-                <option key={index} value={status}>
+                <option key={index} className="textDeep fw-bold" value={status}>
                   {status}
                 </option>
               ))}
@@ -140,14 +138,14 @@ export default function AdminTable() {
                   <td className="text-center">
                     <Link
                       to={`/admin/dashboard/user/${user.username}`}
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                     >
                       View
                     </Link>
                   </td>
                   <td className="text-center">
                     <button
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                       onClick={() => handleDemote(user.username)}
                     >
                       Demote
@@ -155,7 +153,7 @@ export default function AdminTable() {
                   </td>
                   <td className="text-center">
                     <button
-                      className="btn btn-custom custom-btn btn-sm"
+                      className="btn btn-deep"
                       onClick={() => handleBlock(user.username)}
                       disabled={isDisabled(user)}
                     >
@@ -177,10 +175,7 @@ export default function AdminTable() {
       <div className="row">
         <div className="col text-center">
           {data.length > 5 && location.pathname === "/admin/dashboard" && (
-            <Link
-              to={`/admin/dashboard/info`}
-              className="btn btn-custom custom-btn"
-            >
+            <Link to={`/admin/dashboard/info`} className="btn btn-deep">
               Show All
             </Link>
           )}
