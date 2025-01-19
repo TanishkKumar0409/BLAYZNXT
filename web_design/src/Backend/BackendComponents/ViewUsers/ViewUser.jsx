@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Footer from "../../../Components/Footer/Footer";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { noFileAPI } from "../../../Services/API/API";
 import { toast } from "react-toastify";
@@ -13,19 +12,20 @@ export default function ViewUser() {
 
   const APIurl = process.env.REACT_APP_API;
 
+  const getData = useCallback(async () => {
+    try {
+      const response = await noFileAPI.get(`/user/${username}`);
+      setData(response.data);
+      setIsBlocked(response.data.status === "BLOCKED");
+    } catch (error) {
+      redirector("/");
+      console.error(error.response.data.error);
+    }
+  }, [redirector, username]);
+
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await noFileAPI.get(`/user/${username}`);
-        setData(response.data);
-        setIsBlocked(response.data.status === "BLOCKED");
-      } catch (error) {
-        redirector("/");
-        console.error(error.response.data.error);
-      }
-    };
     getData();
-  }, [username, redirector]);
+  }, [getData]);
 
   const formatStorage = (bytes) => {
     if (!bytes) return "0 MB";
@@ -52,10 +52,7 @@ export default function ViewUser() {
       );
 
       toast.success(promoteResponse.data.message);
-
-      const response = await noFileAPI.get(`/user/${username}`);
-      const userData = response.data;
-      setData(userData);
+      getData();
     } catch (error) {
       toast.error(error.response.data.error);
       console.error(error.response.data.error);
@@ -78,9 +75,7 @@ export default function ViewUser() {
 
       toast.success(demoteResponse.data.message);
 
-      const response = await noFileAPI.get(`/user/${username}`);
-      const userData = response.data;
-      setData(userData);
+      getData();
     } catch (error) {
       toast.error(error.response.data.error);
       console.error(error.response.data.error);
@@ -103,11 +98,7 @@ export default function ViewUser() {
 
       toast.success(blockingResponse.data.message);
 
-      const response = await noFileAPI.get(`/user/${username}`);
-      const userData = response.data;
-
-      setData(userData);
-      setIsBlocked(userData.status === "BLOCKED");
+      getData();
     } catch (error) {
       toast.error(error.response.data.error);
       console.error(error.response.data.error);
@@ -116,25 +107,25 @@ export default function ViewUser() {
 
   return (
     <>
-      <section className="py-5 bgGradient">
-        <div className="container bg-light rounded p-5 mt-5">
-          <div className="row">
-            <div className="col-md-6 text-center align-content-center">
+      <section>
+        <div className="container py-5">
+          <div className="row shadow-sm p-3 rounded">
+            <div className="col-md-4 text-center align-content-center">
               <img
                 src={`${APIurl}${data.profile}`}
-                className="img-fluid rounded shadow w-100"
+                className="img-fluid rounded w-100"
                 style={{ aspectRatio: "4/4" }}
                 alt={data.username || "User Profile"}
               />
             </div>
 
-            <div className="col-md-6 align-content-center">
+            <div className="col-md-8 align-content-center">
               <h3 className="mb-4 fs-1 fw-bold">
                 {data.username || "User Details"}
               </h3>
               <div className="table-responsive">
-                <table className="table table-striped table-bordered">
-                  <tbody>
+                <table className="table table-hover">
+                  <tbody className="tableBodyCustom">
                     <tr>
                       <th>Name</th>
                       <td>{data.name || "N/A"}</td>
@@ -168,14 +159,14 @@ export default function ViewUser() {
                         <div className="btn-group w-100">
                           {data.role === "ADMIN" ? (
                             <button
-                              className="btn btn-custom custom-btn"
+                              className="btn btn-deep"
                               onClick={handleDemote}
                             >
                               Demote
                             </button>
                           ) : (
                             <button
-                              className="btn btn-custom custom-btn"
+                              className="btn btn-deep"
                               onClick={handlePromote}
                               disabled={isBlocked}
                             >
@@ -183,7 +174,7 @@ export default function ViewUser() {
                             </button>
                           )}
                           <button
-                            className="btn btn-custom custom-btn"
+                            className="btn btn-deep"
                             onClick={handleBlock}
                             disabled={isBlocked}
                           >
@@ -199,7 +190,6 @@ export default function ViewUser() {
           </div>
         </div>
       </section>
-      <Footer />
     </>
   );
 }
