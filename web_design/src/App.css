@@ -20,11 +20,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0d0c22b1;
+  background: #16143bb1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0d0c22;
+  background: #16143b;
 }
 
 .bgGradient {
@@ -429,8 +429,9 @@ footer a:hover {
 }
 
 /* new Css */
+/* #0d0c22 */
 .textDeep {
-  color: #0d0c22;
+  color: #16143b;
 }
 
 .textDeepBlue {
@@ -438,48 +439,54 @@ footer a:hover {
   background: white;
 }
 .textDeepBlue.active {
-  color: #0d0c22 !important;
+  color: #16143b !important;
   background: white;
   font-weight: 700;
 }
 .nav-link.textDeepBlue:hover {
-  color: #0d0c22cf;
+  color: #16143bcf;
 }
 
 .btn-outline-deep {
   background: white;
-  border: 2px solid #0d0c22;
+  border: 2px solid #16143b;
   color: #0a0921;
   font-weight: 600;
 }
 .btn-outline-deep:hover {
-  background: #0d0c22;
+  background: #16143b;
   color: white;
 }
 
 .btn-deep {
-  background: #0d0c22;
+  background: #16143b;
   color: white;
   font-weight: 600;
 }
 .btn-deep:hover {
-  background: #0d0c22;
+  background: #16143b;
   color: white;
   opacity: 0.9;
 }
 
 .border-deep {
-  border: 1px solid #0d0c22;
+  border: 1px solid #16143b;
 }
 
 .border-deep:focus {
-  border: 1px solid #0d0c22;
+  border: 1px solid #16143b;
   box-shadow: none;
+}
+
+.mainBanner {
+  background: linear-gradient(#0a0921cf, #0a0921cf),
+    url("https://img.freepik.com/premium-photo/protecting-personal-data-with-secure-cloud-storage-encrypted-network-file-transfer-concept-cloud-security-data-protection-encryption-file-transfer-network-security_918839-232071.jpg")
+      no-repeat fixed center center / cover;
 }
 
 .dropzone {
   border-radius: 10px;
-  border: 1px dashed #0d0c22;
+  border: 1px dashed #16143b;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -491,11 +498,11 @@ footer a:hover {
   backdrop-filter: blur(10px);
 }
 .modalBg-1 {
-  background-color: #0d0c22a6;
+  background-color: #16143ba6;
 }
 
 .bg-deep {
-  background: #0d0c22;
+  background: #16143b;
 }
 
 .owl-stage-outer {
@@ -503,13 +510,13 @@ footer a:hover {
 }
 
 .owl-dot span {
-  background: #0d0c22a6 !important;
+  background: #16143ba6 !important;
 }
 .owl-dot:hover span {
-  background: #0d0c22c1 !important;
+  background: #16143bc1 !important;
 }
 .owl-dot.active span {
-  background: #0d0c22 !important;
+  background: #16143b !important;
 }
 
 .forgotBtn:hover {
@@ -525,7 +532,7 @@ footer a:hover {
 
 input,
 textarea {
-  color: #0d0c22 !important;
+  color: #16143b !important;
   font-weight: 700 !important;
 }
 
@@ -534,7 +541,7 @@ textarea {
 }
 
 .tableHeadCustom tr th {
-  background: #0d0c22;
+  background: #16143b;
   color: white;
   text-shadow: 0 0 0.2rem gray;
 }
@@ -542,7 +549,7 @@ textarea {
 .tableBodyCustom tr td,
 .tableBodyCustom tr th {
   font-weight: 700;
-  color: #0d0c22;
+  color: #16143b;
   transition: 0.2s;
 }
 

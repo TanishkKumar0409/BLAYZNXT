@@ -36,7 +36,7 @@ export default function HomeDrag() {
 
   return (
     <div className="container-fluid py-5">
-      <div className="p-md-5 p-3 rounded shadow-sm border-deep">
+      <div className="p-md-5 p-3 rounded shadow-sm bg-white">
         <form onSubmit={handleSubmit}>
           <div
             {...getRootProps()}

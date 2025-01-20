@@ -41,22 +41,22 @@ export default function ContactUs() {
           <div className="row justify-content-center">
             <div className="col-md-6 textDeep" style={{ minHeight: "400px" }}>
               <div className="info p-4 bg-white rounded shadow-sm h-100 align-content-center">
-                <div className="d-flex align-items-center mb-5">
+                <div className="d-flex align-items-center my-5">
                   <i className="fa fa-envelope fs-1  me-5"></i>
                   <div>
-                    <h5 className="mb-1 fs-1 fw-bold">Email</h5>
-                    <p className="mb-0 fs-2">Tanishkk60@gmail.com</p>
+                    <h5 className="mb-1 fs-4 fw-bold">Email</h5>
+                    <p className="mb-0 fs-4">Tanishkk60@gmail.com</p>
                   </div>
                 </div>
-                <div className="d-flex align-items-center mb-5">
+                <div className="d-flex align-items-center my-5">
                   <i className="fa fa-phone fs-1 me-5"></i>
                   <div>
-                    <h5 className="mb-1 fs-1  fw-bold">Contact</h5>
-                    <p className="mb-0 fs-2">+91 9557623131</p>
+                    <h5 className="mb-1 fs-4  fw-bold">Contact</h5>
+                    <p className="mb-0 fs-4">+91 9557623131</p>
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-center mt-4">
+                <div className="d-flex justify-content-center my-5">
                   <a
                     href="https://www.facebook.com"
                     className="btn mx-2"
@@ -84,7 +84,7 @@ export default function ContactUs() {
                 </div>
               </div>
             </div>
-            {/* Form Section */}
+
             <div
               className="col-md-6 bg-white rounded p-3 shadow-sm"
               style={{ minHeight: "400px" }}

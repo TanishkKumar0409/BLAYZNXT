@@ -89,14 +89,14 @@ export default function RecentFiles() {
                   {fileData.map((item, index) => (
                     <div key={index} className="col-md-4">
                       <div className="card border-0 shadow-sm rounded-lg h-100">
-                        <div className="card-header bg-transparent text-center py-4">
+                        <div className="card-header bg-transparent text-center py-4 align-content-center">
                           <i
                             className={`fa ${getFileIcon(
                               item.file.root || "default"
                             )} text-white bg-deep rounded p-3 fs-2`}
                           ></i>
                         </div>
-                        <div className="card-body textDeep text-center">
+                        <div className="card-body textDeep text-center align-content-center">
                           <Link
                             to={`/main/file/view/${item.file.folderId}`}
                             className="btn textDeep fw-bold forgotBtn border-0 overflow-hidden"
