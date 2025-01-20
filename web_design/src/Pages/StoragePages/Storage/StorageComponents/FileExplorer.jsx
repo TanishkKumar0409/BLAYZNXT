@@ -15,6 +15,7 @@ export default function FileExplorer({ username }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [uploadProgress, setUploadProgress] = useState([]);
+  const [isHover, setIsHover] = useState("");
   const redirector = useNavigate();
 
   useEffect(() => {
@@ -68,6 +69,7 @@ export default function FileExplorer({ username }) {
     const previousFolderId = folderStack.pop();
     setCurrentFolderId(previousFolderId);
     setFolderStack([...folderStack]);
+    setSelectedItemId(null);
   };
 
   const handleFileUpload = async (event) => {
@@ -153,23 +155,23 @@ export default function FileExplorer({ username }) {
       case "jpeg":
       case "png":
       case "gif":
-        return "fa-image text-success";
+        return "fa-image textDeep";
       case "pdf":
-        return "fa-file-pdf text-danger";
+        return "fa-file-pdf";
       case "doc":
       case "docx":
-        return "fa-file-word text-primary";
+        return "fa-file-word";
       case "xls":
       case "xlsx":
-        return "fa-file-excel text-success";
+        return "fa-file-excel";
       case "ppt":
       case "pptx":
-        return "fa-file-powerpoint text-warning";
+        return "fa-file-powerpoint";
       case "txt":
-        return "fa-file-alt text-muted";
+        return "fa-file-alt";
       case "zip":
       case "rar":
-        return "fa-file-archive text-secondary";
+        return "fa-file-archive";
       case "mkv":
       case "mp4":
         return "fa-file-video";
@@ -177,9 +179,9 @@ export default function FileExplorer({ username }) {
       case "wav":
       case "ogg":
       case "flac":
-        return "fa-file-audio text-info";
+        return "fa-file-audio";
       default:
-        return "fa-file text-info";
+        return "fa-file";
     }
   };
 
@@ -215,35 +217,59 @@ export default function FileExplorer({ username }) {
           <div className="row mb-4 justify-content-center">
             <div className="col-3 d-flex flex-column align-items-center">
               <div
-                className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                className={`box-container ${
+                  isHover === "createFolder"
+                    ? "bg-deep text-white"
+                    : "bg-white textDeep"
+                } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                onMouseEnter={() => setIsHover("createFolder")}
+                onMouseLeave={() => setIsHover("")}
                 onClick={() => setIsModalOpen(true)}
               >
-                <i className="fa fa-folder-plus text-primary me-md-2"></i>
-                <span className="d-none d-md-inline-block">Create Folder</span>
+                <i className="fa fa-folder-plus fs-4 me-md-2"></i>
+                <span className="d-none d-md-inline-block fw-bold">
+                  Create Folder
+                </span>
               </div>
             </div>
 
             <div className="col-3 d-flex flex-column align-items-center">
-              <label className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center">
-                <i className="fa fa-upload text-success me-md-2"></i>
+              <label
+                className={`box-container ${
+                  isHover === "upload"
+                    ? "bg-deep text-white"
+                    : "bg-white textDeep"
+                } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                onMouseEnter={() => setIsHover("upload")}
+                onMouseLeave={() => setIsHover("")}
+              >
+                <i className="fa fa-upload fs-4 me-md-2"></i>
                 <input
                   type="file"
                   multiple
                   onChange={handleFileUpload}
                   style={{ display: "none" }}
                 />
-                <span className="d-none d-md-inline-block">Upload File</span>
+                <span className="d-none d-md-inline-block fw-bold">Upload File</span>
               </label>
             </div>
 
             <div className="col-3 d-flex flex-column align-items-center">
               {selectedItemId && (
                 <div
-                  className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                  className={`box-container ${
+                    isHover === "delete"
+                      ? "bg-deep text-white"
+                      : "bg-white textDeep"
+                  } shadow-sm cursorPointer rounded-3 p-3 text-center`}
                   onClick={() => setIsDeleteModalOpen(true)}
+                  onMouseEnter={() => setIsHover("delete")}
+                  onMouseLeave={() => setIsHover("")}
                 >
-                  <i className="fa fa-trash text-danger me-md-2"></i>
-                  <span className="d-none d-md-inline-block">Delete</span>
+                  <i className="fa fa-trash fs-4 me-md-2"></i>
+                  <span className="d-none d-md-inline-block fw-bold">
+                    Delete
+                  </span>
                 </div>
               )}
             </div>
@@ -253,11 +279,19 @@ export default function FileExplorer({ username }) {
                 folderData.find((item) => item.folderId === selectedItemId)
                   ?.type === "file" && (
                   <div
-                    className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                    className={`box-container ${
+                      isHover === "download"
+                        ? "bg-deep text-white"
+                        : "bg-white textDeep"
+                    } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                    onMouseEnter={() => setIsHover("download")}
+                    onMouseLeave={() => setIsHover("")}
                     onClick={() => handleDownload(selectedItemId)}
                   >
-                    <i className="fa fa-download text-info me-md-2"></i>
-                    <span className="d-none d-md-inline-block">Download</span>
+                    <i className="fa fa-download fs-4 me-md-2"></i>
+                    <span className="d-none d-md-inline-block fw-bold">
+                      Download
+                    </span>
                   </div>
                 )}
             </div>
@@ -273,7 +307,7 @@ export default function FileExplorer({ username }) {
                   <div
                     className={`icon-container cursorPointer ${
                       selectedItemId === child.folderId
-                        ? "bg-light shadow"
+                        ? "bg-deep"
                         : "bg-white shadow-sm"
                     } rounded-3 d-flex justify-content-center align-items-center`}
                     onDoubleClick={() => handleFolderClick(child)}
@@ -282,15 +316,18 @@ export default function FileExplorer({ username }) {
                     style={{
                       width: "100px",
                       height: "100px",
-                      opacity: selectedItemId === child.folderId ? 1 : 0.7,
                     }}
                   >
                     <i
                       style={{ fontSize: "5rem" }}
                       className={`fa fw-bold ${
                         child.type === "folder"
-                          ? "fa-folder text-warning"
+                          ? "fa-folder"
                           : getFileIcon(child?.root)
+                      } ${
+                        selectedItemId === child.folderId
+                          ? "bg-deep text-white"
+                          : "bg-white shadow-sm textDeep"
                       }`}
                     ></i>
                   </div>
