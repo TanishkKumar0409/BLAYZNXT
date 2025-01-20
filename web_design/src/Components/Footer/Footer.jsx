@@ -32,11 +32,6 @@ export default function Footer() {
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email.trim()) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-
     try {
       const response = await noFileAPI.post("/user/newsletter", {
         email,
@@ -138,7 +133,7 @@ export default function Footer() {
               <form onSubmit={handleNewsletterSubmit}>
                 <div className="input-group">
                   <input
-                  id="newsletter"
+                    id="newsletter"
                     type="email"
                     className="form-control border-deep"
                     placeholder="Enter your email"

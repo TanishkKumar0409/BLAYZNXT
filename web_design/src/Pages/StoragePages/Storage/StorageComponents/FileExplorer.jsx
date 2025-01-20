@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CreateFolderModal from "./ConfirmationModals/CreateFolderModal";
 import ConfirmDeleteModal from "./ConfirmationModals/ConfirmDeleteModal";
 import { noFileAPI } from "../../../../Services/API/API";
@@ -18,17 +18,18 @@ export default function FileExplorer({ username }) {
   const [isHover, setIsHover] = useState("");
   const redirector = useNavigate();
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await noFileAPI.get(`storage/folder/${username}`);
-        setFolderData(response.data);
-      } catch (error) {
-        console.warn(error.response.data.error);
-      }
-    };
-    getData();
+  const getData = useCallback(async () => {
+    try {
+      const response = await noFileAPI.get(`storage/folder/${username}`);
+      setFolderData(response.data);
+    } catch (error) {
+      console.warn(error.response.data.error);
+    }
   }, [username]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const currentFolder = folderData.find(
     (item) => item.folderId === currentFolderId
@@ -136,8 +137,7 @@ export default function FileExplorer({ username }) {
       toast.success(`${successCount} file(s) uploaded successfully`);
     }
 
-    const updatedData = await noFileAPI.get(`storage/folder/${username}`);
-    setFolderData(updatedData.data);
+    getData();
 
     event.target.value = "";
   };
@@ -250,7 +250,9 @@ export default function FileExplorer({ username }) {
                   onChange={handleFileUpload}
                   style={{ display: "none" }}
                 />
-                <span className="d-none d-md-inline-block fw-bold">Upload File</span>
+                <span className="d-none d-md-inline-block fw-bold">
+                  Upload File
+                </span>
               </label>
             </div>
 
