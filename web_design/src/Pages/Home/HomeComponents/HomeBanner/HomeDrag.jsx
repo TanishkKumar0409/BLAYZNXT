@@ -81,7 +81,7 @@ export default function HomeDrag() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <small id="messageHelp" class="form-text textDeep">
+              <small id="messageHelp" className="form-text textDeep">
                 Max <strong>500</strong> characters allowed.
               </small>
             </div>
