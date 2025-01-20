@@ -47,60 +47,40 @@ export default function ConfirmDeleteModal({
     setIsDeleteModalOpen(false);
   };
 
-  const modalStyle = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    backdropFilter: "blur(5px)",
-    zIndex: 1040,
-  };
-
   return (
     <>
-      <div className="modal-backdrop fade show" style={modalStyle} />
-      <div
-        className="modal fade show d-block"
-        style={{ zIndex: 1050 }}
-        tabIndex="-1"
-        aria-hidden="true"
-      >
+      <div className="modal-backdrop modalBg-1 blurBg-1" />
+      <div className="modal d-block">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Confirm Deletion</h5>
+              <div>
+                <h5 className="modal-title mb-3 text-center">
+                  Confirm Deletion
+                </h5>
+                <p>
+                  Are you sure you want to delete these file/folder? This action
+                  cannot be undone.
+                </p>
+              </div>
+            </div>
+            <div className="modal-body text-center">
               <button
                 type="button"
-                className="btn-close"
-                onClick={() => setIsDeleteModalOpen(false)}
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <p>
-                Are you sure you want to delete these file/folder? This action
-                cannot be undone.
-              </p>
-            </div>
-            <div className="modal-footer">
+                className="btn btn-deep"
+                onClick={handleDeleteItem}
+              >
+                Confirm
+              </button>
               <button
                 type="button"
-                className="btn btn-custom custom-btn"
+                className="btn btn-outline-deep ms-2"
                 onClick={() => {
                   setIsDeleteModalOpen(false);
                   toast.info("Cancel Delete");
                 }}
               >
                 Cancel
-              </button>
-              <button
-                type="button"
-                className="btn btn-custom custom-btn"
-                onClick={handleDeleteItem}
-              >
-                Confirm
               </button>
             </div>
           </div>
