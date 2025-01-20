@@ -14,6 +14,7 @@ export default function FileExplorer({ username }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState([]);
   const redirector = useNavigate();
 
   useEffect(() => {
@@ -71,12 +72,24 @@ export default function FileExplorer({ username }) {
 
   const handleFileUpload = async (event) => {
     const files = event.target.files;
+    const MAX_TOTAL_SIZE = 1 * 1024 * 1024 * 1024;
+
     if (!files.length || !currentFolder) {
       toast("No valid folder or files selected.");
       return;
     }
 
+    const totalSize = Array.from(files).reduce(
+      (sum, file) => sum + file.size,
+      0
+    );
+    if (totalSize > MAX_TOTAL_SIZE) {
+      toast.error("Do not have Enough Space");
+      return;
+    }
+
     let successCount = 0;
+    const progressArray = [...uploadProgress];
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
 
@@ -84,24 +97,35 @@ export default function FileExplorer({ username }) {
       formData.append("parentId", currentFolderId);
       formData.append("files", file);
 
+      progressArray[i] = { fileName: file.name, progress: 0 };
+      setUploadProgress([...progressArray]);
+      console.log(file);
+
       try {
         const response = await API.post(
           `/storage/file/upload/${username}`,
-          formData
+          formData,
+          {
+            onUploadProgress: (progressEvent) => {
+              const percentCompleted = Math.round(
+                (progressEvent.loaded * 100) / progressEvent.total
+              );
+              progressArray[i].progress = percentCompleted;
+              setUploadProgress([...progressArray]);
+            },
+          }
         );
 
         const uploadedFile = response.data;
         folderData.push(uploadedFile);
         currentFolder.children.push(uploadedFile.id);
         setSelectedItemId(uploadedFile.id);
+        setUploadProgress([]);
 
         successCount++;
       } catch (error) {
-        toast.error(
-          `Error uploading ${file.name}: ${
-            error.response?.data?.error || "Unknown error"
-          }`
-        );
+        toast.error(error.response?.data?.error);
+        setUploadProgress([]);
         console.error(error);
       }
     }
@@ -177,128 +201,152 @@ export default function FileExplorer({ username }) {
   };
 
   return (
-    <section className="py-5">
-      <div className="container">
-        <button
-          onClick={handleBack}
-          className="btn btn-light shadow-sm mb-4 rounded-circle"
-          disabled={folderStack.length === 0}
-        >
-          <i className="fa fa-arrow-left"></i>
-        </button>
+    <>
+      <section className="py-5">
+        <div className="container">
+          <button
+            onClick={handleBack}
+            className="btn btn-light shadow-sm mb-4 rounded-circle"
+            disabled={folderStack.length === 0}
+          >
+            <i className="fa fa-arrow-left"></i>
+          </button>
 
-        <div className="row mb-4 justify-content-center">
-          <div className="col-3 d-flex flex-column align-items-center">
-            <div
-              className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <i className="fa fa-folder-plus text-primary me-md-2"></i>
-              <span className="d-none d-md-inline-block">Create Folder</span>
+          <div className="row mb-4 justify-content-center">
+            <div className="col-3 d-flex flex-column align-items-center">
+              <div
+                className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                onClick={() => setIsModalOpen(true)}
+              >
+                <i className="fa fa-folder-plus text-primary me-md-2"></i>
+                <span className="d-none d-md-inline-block">Create Folder</span>
+              </div>
+            </div>
+
+            <div className="col-3 d-flex flex-column align-items-center">
+              <label className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center">
+                <i className="fa fa-upload text-success me-md-2"></i>
+                <input
+                  type="file"
+                  multiple
+                  onChange={handleFileUpload}
+                  style={{ display: "none" }}
+                />
+                <span className="d-none d-md-inline-block">Upload File</span>
+              </label>
+            </div>
+
+            <div className="col-3 d-flex flex-column align-items-center">
+              {selectedItemId && (
+                <div
+                  className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                  onClick={() => setIsDeleteModalOpen(true)}
+                >
+                  <i className="fa fa-trash text-danger me-md-2"></i>
+                  <span className="d-none d-md-inline-block">Delete</span>
+                </div>
+              )}
+            </div>
+
+            <div className="col-3 d-flex flex-column align-items-center">
+              {selectedItemId &&
+                folderData.find((item) => item.folderId === selectedItemId)
+                  ?.type === "file" && (
+                  <div
+                    className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
+                    onClick={() => handleDownload(selectedItemId)}
+                  >
+                    <i className="fa fa-download text-info me-md-2"></i>
+                    <span className="d-none d-md-inline-block">Download</span>
+                  </div>
+                )}
             </div>
           </div>
 
-          <div className="col-3 d-flex flex-column align-items-center">
-            <label className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center">
-              <i className="fa fa-upload text-success me-md-2"></i>
-              <input
-                type="file"
-                multiple
-                onChange={handleFileUpload}
-                style={{ display: "none" }}
-              />
-              <span className="d-none d-md-inline-block">Upload File</span>
-            </label>
-          </div>
-
-          <div className="col-3 d-flex flex-column align-items-center">
-            {selectedItemId && (
-              <div
-                className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
-                onClick={() => setIsDeleteModalOpen(true)}
-              >
-                <i className="fa fa-trash text-danger me-md-2"></i>
-                <span className="d-none d-md-inline-block">Delete</span>
-              </div>
+          <div className="row">
+            {currentChildren.length > 0 ? (
+              currentChildren.map((child, index) => (
+                <div
+                  className="col-6 col-md-3 d-flex flex-column align-items-center mb-4 text-"
+                  key={index}
+                >
+                  <div
+                    className={`icon-container cursorPointer ${
+                      selectedItemId === child.folderId
+                        ? "bg-light shadow"
+                        : "bg-white shadow-sm"
+                    } rounded-3 d-flex justify-content-center align-items-center`}
+                    onDoubleClick={() => handleFolderClick(child)}
+                    onTouchStart={(e) => handleTouchStart(e, child)}
+                    onClick={() => setSelectedItemId(child.folderId)}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      opacity: selectedItemId === child.folderId ? 1 : 0.7,
+                    }}
+                  >
+                    <i
+                      style={{ fontSize: "5rem" }}
+                      className={`fa fw-bold ${
+                        child.type === "folder"
+                          ? "fa-folder text-warning"
+                          : getFileIcon(child?.root)
+                      }`}
+                    ></i>
+                  </div>
+                  <span className="folder-name mt-2">{child.root}</span>
+                </div>
+              ))
+            ) : (
+              <h5 className="text-center">
+                {currentFolder ? "No items in this folder." : "Loading..."}
+              </h5>
             )}
           </div>
 
-          <div className="col-3 d-flex flex-column align-items-center">
-            {selectedItemId &&
-              folderData.find((item) => item.folderId === selectedItemId)
-                ?.type === "file" && (
-                <div
-                  className="box-container bg-white shadow-sm cursorPointer rounded-3 p-3 text-center"
-                  onClick={() => handleDownload(selectedItemId)}
-                >
-                  <i className="fa fa-download text-info me-md-2"></i>
-                  <span className="d-none d-md-inline-block">Download</span>
-                </div>
-              )}
-          </div>
-        </div>
+          <CreateFolderModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            newFolderName={newFolderName}
+            setNewFolderName={setNewFolderName}
+            currentFolderId={currentFolderId}
+            setFolderData={setFolderData}
+          />
 
-        <div className="row">
-          {currentChildren.length > 0 ? (
-            currentChildren.map((child, index) => (
-              <div
-                className="col-6 col-md-3 d-flex flex-column align-items-center mb-4 text-"
-                key={index}
-              >
-                <div
-                  className={`icon-container cursorPointer ${
-                    selectedItemId === child.folderId
-                      ? "bg-light shadow"
-                      : "bg-white shadow-sm"
-                  } rounded-3 d-flex justify-content-center align-items-center`}
-                  onDoubleClick={() => handleFolderClick(child)}
-                  onTouchStart={(e) => handleTouchStart(e, child)}
-                  onClick={() => setSelectedItemId(child.folderId)}
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    opacity: selectedItemId === child.folderId ? 1 : 0.7,
-                  }}
-                >
-                  <i
-                    style={{ fontSize: "5rem" }}
-                    className={`fa fw-bold ${
-                      child.type === "folder"
-                        ? "fa-folder text-warning"
-                        : getFileIcon(child?.root)
-                    }`}
-                  ></i>
+          <ConfirmDeleteModal
+            isDeleteModalOpen={isDeleteModalOpen}
+            setIsDeleteModalOpen={setIsDeleteModalOpen}
+            selectedItemId={selectedItemId}
+            setSelectedItemId={setSelectedItemId}
+            currentFolder={currentFolder}
+            folderData={folderData}
+            setFolderData={setFolderData}
+            username={username}
+          />
+          {uploadProgress.length > 0 && (
+            <div
+              className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
+              style={{ width: "250px", zIndex: 99 }}
+            >
+              {uploadProgress.map((progress, index) => (
+                <div>
+                  <h3 className="fs-6 fw-bold">
+                    File Uploaded: {progress.progress}%
+                  </h3>
+                  <div className="progress" key={index}>
+                    <div
+                      className="progress-bar bg-deep"
+                      style={{ width: `${progress.progress}%` }}
+                    >
+                      {progress.progress}%
+                    </div>
+                  </div>
                 </div>
-                <span className="folder-name mt-2">{child.root}</span>
-              </div>
-            ))
-          ) : (
-            <h5 className="text-center">
-              {currentFolder ? "No items in this folder." : "Loading..."}
-            </h5>
+              ))}
+            </div>
           )}
         </div>
-
-        <CreateFolderModal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          newFolderName={newFolderName}
-          setNewFolderName={setNewFolderName}
-          currentFolderId={currentFolderId}
-          setFolderData={setFolderData}
-        />
-
-        <ConfirmDeleteModal
-          isDeleteModalOpen={isDeleteModalOpen}
-          setIsDeleteModalOpen={setIsDeleteModalOpen}
-          selectedItemId={selectedItemId}
-          setSelectedItemId={setSelectedItemId}
-          currentFolder={currentFolder}
-          folderData={folderData}
-          setFolderData={setFolderData}
-          username={username}
-        />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
