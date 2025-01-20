@@ -51,7 +51,7 @@ export default function HomeDrag() {
           </div>
 
           <div className="row mt-4 flex-column">
-            <div className="col mb-3">
+            <div className="col mb-1">
               <label htmlFor="email" className="form-label">
                 Email
               </label>
@@ -91,7 +91,7 @@ export default function HomeDrag() {
             <div className="text-danger mt-3">{errorMessage}</div>
           )}
 
-          <div className="mt-4 text-center">
+          <div className="mt-1 text-center">
             <button type="submit" className="btn btn-deep w-100">
               Submit
             </button>
