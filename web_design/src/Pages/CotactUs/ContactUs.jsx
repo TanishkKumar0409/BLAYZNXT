@@ -36,50 +36,67 @@ export default function ContactUs() {
   return (
     <>
       <InnerPagesBanner heading={`Contact Us`} />
-      <section className="py-5">
+      <section className="py-5 contactBanner">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6 textDeep" style={{ minHeight: "400px" }}>
-              <div className="info p-4 bg-white rounded shadow-sm h-100 align-content-center">
-                <div className="d-flex align-items-center my-5">
-                  <i className="fa fa-envelope fs-1  me-5"></i>
+          <div className="row justify-content-center text-white">
+            <div className="col-md-6" style={{ minHeight: "400px" }}>
+              <div className="info p-4 rounded shadow-sm h-100 align-content-center">
+                <div className="row">
                   <div>
-                    <h5 className="mb-1 fs-4 fw-bold">Email</h5>
-                    <p className="mb-0 fs-4">Tanishkk60@gmail.com</p>
+                    <h2 className="display-6 fw-bold">
+                      We’d Love to Hear From You!
+                    </h2>
+                    <p className="fw-semibold fs-5 textJustify">
+                      Have any questions, feedback, or need support? Reach out
+                      to us, and we’ll get back to you as soon as possible.
+                    </p>
                   </div>
                 </div>
-                <div className="d-flex align-items-center my-5">
-                  <i className="fa fa-phone fs-1 me-5"></i>
-                  <div>
-                    <h5 className="mb-1 fs-4  fw-bold">Contact</h5>
-                    <p className="mb-0 fs-4">+91 9557623131</p>
+                <div className="row textDeep">
+                  <div className="d-flex col-md-6 pe-1 align-items-center">
+                    <div className="bg-white rounded d-flex p-2 w-100">
+                      <i className="fa fa-envelope fs-3 mx-2 align-content-center"></i>
+                      <div>
+                        <h5 className="mb-1 fs-5 fw-bold">Email</h5>
+                        <p className="mb-0 fs-6">Tanishkk60@gmail.com</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="d-flex col-md-6 ps-1 align-items-center">
+                    <div className="bg-white rounded d-flex p-2 w-100">
+                      <i className="fa fa-phone fs-3 mx-2 align-content-center"></i>
+                      <div>
+                        <h5 className="mb-1 fs-5  fw-bold">Contact</h5>
+                        <p className="mb-0 fs-6">+91 9557623131</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-center my-5">
+                <div className="d-flex  bg-white p-2 rounded justify-content-center my-2">
                   <a
                     href="https://www.facebook.com"
                     className="btn mx-2"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fa-brands fa-facebook"></i>
+                    <i className="fab socialIcons fa-facebook"></i>
                   </a>
                   <a
                     href="https://www.instagram.com"
-                    className="btn mx-2"
+                    className="btn mx-2 textDeep"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fa-brands fa-instagram"></i>
+                    <i className="fab socialIcons fa-instagram"></i>
                   </a>
                   <a
                     href="https://www.youtube.com"
-                    className="btn mx-2"
+                    className="btn mx-2 textDeep"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fa-brands fa-youtube"></i>
+                    <i className="fab socialIcons fa-youtube"></i>
                   </a>
                 </div>
               </div>
@@ -89,8 +106,9 @@ export default function ContactUs() {
               className="col-md-6 bg-white rounded p-3 shadow-sm"
               style={{ minHeight: "400px" }}
             >
+              <h2 className="textDeep fw-bold text-center fs-1">Contact Us</h2>
               <form onSubmit={formik.handleSubmit} className="textDeep fw-bold">
-                <div className="row mb-3 ">
+                <div className="row mb-3">
                   <div className="col-md-6">
                     <label htmlFor="name" className="form-label">
                       Name

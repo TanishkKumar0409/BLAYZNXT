@@ -202,12 +202,14 @@ iframe {
 }
 
 .socialIcons {
-  transition: 1s ease-in-out;
+  transition: 0.3s ease-in-out;
   transform: scale(1);
+  font-size: 1.5rem;
 }
 
 .socialIcons:hover {
   transform: scale(1.2) translateY(-5px);
+  color: #0a0921 !important;
 }
 
 footer {
@@ -304,6 +306,12 @@ footer a:hover {
 .mainBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url("https://img.freepik.com/premium-photo/protecting-personal-data-with-secure-cloud-storage-encrypted-network-file-transfer-concept-cloud-security-data-protection-encryption-file-transfer-network-security_918839-232071.jpg")
+      no-repeat fixed center center / cover;
+}
+
+.contactBanner {
+  background: linear-gradient(#0a0921cf, #0a0921cf),
+    url("https://img.freepik.com/premium-photo/digital-transformation-digital-innovation-technology-wallpaper-digitalization-transformational-w_980716-65877.jpg")
       no-repeat fixed center center / cover;
 }
 
