@@ -9,6 +9,7 @@ export default function Footer() {
   const location = useLocation();
   const [isForm, setIsForm] = useState("");
   const username = JSON.parse(localStorage.getItem(`user`));
+  const [scrollBtn, setScrollBtn] = useState("");
 
   const noFooter = useMemo(
     () => [
@@ -63,8 +64,26 @@ export default function Footer() {
 
   const socialLinks = ["facebook", "instagram", "youtube"];
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.scrollY;
+      if (scrolled > 100) {
+        setScrollBtn("");
+      } else {
+        setScrollBtn("d-none");
+      }
+    });
+  }, []);
+
   return (
-    <footer className={`py-5 ${isForm}`}>
+    <footer className={`py-5 ${isForm} position-relative`}>
+      <button
+        className={`btn btn-deep ${scrollBtn} position-fixed m-2 bottom-0 end-0`}
+        style={{ zIndex: 99 }}
+        onClick={() => window.scrollTo(0, 0)}
+      >
+        <i className="fa fa-arrow-up"></i>
+      </button>
       <div className="container">
         <div className="row mb-4 gy-4 ">
           <div className="col-md-3 text-center align-content-center">
