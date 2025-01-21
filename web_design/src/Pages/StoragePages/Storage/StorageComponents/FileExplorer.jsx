@@ -155,33 +155,33 @@ export default function FileExplorer({ username }) {
       case "jpeg":
       case "png":
       case "gif":
-        return "fa-image textDeep";
+        return "fa-image textGreen";
       case "pdf":
-        return "fa-file-pdf";
+        return "fa-file-pdf text-danger";
       case "doc":
       case "docx":
-        return "fa-file-word";
+        return "fa-file-word text-primary";
       case "xls":
       case "xlsx":
-        return "fa-file-excel";
+        return "fa-file-excel textDarkGreen";
       case "ppt":
       case "pptx":
-        return "fa-file-powerpoint";
+        return "fa-file-powerpoint textOrange";
       case "txt":
-        return "fa-file-alt";
+        return "fa-file-alt text-muted";
       case "zip":
       case "rar":
-        return "fa-file-archive";
+        return "fa-file-archive text-warning";
       case "mkv":
       case "mp4":
-        return "fa-file-video";
+        return "fa-file-video textRoyalBlue";
       case "mp3":
       case "wav":
       case "ogg":
       case "flac":
-        return "fa-file-audio";
+        return "fa-file-audio textMaroon";
       default:
-        return "fa-file";
+        return "fa-file text-info";
     }
   };
 
@@ -204,11 +204,11 @@ export default function FileExplorer({ username }) {
 
   return (
     <>
-      <section className="py-5">
-        <div className="container">
+      <section>
+        <div className="container py-3">
           <button
             onClick={handleBack}
-            className="btn btn-light shadow-sm mb-4 rounded-circle"
+            className="btn btn-outline-deep shadow-sm mb-4 rounded"
             disabled={folderStack.length === 0}
           >
             <i className="fa fa-arrow-left"></i>
@@ -221,7 +221,7 @@ export default function FileExplorer({ username }) {
                   isHover === "createFolder"
                     ? "bg-deep text-white"
                     : "bg-white textDeep"
-                } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                } shadow-sm cursorPointer rounded-3 p-3 text-center textMaroon`}
                 onMouseEnter={() => setIsHover("createFolder")}
                 onMouseLeave={() => setIsHover("")}
                 onClick={() => setIsModalOpen(true)}
@@ -239,7 +239,7 @@ export default function FileExplorer({ username }) {
                   isHover === "upload"
                     ? "bg-deep text-white"
                     : "bg-white textDeep"
-                } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                } shadow-sm cursorPointer rounded-3 p-3 text-center textDarkGreen`}
                 onMouseEnter={() => setIsHover("upload")}
                 onMouseLeave={() => setIsHover("")}
               >
@@ -263,7 +263,7 @@ export default function FileExplorer({ username }) {
                     isHover === "delete"
                       ? "bg-deep text-white"
                       : "bg-white textDeep"
-                  } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                  } shadow-sm cursorPointer rounded-3 p-3 text-center text-danger`}
                   onClick={() => setIsDeleteModalOpen(true)}
                   onMouseEnter={() => setIsHover("delete")}
                   onMouseLeave={() => setIsHover("")}
@@ -285,7 +285,7 @@ export default function FileExplorer({ username }) {
                       isHover === "download"
                         ? "bg-deep text-white"
                         : "bg-white textDeep"
-                    } shadow-sm cursorPointer rounded-3 p-3 text-center`}
+                    } shadow-sm cursorPointer rounded-3 p-3 text-center textRoyalBlue`}
                     onMouseEnter={() => setIsHover("download")}
                     onMouseLeave={() => setIsHover("")}
                     onClick={() => handleDownload(selectedItemId)}
@@ -309,7 +309,7 @@ export default function FileExplorer({ username }) {
                   <div
                     className={`icon-container cursorPointer ${
                       selectedItemId === child.folderId
-                        ? "bg-deep"
+                        ? "bg-light border-deep"
                         : "bg-white shadow-sm"
                     } rounded-3 d-flex justify-content-center align-items-center`}
                     onDoubleClick={() => handleFolderClick(child)}
@@ -324,12 +324,8 @@ export default function FileExplorer({ username }) {
                       style={{ fontSize: "5rem" }}
                       className={`fa fw-bold ${
                         child.type === "folder"
-                          ? "fa-folder"
+                          ? "fa-folder text-warning"
                           : getFileIcon(child?.root)
-                      } ${
-                        selectedItemId === child.folderId
-                          ? "bg-deep text-white"
-                          : "bg-white shadow-sm textDeep"
                       }`}
                     ></i>
                   </div>

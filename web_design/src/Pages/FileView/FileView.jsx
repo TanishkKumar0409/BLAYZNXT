@@ -6,12 +6,17 @@ import PdfView from "./ViewExt.jsx/PdfView";
 import { noFileAPI } from "../../Services/API/API";
 import DocView from "./ViewExt.jsx/DocView";
 import AudioView from "./ViewExt.jsx/AudioView";
+import InnerPagesBanner from "../../Components/InnerPagesBanner/InnerPagesBanner";
 
 export default function FileView() {
   const username = JSON.parse(localStorage.getItem("user"));
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -46,6 +51,7 @@ export default function FileView() {
     if (audioExtensions.includes(extension)) return "audio";
     return "unknown";
   };
+  const unkowns = { filePath: "unkownFileType.pptx" };
 
   const fileType = fileName ? getFileType(fileName) : "unknown";
 
@@ -65,16 +71,17 @@ export default function FileView() {
 
   return (
     <>
-      <section className="bgGradient py-5">
+      <InnerPagesBanner heading={data?.root} />
+      <section>
         <div className="container">
           <div className="row">
-            <div className="col text-center py-md-5 pt-5">
+            <div className="col text-center">
               {fileType === "image" && <ImageView data={data} />}
               {fileType === "video" && <VideoView data={data} />}
               {fileType === "pdf" && <PdfView data={data} />}
               {fileType === "doc" && <DocView data={data} />}
               {fileType === "audio" && <AudioView data={data} />}
-              {fileType === "unknown" && <p>Unsupported file type</p>}
+              {fileType === "unknown" && <DocView data={unkowns} />}
             </div>
           </div>
         </div>

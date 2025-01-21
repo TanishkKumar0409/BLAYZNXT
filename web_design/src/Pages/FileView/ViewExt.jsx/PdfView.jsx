@@ -11,27 +11,29 @@ export default function PdfView({ data }) {
 
   return (
     <>
-      <div className="container bg-light p-3 rounded">
-        <h2>{data.root}</h2>
-        <div style={{ maxHeight: "80vh", overflow: "auto" }} className="shadow">
-          <Document
-            file={`${APIurl}${data.filePath}`}
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            {Array.apply(null, Array(numPages))
-              .map((x, i) => i + 1)
-              .map((page, index) => {
-                return (
-                  <Page
-                    key={index}
-                    pageNumber={page}
-                    className={`p-2`}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                  />
-                );
-              })}
-          </Document>
+      <div className="container p-3">
+        <div className="row justify-content-center">
+          <div className="col-md-8 shadow-sm rounded p-0 overflow-hidden">
+            <div style={{ maxHeight: "60vh", overflow: "auto" }}>
+              <Document
+                file={`${APIurl}${data.filePath}`}
+                onLoadSuccess={onDocumentLoadSuccess}
+              >
+                {Array.apply(null, Array(numPages))
+                  .map((x, i) => i + 1)
+                  .map((page, index) => {
+                    return (
+                      <Page
+                        key={index}
+                        pageNumber={page}
+                        renderTextLayer={false}
+                        renderAnnotationLayer={false}
+                      />
+                    );
+                  })}
+              </Document>
+            </div>
+          </div>
         </div>
       </div>
     </>

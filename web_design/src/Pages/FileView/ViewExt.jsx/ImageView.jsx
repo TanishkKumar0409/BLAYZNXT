@@ -4,14 +4,17 @@ export default function ImageView({ data }) {
   const APIurl = process.env.REACT_APP_API;
   return (
     <>
-      <section className="bg-light py-5 rounded">
+      <section className="p-4 rounded">
         <div className="container">
-          <img
-            src={`${APIurl}${data.filePath}`}
-            className="rounded shadow mb-3 img-fluid"
-            alt=""
-          />
-          <h2 className="text-dark fw-bold">{data.root}</h2>
+          <div className="row justify-content-center">
+            <div className="col-md-7 align-content-center">
+              <img
+                src={`${APIurl}${data.filePath}`}
+                className="rounded shadow img-fluid"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
       </section>
     </>

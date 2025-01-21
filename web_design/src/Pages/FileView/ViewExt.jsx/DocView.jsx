@@ -55,14 +55,22 @@ export default function DocView({ data }) {
   }, [fileUrl, fileExtension, data.filePath]);
 
   return (
-    <section className="bg-white p-3 rounded">
-      <div
-        className="doc-view-container shadow-sm rounded bg-light p-3"
-        style={{ maxHeight: "500px" }}
-      >
-        {error && <div className="error-message">{error}</div>}
-        <div className="file-content">
-          <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    <section className="container">
+      <div className="row justify-content-center p-md-4">
+        <div className="col-md-9">
+          <div
+            className="doc-view-container shadow-sm p-2 rounded"
+            style={{ maxHeight: "60vh" }}
+          >
+            {error && (
+              <div className="text-danger fs-1 fw-bold text-center">
+                {error}
+              </div>
+            )}
+            <div className="file-content p-2">
+              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

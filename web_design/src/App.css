@@ -160,45 +160,19 @@
 }
 
 .file-content {
-  max-width: 1200px;
-  overflow-x: auto;
-}
-
-iframe {
-  border: none;
-  border-radius: 8px;
-}
-
-.file-content table {
   width: 100%;
-  border-collapse: collapse;
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .file-content table,
-.file-content th,
 .file-content td {
-  border: 1px solid #ddd;
+  border: 1px solid #16143b;
 }
 
-.file-content th,
 .file-content td {
-  padding: 12px;
+  padding: 10px;
   text-align: left;
-}
-
-.file-content th {
-  background-color: #3498db;
-  color: white;
-}
-
-.file-content tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-@media (max-width: 768px) {
-  .file-content {
-    width: 90%;
-  }
 }
 
 .socialIcons {
@@ -260,6 +234,26 @@ footer a:hover {
   background: white;
   font-weight: 700;
 }
+
+.textGreen {
+  color: mediumseagreen;
+}
+.textDarkGreen {
+  color: forestgreen;
+}
+.textOrange {
+  color: orangered;
+}
+.textRoyalBlue {
+  color: royalblue;
+}
+.textMaroon {
+  color: maroon;
+}
+.react-pdf__Page {
+  justify-items: center;
+}
+
 .nav-link.textDeepBlue:hover {
   color: #16143bcf;
 }
