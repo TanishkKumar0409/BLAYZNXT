@@ -152,13 +152,6 @@
   font-family: Arial, sans-serif;
 }
 
-.error-message {
-  color: red;
-  font-size: 18px;
-  text-align: center;
-  margin: 20px;
-}
-
 .file-content {
   width: 100%;
   overflow-x: auto;
@@ -178,12 +171,11 @@
 .socialIcons {
   transition: 0.3s ease-in-out;
   transform: scale(1);
-  font-size: 1.5rem;
+  color: #0a0921;
 }
 
 .socialIcons:hover {
-  transform: scale(1.2) translateY(-5px);
-  color: #0a0921 !important;
+  transform: scale(1.5);
 }
 
 footer {

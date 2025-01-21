@@ -64,6 +64,11 @@ export default function CreateFolderModal({
                 placeholder="Enter Folder Name"
                 value={newFolderName}
                 onChange={(e) => setNewFolderName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleCreateFolder();
+                  }
+                }}
               />
               <div className="row py-3">
                 <div className="col text-center">

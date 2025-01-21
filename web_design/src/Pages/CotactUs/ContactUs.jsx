@@ -39,8 +39,8 @@ export default function ContactUs() {
       <section className="py-5 contactBanner">
         <div className="container">
           <div className="row justify-content-center text-white">
-            <div className="col-md-6" style={{ minHeight: "400px" }}>
-              <div className="info p-4 rounded shadow-sm h-100 align-content-center">
+            <div className="col-md-6">
+              <div className="p-3 h-100 align-content-center">
                 <div className="row">
                   <div>
                     <h2 className="display-6 fw-bold">
@@ -58,7 +58,12 @@ export default function ContactUs() {
                       <i className="fa fa-envelope fs-3 mx-2 align-content-center"></i>
                       <div>
                         <h5 className="mb-1 fs-5 fw-bold">Email</h5>
-                        <p className="mb-0 fs-6">Tanishkk60@gmail.com</p>
+                        <a
+                          href="mailto:Tanishkk60@gmail.com"
+                          className="mb-0 fs-6 fw-semibold cursorPointer forgotBtn text-decoration-none textDeep"
+                        >
+                          Tanishkk60@gmail.com
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -67,7 +72,12 @@ export default function ContactUs() {
                       <i className="fa fa-phone fs-3 mx-2 align-content-center"></i>
                       <div>
                         <h5 className="mb-1 fs-5  fw-bold">Contact</h5>
-                        <p className="mb-0 fs-6">+91 9557623131</p>
+                        <a
+                          href="tel:9557623131"
+                          className="mb-0 fs-6 fw-semibold cursorPointer forgotBtn text-decoration-none textDeep"
+                        >
+                          +91 9557623131
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -76,36 +86,33 @@ export default function ContactUs() {
                 <div className="d-flex  bg-white p-2 rounded justify-content-center my-2">
                   <a
                     href="https://www.facebook.com"
-                    className="btn mx-2"
+                    className="mx-4 socialIcons fs-1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab socialIcons fa-facebook"></i>
+                    <i className="fab fa-facebook"></i>
                   </a>
                   <a
                     href="https://www.instagram.com"
-                    className="btn mx-2 textDeep"
+                    className="mx-4 socialIcons fs-1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab socialIcons fa-instagram"></i>
+                    <i className="fab fa-instagram"></i>
                   </a>
                   <a
                     href="https://www.youtube.com"
-                    className="btn mx-2 textDeep"
+                    className="mx-4 socialIcons fs-1"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i className="fab socialIcons fa-youtube"></i>
+                    <i className="fab fa-youtube"></i>
                   </a>
                 </div>
               </div>
             </div>
 
-            <div
-              className="col-md-6 bg-white rounded p-3 shadow-sm"
-              style={{ minHeight: "400px" }}
-            >
+            <div className="col-md-6 bg-white rounded p-3">
               <h2 className="textDeep fw-bold text-center fs-1">Contact Us</h2>
               <form onSubmit={formik.handleSubmit} className="textDeep fw-bold">
                 <div className="row mb-3">

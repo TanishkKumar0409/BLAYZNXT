@@ -16,7 +16,13 @@ export default function FileExplorer({ username }) {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [uploadProgress, setUploadProgress] = useState([]);
   const [isHover, setIsHover] = useState("");
+  const [userData, setUserData] = useState();
   const redirector = useNavigate();
+
+  const getUserData = useCallback(async () => {
+    const userResponse = await noFileAPI.get(`user/${username}`);
+    setUserData(userResponse.data);
+  }, [username]);
 
   const getData = useCallback(async () => {
     try {
@@ -29,7 +35,10 @@ export default function FileExplorer({ username }) {
 
   useEffect(() => {
     getData();
-  }, [getData]);
+    getUserData();
+  }, [getData, getUserData]);
+
+  console.log(userData);
 
   const currentFolder = folderData.find(
     (item) => item.folderId === currentFolderId
@@ -75,7 +84,7 @@ export default function FileExplorer({ username }) {
 
   const handleFileUpload = async (event) => {
     const files = event.target.files;
-    const MAX_TOTAL_SIZE = 1 * 1024 * 1024 * 1024;
+    const MAX_TOTAL_SIZE = userData?.totalStorage - userData?.usedStorage;
 
     if (!files.length || !currentFolder) {
       toast("No valid folder or files selected.");
@@ -181,7 +190,7 @@ export default function FileExplorer({ username }) {
       case "flac":
         return "fa-file-audio textMaroon";
       default:
-        return "fa-file text-info";
+        return "fa-file-circle-exclamation textDeep";
     }
   };
 
