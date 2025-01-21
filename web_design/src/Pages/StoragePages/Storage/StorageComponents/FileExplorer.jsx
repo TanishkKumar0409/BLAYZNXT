@@ -44,9 +44,17 @@ export default function FileExplorer({ username }) {
     (item) => item.folderId === currentFolderId
   );
   const currentChildren =
-    currentFolder?.children.map((id) =>
-      folderData.find((item) => item.folderId === id)
-    ) || [];
+    currentFolder?.children
+      .map((id) => folderData.find((item) => item.folderId === id))
+      .filter(Boolean)
+      .sort((a, b) => {
+        if (a.type === "folder" && b.type !== "folder") return -1;
+        if (a.type !== "folder" && b.type === "folder") return 1;
+
+        const nameA = a.root || "";
+        const nameB = b.root || "";
+        return nameA.localeCompare(nameB);
+      }) || [];
 
   const handleFolderClick = async (folder) => {
     setSelectedItemId(null);
