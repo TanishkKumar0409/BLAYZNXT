@@ -8,13 +8,14 @@ import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/Vali
 
 export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
+  const [totalProgress, setTotalProgress] = useState(0); // Overall progress
   const [errorMessage, setErrorMessage] = useState("");
   const username = JSON.parse(localStorage.getItem("user"));
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
-      setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
+      setFiles(acceptedFiles);
     },
     multiple: true,
   });
@@ -26,25 +27,29 @@ export default function DragAndDropBox(props) {
 
   const handleSubmit = async (values) => {
     setErrorMessage("");
+    setTotalProgress(0); // Reset progress before uploading
+
+    const totalSize = files.reduce((acc, file) => acc + file.size, 0); // Total size of all files
 
     try {
       const formData = new FormData();
-
-      files.forEach((file) => {
-        formData.append("files", file);
-      });
-
+      files.forEach((file) => formData.append("files", file));
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      const response = await API.post(`/share/${username}`, formData);
+      await API.post(`/share/${username}`, formData, {
+        onUploadProgress: (progressEvent) => {
+          const totalUploaded = progressEvent.loaded;
+          const overallProgress = Math.round((totalUploaded / totalSize) * 100);
+          setTotalProgress(overallProgress);
+        },
+      });
 
-      console.log("Form submitted successfully:", response);
-      toast.success(response.data.message);
+      toast.success("Files uploaded successfully!");
       props.onSend();
-
       setFiles([]);
       localStorage.removeItem("userInfo");
+      setTotalProgress(0);
     } catch (error) {
       setErrorMessage(error.response.data.error);
       toast.error(error.response.data.error);
@@ -171,6 +176,26 @@ export default function DragAndDropBox(props) {
           </div>
         </form>
       </div>
+
+      {/* Overall Progress Display */}
+      {totalProgress > 0 && (
+        <div
+          className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
+          style={{ zIndex: 99 }}
+        >
+          <h3 className="fs-6 fw-bold text-nowrap mb-2">Uploaded Files: {totalProgress}%</h3>
+          <div className="progress">
+            <div
+              className="progress-bar bg-deep"
+              role="progressbar"
+              style={{ width: `${totalProgress}%` }}
+              aria-valuenow={totalProgress}
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
