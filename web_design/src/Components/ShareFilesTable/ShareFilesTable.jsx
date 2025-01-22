@@ -93,21 +93,28 @@ export default function ShareFilesTable() {
       ? filterData().slice(0, 5)
       : filterData().slice(0, visibleCount);
 
+  const pathCondition = path === "/main/history";
+
   return (
     <>
       <section>
-        <div className="container py-5">
+        <div className={`container ${!pathCondition && "py-5"}`}>
           <div className="row textDeep">
-            <h2
-              className="text-center mb-4 mainHeading text-uppercase fw-bold"
-              style={{ "--text": "'Shared History'" }}
-            >
-              Shared History
-            </h2>
-            <p className="px-5 text-center">
-              View the history of shared files, keeping track of all documents
-              shared with others for easy reference and management.
-            </p>
+            {!pathCondition && (
+              <>
+                <h2
+                  className="text-center mb-4 mainHeading text-uppercase fw-bold"
+                  style={{ "--text": "'Shared Histo ry'" }}
+                >
+                  Shared History
+                </h2>
+                <p className="px-5 text-center">
+                  View the history of shared files, keeping track of all
+                  documents shared with others for easy reference and
+                  management.
+                </p>
+              </>
+            )}
 
             <div className="col">
               <div className="d-flex justify-content-between align-items-center mb-3">

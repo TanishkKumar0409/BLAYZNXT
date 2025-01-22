@@ -1,16 +1,3 @@
-:root {
-  --primary-dark-blue: #1e3a8a;
-  --primary-soft-gray: #ececec;
-  --accent-cyan: #06b6d4;
-  --accent-purple: #a78bfa;
-  --success-green: #10b981;
-  --warning-yellow: #fbbf24;
-  --error-red: #ef4444;
-  --background-dark: #111827;
-  --text-primary: #ffffff;
-  --text-secondary: #9ca3af;
-}
-
 ::-webkit-scrollbar {
   width: 3px !important;
 }
@@ -27,85 +14,6 @@
   background: #16143b;
 }
 
-.mainPlayBtn {
-  width: 70px;
-  height: 70px;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.7);
-  transition: 0.5s;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.fileIcons:hover {
-  background: #e6e4e4 !important;
-}
-.breadcrumb-item + .breadcrumb-item::before {
-  color: white !important;
-}
-
-.mainPlayBtn:hover {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.controls {
-  bottom: 5px;
-  transition: opacity 0.3s ease-in-out;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  border-top: 2px solid rgba(0, 0, 0, 0.9);
-}
-
-.videoDurater {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  background: lightgray;
-  outline: none;
-}
-@media (max-width: 667px) {
-  .videoDurater {
-    width: 80% !important;
-  }
-}
-
-.volume-slider-box {
-  top: -440%;
-  left: 50%;
-  transform: translateX(-50%) rotate(-90deg);
-  z-index: 10;
-}
-
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 150px;
-  height: 15px;
-  background: linear-gradient(to right, #16143b 50%, lightgray 50%);
-  border-radius: 5px;
-  overflow: hidden;
-  outline: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 5px;
-  height: 15px;
-  background: #16143b;
-  cursor: pointer;
-}
-
-input[type="range"]::-moz-range-thumb {
-  -moz-appearance: none;
-  width: 5px;
-  height: 15px;
-  background: #16143b;
-  border-radius: 0 !important;
-  cursor: pointer;
-}
-
-/* new Css */
-/* #0d0c22 */
 .textDeep {
   color: #16143b;
 }
@@ -165,6 +73,17 @@ input[type="range"]::-moz-range-thumb {
   opacity: 0.9;
 }
 
+.blurBg-1 {
+  backdrop-filter: blur(10px);
+}
+.modalBg-1 {
+  background-color: #16143ba6;
+}
+
+.bg-deep {
+  background: #16143b;
+}
+
 .border-deep {
   border: 1px solid #16143b;
 }
@@ -182,6 +101,59 @@ input[type="range"]::-moz-range-thumb {
   text-align: justify;
 }
 
+input,
+textarea {
+  color: #16143b !important;
+  font-weight: 700 !important;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 15px;
+  background: linear-gradient(to right, #16143b 50%, lightgray 50%);
+  border-radius: 5px;
+  overflow: hidden;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5px;
+  height: 15px;
+  background: #16143b;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -moz-appearance: none;
+  width: 5px;
+  height: 15px;
+  background: #16143b;
+  border-radius: 0 !important;
+  cursor: pointer;
+}
+
+.owl-stage-outer {
+  padding: 20px 0;
+}
+
+.owl-dot span {
+  background: #16143ba6 !important;
+}
+.owl-dot:hover span {
+  background: #16143bc1 !important;
+}
+.owl-dot.active span {
+  background: #16143b !important;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: white !important;
+}
+
 .mainBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url("https://img.freepik.com/premium-photo/protecting-personal-data-with-secure-cloud-storage-encrypted-network-file-transfer-concept-cloud-security-data-protection-encryption-file-transfer-network-security_918839-232071.jpg")
@@ -191,6 +163,11 @@ input[type="range"]::-moz-range-thumb {
 .contactBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url("https://img.freepik.com/premium-photo/digital-transformation-digital-innovation-technology-wallpaper-digitalization-transformational-w_980716-65877.jpg")
+      no-repeat fixed center center / cover;
+}
+.testimonialsBanner {
+  background: linear-gradient(#0a0921cf, #0a0921cf),
+    url("https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/meP5gGMEPaUgXG1p/5-Y4L8MagVQKfkNjBN.jpg")
       no-repeat fixed center center / cover;
 }
 
@@ -220,46 +197,48 @@ input[type="range"]::-moz-range-thumb {
   transform: scale(1.02);
 }
 
-.blurBg-1 {
+.fileIcons:hover {
+  background: #e6e4e4 !important;
+}
+
+.controls {
+  bottom: 5px;
+  transition: opacity 0.3s ease-in-out;
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-}
-.modalBg-1 {
-  background-color: #16143ba6;
+  border-top: 2px solid rgba(0, 0, 0, 0.9);
 }
 
-.bg-deep {
-  background: #16143b;
+.volume-slider-box {
+  top: -440%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-90deg);
+  z-index: 10;
 }
 
-.owl-stage-outer {
-  padding: 20px 0;
+.file-content {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
-.owl-dot span {
-  background: #16143ba6 !important;
-}
-.owl-dot:hover span {
-  background: #16143bc1 !important;
-}
-.owl-dot.active span {
-  background: #16143b !important;
+.file-content table,
+.file-content td {
+  border: 1px solid #16143b;
 }
 
-.forgotBtn:hover {
-  text-decoration: underline !important;
+.file-content td {
+  padding: 10px;
+  text-align: left;
 }
 
-.truncated-file-name {
-  max-width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-input,
-textarea {
-  color: #16143b !important;
-  font-weight: 700 !important;
+.doc-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
 }
 
 .table-responsive {
@@ -316,6 +295,10 @@ circle {
   }
 }
 
+.forgotBtn:hover {
+  text-decoration: underline !important;
+}
+
 .socialIcons {
   transition: 0.3s ease-in-out;
   transform: scale(1);
@@ -339,29 +322,4 @@ footer a {
 
 .footer-nav-link:hover {
   transform: translateX(5px);
-}
-
-.file-content {
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
-
-.file-content table,
-.file-content td {
-  border: 1px solid #16143b;
-}
-
-.file-content td {
-  padding: 10px;
-  text-align: left;
-}
-
-.doc-view-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
 }

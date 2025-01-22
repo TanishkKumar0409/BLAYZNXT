@@ -38,20 +38,17 @@ export default function Testimonials() {
           <OwlCarousel className="owl-theme" {...owlOptions}>
             {MyTestimonials.map((testimonial, index) => (
               <div className="item" key={index}>
-                <div className="testimonialCard d-flex flex-column bg-white shadow-sm">
+                <div className="d-flex flex-column text-white shadow-sm">
                   <div
-                    className="p-3 textDeep border-bottom textJustify align-content-center"
+                    className="p-3 testimonialsBanner fw-semibold border-bottom textJustify align-content-center"
                     style={{
                       minHeight: "400px",
                     }}
                   >
                     <p>{testimonial.text}</p>
                   </div>
-                  <div className="testimonialCardBody d-flex">
-                    <div
-                      className="testimonialCardImage "
-                      style={{ width: "30%" }}
-                    >
+                  <div className="d-flex">
+                    <div style={{ width: "30%" }}>
                       <img
                         src={testimonial.image}
                         className="img-fluid h-100"
@@ -59,9 +56,9 @@ export default function Testimonials() {
                         alt={testimonial.name}
                       />
                     </div>
-                    <div className="testimonialCardAbout p-3 align-content-center">
-                      <h2 className="fs-4 text-black">{testimonial.name}</h2>
-                      <h3 className="text-muted fs-6">{testimonial.role}</h3>
+                    <div className="p-3 align-content-center">
+                      <h2 className="fs-4 textDeep">{testimonial.name}</h2>
+                      <h3 className="textDeepBlue fs-6">{testimonial.role}</h3>
                       <div className="stars">
                         {Array.from(
                           { length: testimonial.stars },
