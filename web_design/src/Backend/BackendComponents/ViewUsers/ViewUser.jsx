@@ -120,12 +120,16 @@ export default function ViewUser() {
             </div>
 
             <div className="col-md-8 align-content-center">
-              <h3 className="mb-4 fs-1 fw-bold">
-                {data.username || "User Details"}
-              </h3>
               <div className="table-responsive">
-                <table className="table table-hover">
+                <table className="table">
                   <tbody className="tableBodyCustom">
+                    <tr>
+                      <th colSpan={2}>
+                        <h3 className="fs-1 fw-bold">
+                          {data.username || "User Details"}
+                        </h3>
+                      </th>
+                    </tr>
                     <tr>
                       <th>Name</th>
                       <td>{data.name || "N/A"}</td>

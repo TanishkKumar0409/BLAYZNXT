@@ -59,12 +59,16 @@ export default function UserProfile() {
               />
             </div>
             <div className="col-md-8">
-              <h3 className="mb-4 fw-bold">
-                {data.username || "User Details"}
-              </h3>
               <div className="table-responsive " style={{ overflow: "unset" }}>
-                <table className="table table-hover">
+                <table className="table">
                   <tbody className="tableBodyCustom">
+                    <tr>
+                      <th colSpan={2}>
+                        <h3 className="fs-1 fw-bold">
+                          {data.username || "User Details"}
+                        </h3>
+                      </th>
+                    </tr>
                     <tr>
                       <th scope="row">Name</th>
                       <td>{data.name || "N/A"}</td>
@@ -112,7 +116,7 @@ export default function UserProfile() {
                             Actions
                           </button>
                           <ul
-                            className="dropdown-menu dropdown-menu-end text-center border-0 shadow overflow-hidden"
+                            className="dropdown-menu dropdown-menu-end text-center border-0 shadow-sm overflow-hidden"
                             aria-labelledby="dropdownMenuButton"
                           >
                             <li>
