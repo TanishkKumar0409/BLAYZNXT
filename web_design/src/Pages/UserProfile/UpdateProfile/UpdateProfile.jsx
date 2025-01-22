@@ -110,6 +110,8 @@ export default function UpdateProfile() {
     }
   };
 
+  const handleUpload = () => document.getElementById("image-upload").click();
+
   return (
     <section>
       <div className="container py-4">
@@ -120,16 +122,22 @@ export default function UpdateProfile() {
             </h3>
             <form onSubmit={formik.handleSubmit} className="textDeep fw-bold">
               <div className="text-center mb-2 mt-4">
-                <img
-                  src={profileImage}
-                  alt="Profile"
-                  className="rounded cursorPointer"
-                  width="150px"
-                  height="150px"
-                  onClick={() =>
-                    document.getElementById("image-upload").click()
-                  }
-                />
+                <div className="d-flex justify-content-center align-items-center mb-3">
+                  <div className="position-relative d-flex justify-content-center align-items-center">
+                    <img
+                      src={profileImage}
+                      alt="Profile"
+                      className="rounded cursorPointer"
+                      width="150px"
+                      height="150px"
+                      onClick={handleUpload}
+                    />
+                    <i
+                      className="fa fa-pen text-white modalBg-1 position-absolute bottom-0 end-0 fs-6 cursorPointer rounded p-2"
+                      onClick={handleUpload}
+                    ></i>
+                  </div>
+                </div>
                 <input
                   type="file"
                   id="image-upload"

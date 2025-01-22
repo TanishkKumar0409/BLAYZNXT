@@ -16,10 +16,7 @@ export default function LoginNavbar() {
   }, [location]);
 
   return (
-    <header
-      className={`shadow-sm sticky-top bg-white ${isForm}`}
-      style={{ zIndex: 999 }}
-    >
+    <header className={`shadow-sm sticky-top bg-white`} style={{ zIndex: 999 }}>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand textDeep fs-4 fw-bold" to="/">
@@ -38,7 +35,12 @@ export default function LoginNavbar() {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <Link to={`/form`} className="btn d-md-none btn-outline-deep ms-2">
+            <Link
+              to={`/form`}
+              className={`btn btn-outline-deep ms-2 ${
+                isForm ? "d-none" : "d-md-none"
+              }`}
+            >
               Login
             </Link>
           </div>
@@ -68,7 +70,9 @@ export default function LoginNavbar() {
             </ul>
             <Link
               to={`/form`}
-              className="btn d-none d-lg-flex btn-outline-deep ms-2"
+              className={`btn ${
+                isForm ? "d-none" : "d-lg-flex d-none"
+              } btn-outline-deep ms-2`}
             >
               Login
             </Link>

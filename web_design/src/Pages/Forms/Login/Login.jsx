@@ -42,18 +42,21 @@ export default function Login(props) {
 
   return (
     <div className="d-flex justify-content-center align-items-center my-5 w-100">
-      <div className="w-100 px-5">
+      <div className={`w-100 p-3 bg-white align-content-center rounded px-md-5`}>
         <h3 className="text-center mb-4">
-          Login to{" "}
+          Login to
           <Link
             to={`/`}
-            className="textDeep forgotBtn fw-bold text-decoration-none"
+            className="textDeep ms-3 forgotBtn fw-bold text-decoration-none"
           >
             Project TK
           </Link>
         </h3>
         <hr />
-        <form onSubmit={formik.handleSubmit} className="form-style textDeep fw-bold">
+        <form
+          onSubmit={formik.handleSubmit}
+          className="form-style textDeep fw-bold"
+        >
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email address

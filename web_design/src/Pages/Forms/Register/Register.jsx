@@ -72,8 +72,8 @@ export default function Register(props) {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center mt-5 mt-md-0">
-      <div className="w-100 p-md-4 rounded-3">
+    <div className="d-flex justify-content-center align-items-center">
+      <div className={`w-100 py-3 rounded bg-white px-md-5`}>
         <h3 className="text-center mb-4">
           Login to{" "}
           <Link
@@ -98,19 +98,29 @@ export default function Register(props) {
               onChange={handleImageChange}
               accept="image/*"
             />
-            <div className="profile-preview">
-              <img
-                src={
-                  profileImage ||
-                  `${APIurl}Uploads/Users/DefaultProfiles/DefaultProfile.jpg`
-                }
-                onClick={handleImageClick}
-                alt="Profile Preview"
-                className="img-fluid rounded-circle cursorPointer"
-                style={{ width: "150px", height: "150px", objectFit: "cover" }}
-              />
+            <div className="d-flex justify-content-center align-items-center mb-3">
+              <div
+                className="profile-preview position-relative d-flex justify-content-center align-items-center"
+                style={{ width: "100px", height: "100px" }}
+              >
+                <img
+                  src={
+                    profileImage ||
+                    `${APIurl}Uploads/Users/DefaultProfiles/DefaultProfile.jpg`
+                  }
+                  onClick={handleImageClick}
+                  alt="Profile Preview"
+                  className="img-fluid rounded cursorPointer"
+                  style={{ objectFit: "cover" }}
+                />
+                <i
+                  className="fa fa-pen text-white modalBg-1 position-absolute bottom-0 end-0 fs-6 cursorPointer rounded p-2"
+                  onClick={handleImageClick}
+                ></i>
+              </div>
             </div>
-            <label htmlFor="profile" className="form-label cursorPointer">
+
+            <label htmlFor="profile" className="form-label fs-5 cursorPointer">
               Profile Picture
             </label>
             {formik.touched.profile && formik.errors.profile && (
@@ -118,8 +128,8 @@ export default function Register(props) {
             )}
           </div>
 
-          <div className="row mb-3">
-            <div className="col-md-6">
+          <div className="row">
+            <div className="col-md-6 mb-3">
               <label htmlFor="username" className="form-label">
                 Username
               </label>
@@ -139,7 +149,7 @@ export default function Register(props) {
               )}
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 mb-3">
               <label htmlFor="name" className="form-label">
                 Full Name
               </label>
@@ -160,8 +170,8 @@ export default function Register(props) {
             </div>
           </div>
 
-          <div className="row mb-3">
-            <div className="col-md-6">
+          <div className="row">
+            <div className="col-md-6 mb-3">
               <label htmlFor="email" className="form-label">
                 Email Address
               </label>
@@ -181,7 +191,7 @@ export default function Register(props) {
               )}
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 mb-3">
               <label htmlFor="contact" className="form-label">
                 Contact Number
               </label>
