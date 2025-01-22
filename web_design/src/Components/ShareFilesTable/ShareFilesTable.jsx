@@ -125,7 +125,7 @@ export default function ShareFilesTable() {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i className="bi bi-funnel"></i> Filters
+                    Filters
                   </button>
                   <ul
                     className="dropdown-menu dropdown-menu-start textDeep fw-bold p-3 shadow border-0"

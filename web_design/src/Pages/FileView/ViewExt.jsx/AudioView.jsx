@@ -41,7 +41,7 @@ export default function AudioView({ data }) {
 
     const slider = e.target;
     const percentage = (newVolume / 1) * 100;
-    slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
+    slider.style.background = `linear-gradient(to right, #16143b ${percentage}%, lightgray ${percentage}%)`;
   };
 
   const handleTrackChange = (e) => {
@@ -68,11 +68,9 @@ export default function AudioView({ data }) {
     const slider = document.querySelector(".videoDurater");
     let percentage = (currentTime / duration) * 100;
 
-    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${
+    slider.style.background = `linear-gradient(to right, #16143b ${
       percentage || 20
-    }%, var(--error-red) ${percentage || 60}%, var(--primary-soft-gray) ${
-      percentage || 100
-    }%)`;
+    }%, lightgray ${percentage || 60}%, lightgray ${percentage || 100}%)`;
   };
 
   useEffect(() => {
@@ -93,7 +91,7 @@ export default function AudioView({ data }) {
         audioRef.current.volume = 0;
       }
       const slider = document.getElementById("volume-slider");
-      slider.style.background = `linear-gradient(to right, var(--accent-purple) 0%, var(--accent-cyan) 0%)`;
+      slider.style.background = `lightgray`;
     } else {
       setVolume(lastVolume);
       const newVolume = lastVolume || 0.5;
@@ -102,7 +100,7 @@ export default function AudioView({ data }) {
       }
       const slider = document.getElementById("volume-slider");
       const percentage = (newVolume / 1) * 100;
-      slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
+      slider.style.background = `linear-gradient(to right, #16143b ${percentage}%, lightgray ${percentage}%)`;
     }
   };
 
@@ -180,88 +178,93 @@ export default function AudioView({ data }) {
 
   return (
     <>
-      <section className="audio-view bg-white text-dark p-2 rounded shadow">
-        <div className="container bg-light p-3 rounded ">
-          <div className="row mb-4 justify-content-center">
-            <div className="col-auto text-center">
-              <img
-                src="https://i.pinimg.com/originals/42/c8/4f/42c84f4f71bf4b1c51ecef5336aac55d.gif"
-                className="img-fluid rounded shadow-sm mb-2 p-2"
-                style={{
-                  width: "350px",
-                  objectFit: "cover",
-                  aspectRatio: "3/3",
-                }}
-                alt="Default Profile"
-              />
-              <h2>{data.root}</h2>
-            </div>
-          </div>
+      <section className="audio-view">
+        <div className="container p-3">
           <div className="row justify-content-center">
-            <div className="col-md-8">
-              <div className="audio-controls d-flex justify-content-between align-items-center p-3 rounded shadow-sm bg-white">
-                <button
-                  className="btn btn-primary play-btn shadow"
-                  onClick={togglePlay}
-                >
-                  <i className={`fa ${isPlaying ? "fa-pause" : "fa-play"}`}></i>
-                </button>
-                <div className="audio-track d-flex flex-column align-items-center flex-grow-1 mx-3">
-                  <input
-                    type="range"
-                    className="w-100 track-slider videoDurater"
-                    min="0"
-                    max={duration || 100}
-                    value={currentTime}
-                    onChange={handleTrackChange}
+            <div className="col-md-6 p-3 rounded shadow-sm">
+              <div className="row justify-content-center">
+                <div className="col position-relative overflow-hidden text-center">
+                  <img
+                    src="https://i.pinimg.com/originals/6f/5f/f3/6f5ff36fd8ffefa40bf466df6c693ef1.gif"
+                    className="img-fluid rounded mb-2"
+                    style={{
+                      width: "350px",
+                      objectFit: "cover",
+                      aspectRatio: "4/4",
+                    }}
+                    alt="Default Profile"
                   />
-                  <div className="timers d-flex justify-content-between w-100 mt-1">
-                    <small>{formatTime(currentTime)}</small>
-                    <small>{formatTime(duration)}</small>
-                  </div>
                 </div>
-                <div className="audio-btns d-flex">
-                  <div
-                    className="audioVolume position-relative"
-                    onMouseEnter={() => setVolumeHover(true)}
-                    onMouseLeave={() => setVolumeHover(false)}
-                  >
+              </div>
+              <div className="row justify-content-center">
+                <div className="col">
+                  <div className="audio-controls d-flex justify-content-between align-items-center p-3 rounded shadow-sm bg-white">
                     <button
-                      className="btn btn-primary volume-btn shadow"
-                      onClick={toggleMute}
+                      className="btn btn-deep play-btn shadow"
+                      onClick={togglePlay}
                     >
-                      <i className={`fa fa-volume-${volumeIcon}`}></i>
+                      <i
+                        className={`fa ${isPlaying ? "fa-pause" : "fa-play"}`}
+                      ></i>
                     </button>
-                    {volumeHover && (
-                      <div
-                        className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow-sm align-items-center justify-content-center"
-                        style={{ top: "-340%" }}
-                      >
-                        <input
-                          type="range"
-                          min="0"
-                          max="100"
-                          value={volume * 100}
-                          onChange={handleVolumeChange}
-                          id="volume-slider"
-                        />
-                        <p
-                          className="text-center mt-3"
-                          style={{ transform: "rotate(90deg)" }}
-                        >
-                          {Math.round(volume * 100)}%
-                        </p>
+                    <div className="audio-track d-flex flex-column align-items-center flex-grow-1 mx-3">
+                      <input
+                        type="range"
+                        className="w-100 track-slider videoDurater"
+                        min="0"
+                        max={duration || 100}
+                        value={currentTime}
+                        onChange={handleTrackChange}
+                      />
+                      <div className="timers d-flex justify-content-between w-100 mt-1">
+                        <small>{formatTime(currentTime)}</small>
+                        <small>{formatTime(duration)}</small>
                       </div>
-                    )}
+                    </div>
+                    <div className="audio-btns d-flex">
+                      <div
+                        className="audioVolume position-relative"
+                        onMouseEnter={() => setVolumeHover(true)}
+                        onMouseLeave={() => setVolumeHover(false)}
+                      >
+                        <button
+                          className="btn btn-deep volume-btn shadow"
+                          onClick={toggleMute}
+                        >
+                          <i className={`fa fa-volume-${volumeIcon}`}></i>
+                        </button>
+                        {volumeHover && (
+                          <div
+                            className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow-sm align-items-center justify-content-center"
+                            style={{ top: "-340%" }}
+                          >
+                            <input
+                              type="range"
+                              min="0"
+                              max="100"
+                              value={volume * 100}
+                              onChange={handleVolumeChange}
+                              id="volume-slider"
+                            />
+                            <p
+                              className="text-center mt-3"
+                              style={{ transform: "rotate(90deg)" }}
+                            >
+                              {Math.round(volume * 100)}%
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                      <button
+                        className={`btn btn-deep repeat-btn shadow ms-2 ${
+                          isRepeating ? "active" : ""
+                        }`}
+                        onClick={toggleRepeat}
+                      >
+                        <i className="fa fa-repeat"></i>
+                      </button>
+                    </div>
                   </div>
-                  <button
-                    className={`btn btn-primary repeat-btn shadow ms-2 ${
-                      isRepeating ? "active" : ""
-                    }`}
-                    onClick={toggleRepeat}
-                  >
-                    <i className="fa fa-repeat"></i>
-                  </button>
                 </div>
               </div>
             </div>

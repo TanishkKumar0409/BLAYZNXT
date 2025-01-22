@@ -76,7 +76,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className={`py-5 ${isForm} position-relative`}>
+    <footer className={`py-5 ${isForm} bg-light position-relative`}>
       <button
         className={`btn btn-deep ${scrollBtn} position-fixed m-2 bottom-0 end-0`}
         style={{ zIndex: 99 }}
@@ -100,7 +100,7 @@ export default function Footer() {
                 <a
                   key={platform}
                   href={`https://${platform}.com`}
-                  className="textDeep mx-2"
+                  className="textDeep socialIcons mx-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -128,14 +128,14 @@ export default function Footer() {
             <p className="mb-1 fw-semibold textDeep">Email:</p>
             <a
               href="mailto:tanishkk60@gmail.com"
-              className="textDeep text-decoration-none mb-3 d-block"
+              className="textDeep text-decoration-none mb-3 footer-nav-link d-block"
             >
               tanishkk60@gmail.com
             </a>
             <p className="mb-1 fw-semibold textDeep">Contact:</p>
             <a
               href="tel:95576213131"
-              className="textDeep text-decoration-none mb-3 d-block"
+              className="textDeep text-decoration-none footer-nav-link mb-3 d-block"
             >
               95576213131
             </a>

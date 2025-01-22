@@ -47,7 +47,6 @@ export default function StorageAnalysis() {
   const value = circumference - circumference * (perValue / 100);
 
   const displaySize = (sizeInBytes) => {
-    console.log(sizeInBytes);
     if (sizeInBytes >= 1024 * 1024 * 1024) {
       return `${(sizeInBytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
     } else {

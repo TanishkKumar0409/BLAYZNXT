@@ -27,26 +27,6 @@
   background: #16143b;
 }
 
-.minHeigth300 {
-  min-height: 300px;
-}
-
-.mainHeading {
-  z-index: 0;
-  position: relative;
-}
-
-.mainHeading::before {
-  content: var(--text);
-  position: absolute;
-  transform: scale(1.5);
-  z-index: -1;
-  filter: opacity(0.2);
-  -webkit-text-stroke: 2px rgb(185, 185, 185);
-  top: -30%;
-  color: lightgray;
-}
-
 .mainPlayBtn {
   width: 70px;
   height: 70px;
@@ -54,6 +34,13 @@
   background: rgba(0, 0, 0, 0.7);
   transition: 0.5s;
   animation: pulse 1.5s infinite ease-in-out;
+}
+
+.fileIcons:hover {
+  background: #e6e4e4 !important;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  color: white !important;
 }
 
 .mainPlayBtn:hover {
@@ -72,29 +59,13 @@
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 8px;
-  background: linear-gradient(
-    to right,
-    var(--warning-yellow) 0%,
-    var(--primary-soft-gray) 100%
-  );
-  border-radius: 5px;
+  background: lightgray;
   outline: none;
 }
-
-.videoDurater::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.videoDurater:hover::-webkit-slider-thumb {
-  background-color: var(--success-green);
+@media (max-width: 667px) {
+  .videoDurater {
+    width: 80% !important;
+  }
 }
 
 .volume-slider-box {
@@ -102,113 +73,35 @@
   left: 50%;
   transform: translateX(-50%) rotate(-90deg);
   z-index: 10;
-  backdrop-filter: blur(10px);
 }
 
-#volume-slider {
+input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 150px;
-  height: 5px;
-  background: linear-gradient(
-    to right,
-    var(--accent-purple) 0%,
-    var(--accent-purple) 50%,
-    var(--accent-cyan) 50%,
-    var(--accent-cyan) 100%
-  );
+  height: 15px;
+  background: linear-gradient(to right, #16143b 50%, lightgray 50%);
   border-radius: 5px;
+  overflow: hidden;
   outline: none;
 }
 
-#volume-slider::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #1d4b99;
-  border-radius: 50%;
+  width: 5px;
+  height: 15px;
+  background: #16143b;
   cursor: pointer;
 }
 
-#volume-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: var(--accent-purple);
-  border-radius: 50%;
+input[type="range"]::-moz-range-thumb {
+  -moz-appearance: none;
+  width: 5px;
+  height: 15px;
+  background: #16143b;
+  border-radius: 0 !important;
   cursor: pointer;
-}
-
-#volume-slider:focus {
-  background: var(--success-green);
-}
-
-.doc-view-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.file-content {
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
-
-.file-content table,
-.file-content td {
-  border: 1px solid #16143b;
-}
-
-.file-content td {
-  padding: 10px;
-  text-align: left;
-}
-
-.socialIcons {
-  transition: 0.3s ease-in-out;
-  transform: scale(1);
-  color: #0a0921;
-}
-
-.socialIcons:hover {
-  transform: scale(1.5);
-}
-
-footer {
-  background-color: #f8f9fa;
-  color: #343a40;
-  padding: 2rem 0;
-}
-
-footer a {
-  color: #343a40;
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.fa-brands {
-  font-size: 1.5rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.fa-brands:hover {
-  transform: scale(1.2);
-}
-
-.footer-nav-link {
-  margin-bottom: 0.5rem;
-  transition: 0.3s;
-}
-
-.footer-nav-link:hover {
-  transform: translateX(5px);
-}
-
-footer a:hover {
-  transform: translateX(5px);
 }
 
 /* new Css */
@@ -299,6 +192,22 @@ footer a:hover {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url("https://img.freepik.com/premium-photo/digital-transformation-digital-innovation-technology-wallpaper-digitalization-transformational-w_980716-65877.jpg")
       no-repeat fixed center center / cover;
+}
+
+.mainHeading {
+  z-index: 0;
+  position: relative;
+}
+
+.mainHeading::before {
+  content: var(--text);
+  position: absolute;
+  transform: scale(1.5);
+  z-index: -1;
+  filter: opacity(0.2);
+  -webkit-text-stroke: 2px rgb(185, 185, 185);
+  top: -30%;
+  color: lightgray;
 }
 
 .dropzone {
@@ -405,4 +314,54 @@ circle {
   100% {
     stroke-dashoffset: var(--array);
   }
+}
+
+.socialIcons {
+  transition: 0.3s ease-in-out;
+  transform: scale(1);
+  color: #0a0921;
+}
+
+.socialIcons:hover {
+  transform: scale(1.5);
+}
+
+footer a {
+  color: #343a40;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-nav-link {
+  margin-bottom: 0.5rem;
+  transition: 0.3s;
+}
+
+.footer-nav-link:hover {
+  transform: translateX(5px);
+}
+
+.file-content {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.file-content table,
+.file-content td {
+  border: 1px solid #16143b;
+}
+
+.file-content td {
+  padding: 10px;
+  text-align: left;
+}
+
+.doc-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
 }

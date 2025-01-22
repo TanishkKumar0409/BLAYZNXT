@@ -38,8 +38,6 @@ export default function FileExplorer({ username }) {
     getUserData();
   }, [getData, getUserData]);
 
-  console.log(userData);
-
   const currentFolder = folderData.find(
     (item) => item.folderId === currentFolderId
   );
@@ -119,7 +117,6 @@ export default function FileExplorer({ username }) {
 
       progressArray[i] = { fileName: file.name, progress: 0 };
       setUploadProgress([...progressArray]);
-      console.log(file);
 
       try {
         const response = await API.post(
@@ -328,7 +325,7 @@ export default function FileExplorer({ username }) {
                       selectedItemId === child.folderId
                         ? "bg-light border-deep"
                         : "bg-white shadow-sm"
-                    } rounded-3 d-flex justify-content-center align-items-center`}
+                    } rounded-3 d-flex fileIcons justify-content-center align-items-center`}
                     onDoubleClick={() => handleFolderClick(child)}
                     onTouchStart={(e) => handleTouchStart(e, child)}
                     onClick={() => setSelectedItemId(child.folderId)}
@@ -378,20 +375,18 @@ export default function FileExplorer({ username }) {
           {uploadProgress.length > 0 && (
             <div
               className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
-              style={{ width: "250px", zIndex: 99 }}
+              style={{ zIndex: 99 }}
             >
               {uploadProgress.map((progress, index) => (
-                <div>
-                  <h3 className="fs-6 fw-bold">
-                    File Uploaded: {progress.progress}%
+                <div key={index}>
+                  <h3 className="fs-6 fw-bold text-nowrap">
+                    {progress.fileName}: {progress.progress}%
                   </h3>
                   <div className="progress" key={index}>
                     <div
                       className="progress-bar bg-deep"
                       style={{ width: `${progress.progress}%` }}
-                    >
-                      {progress.progress}%
-                    </div>
+                    ></div>
                   </div>
                 </div>
               ))}

@@ -54,14 +54,8 @@ export default function VideoView({ data }) {
         toggleIsPlaying();
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        if (volume < 1) {
-          setVolume((prevVolume) => Math.min(prevVolume + 0.05, 1));
-        }
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        if (volume > 0) {
-          setVolume((prevVolume) => Math.max(prevVolume - 0.05, 0));
-        }
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
         setCurrentTime((prevTime) => Math.min(prevTime + 10, duration));
@@ -90,7 +84,7 @@ export default function VideoView({ data }) {
 
     const slider = e.target;
     const percentage = (newVolume / 1) * 100;
-    slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
+    slider.style.background = `linear-gradient(to right, #16143b ${percentage}%, lightgray ${percentage}%)`;
   };
 
   const toggleMute = () => {
@@ -100,12 +94,12 @@ export default function VideoView({ data }) {
 
       const slider = document.getElementById("volume-slider");
       const percentage = (newVolume / 1) * 100;
-      slider.style.background = `linear-gradient(to right, var(--accent-purple) ${percentage}%, var(--accent-cyan) ${percentage}%)`;
+      slider.style.background = `linear-gradient(to right, #16143b ${percentage}%, lightgray ${percentage}%)`;
     } else {
       setPreviousVolume(volume);
       setVolume(0);
       const slider = document.getElementById("volume-slider");
-      slider.style.background = `linear-gradient(to right, var(--accent-purple) 0%, var(--accent-cyan) 0%)`;
+      slider.style.background = `lightgray`;
     }
   };
 
@@ -126,7 +120,7 @@ export default function VideoView({ data }) {
     const slider = document.querySelector(".videoDurater");
     const percentage = state.played * 100;
 
-    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${percentage}%, var(--error-red) ${percentage}%, var(--primary-soft-gray) ${percentage}%)`;
+    slider.style.background = `linear-gradient(to right, #16143b ${percentage}%, lightgray ${percentage}%, lightgray ${percentage}%)`;
   };
 
   const handleSeekChange = (e) => {
@@ -136,7 +130,7 @@ export default function VideoView({ data }) {
 
     const percentage = seekTo * 100;
     const slider = document.querySelector(".videoDurater");
-    slider.style.background = `linear-gradient(to right, var(--warning-yellow) ${percentage}% var(--primary-soft-gray) ${percentage}%)`;
+    slider.style.background = `linear-gradient(to right, #16143b ${percentage}% lightgray ${percentage}%)`;
   };
 
   const handleDuration = (duration) => {
@@ -174,98 +168,112 @@ export default function VideoView({ data }) {
 
   return (
     <>
-      <h2 className="py-3 text-light">{data.root}</h2>
-      <div className="video-container position-relative" id="ReactVideoPlayer">
-        <ReactPlayer
-          ref={playerRef}
-          url={video}
-          playing={isPlaying}
-          volume={volume}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          className="react-player w-100 h-100 bg-dark"
-        />
-        {!isPlaying && (
-          <button
-            className="btn text-light mainPlayBtn fs-1 position-absolute rounded-circle text-center align-content-center top-50 start-50 translate-middle"
-            onClick={toggleIsPlaying}
-          >
-            <i className="fa fa-play position-relative fa-fade"></i>
-          </button>
-        )}
-
-        <div
-          className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`}
-          style={{ opacity: hover || !isPlaying ? 1 : 0 }}
-        >
-          <button className="btn btn-info btn-sm" onClick={toggleIsPlaying}>
-            {isPlaying ? (
-              <i className="fa fa-pause"></i>
-            ) : (
-              <i className="fa fa-play"></i>
-            )}
-          </button>
-
-          <div className="d-flex align-items-center flex-grow-1 mx-md-3 mx-1">
-            <span>{formatTime(currentTime)}</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={played}
-              onChange={handleSeekChange}
-              className="mx-md-3 mx-1 flex-grow-1 videoDurater"
-            />
-            <span>{formatTime(duration)}</span>
-          </div>
-
-          <div
-            className="position-relative"
-            onMouseEnter={() => setVolumeHover(true)}
-            onMouseLeave={() => setVolumeHover(false)}
-          >
-            <button
-              className="btn btn-info me-md-2 me-1 btn-sm"
-              onClick={toggleMute}
-              aria-label={volume === 0 ? "Unmute" : "Mute"}
-            >
-              <i className={`fa fa-volume-${volumeIcon}`}></i>
-            </button>
-
-            {volumeHover && (
+      <section>
+        <div className="container p-4">
+          <div className="row justify-content-center">
+            <div className="col-md-10 p-0">
               <div
-                className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow align-items-center justify-content-center"
-                style={{ background: "rgba(0, 0, 0, 0.8)" }}
+                className="video-container position-relative"
+                id="ReactVideoPlayer"
               >
-                <input
-                  id="volume-slider"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={handleVolumeChange}
+                <ReactPlayer
+                  ref={playerRef}
+                  url={video}
+                  playing={isPlaying}
+                  volume={volume}
+                  onProgress={handleProgress}
+                  onDuration={handleDuration}
+                  onPlay={handlePlay}
+                  onPause={handlePause}
+                  onClick={toggleIsPlaying}
+                  className="react-player w-100 h-100 bg-dark"
                 />
-                <p
-                  className="text-light text-center mt-3"
-                  style={{ transform: "rotate(90deg)" }}
+                {!isPlaying && (
+                  <button
+                    className="btn btn-deep position-absolute align-content-center top-50 start-50 translate-middle"
+                    onClick={toggleIsPlaying}
+                  >
+                    <i className="fa fa-play fs-1"></i>
+                  </button>
+                )}
+
+                <div
+                  className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`}
+                  style={{ opacity: hover || !isPlaying ? 1 : 0 }}
                 >
-                  {(volume * 100).toFixed(0)}%
-                </p>
+                  <button
+                    className="btn btn-deep btn-sm"
+                    onClick={toggleIsPlaying}
+                  >
+                    {isPlaying ? (
+                      <i className="fa fa-pause"></i>
+                    ) : (
+                      <i className="fa fa-play"></i>
+                    )}
+                  </button>
+
+                  <div className="d-flex align-items-center flex-grow-1 mx-md-3 mx-1">
+                    <span>{formatTime(currentTime)}</span>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={played}
+                      onChange={handleSeekChange}
+                      className="mx-md-3 mx-1 flex-grow-1 videoDurater"
+                    />
+                    <span>{formatTime(duration)}</span>
+                  </div>
+
+                  <div
+                    className="position-relative"
+                    onMouseEnter={() => setVolumeHover(true)}
+                    onMouseLeave={() => setVolumeHover(false)}
+                  >
+                    <button
+                      className="btn btn-deep me-md-2 me-1 btn-sm"
+                      onClick={toggleMute}
+                      aria-label={volume === 0 ? "Unmute" : "Mute"}
+                    >
+                      <i className={`fa fa-volume-${volumeIcon}`}></i>
+                    </button>
+
+                    {volumeHover && (
+                      <div
+                        className="volume-slider-box position-absolute p-2 d-flex flex-row-reverse shadow-sm align-items-center justify-content-center"
+                        style={{ background: "rgba(0, 0, 0, 0.8)" }}
+                      >
+                        <input
+                          id="volume-slider"
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.01"
+                          value={volume}
+                          onChange={handleVolumeChange}
+                        />
+                        <p
+                          className="text-light text-center mt-3"
+                          style={{ transform: "rotate(90deg)" }}
+                        >
+                          {(volume * 100).toFixed(0)}%
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    className="btn btn-deep me-md-2 btn-sm"
+                    onClick={toggleFullScreen}
+                  >
+                    <i className={`fa fa-${fullIcon}`}></i>
+                  </button>
+                </div>
               </div>
-            )}
+            </div>
           </div>
-          <button
-            className="btn btn-info me-md-2 btn-sm"
-            onClick={toggleFullScreen}
-          >
-            <i className={`fa fa-${fullIcon}`}></i>
-          </button>
         </div>
-      </div>
+      </section>
     </>
   );
 }
