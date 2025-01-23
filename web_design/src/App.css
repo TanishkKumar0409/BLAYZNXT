@@ -156,19 +156,16 @@ input[type="range"]::-moz-range-thumb {
 
 .mainBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
-    url("https://img.freepik.com/premium-photo/protecting-personal-data-with-secure-cloud-storage-encrypted-network-file-transfer-concept-cloud-security-data-protection-encryption-file-transfer-network-security_918839-232071.jpg")
-      no-repeat fixed center center / cover;
+    url(./Image/HomeBanner.jpg) no-repeat fixed center center / cover;
 }
 
 .contactBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
-    url("https://img.freepik.com/premium-photo/digital-transformation-digital-innovation-technology-wallpaper-digitalization-transformational-w_980716-65877.jpg")
-      no-repeat fixed center center / cover;
+    url(./Image/ContactUsBanner.jpg) no-repeat fixed center center / cover;
 }
 .testimonialsBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
-    url("https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/meP5gGMEPaUgXG1p/5-Y4L8MagVQKfkNjBN.jpg")
-      no-repeat fixed center center / cover;
+    url(./Image/TestimonialBanner.jpg) no-repeat fixed center center / cover;
 }
 
 .mainHeading {
