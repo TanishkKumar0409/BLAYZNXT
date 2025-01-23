@@ -296,7 +296,7 @@ export default function ShareFilesTable() {
                                   )}
                                   {visibleCount > 10 && (
                                     <button
-                                      className="btn btn-outline-deep"
+                                      className="btn btn-deep"
                                       onClick={() =>
                                         setVisibleCount((prev) =>
                                           Math.max(prev - 10, 10)

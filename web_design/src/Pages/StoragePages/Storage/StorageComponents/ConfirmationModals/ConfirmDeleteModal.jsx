@@ -8,10 +8,11 @@ export default function ConfirmDeleteModal({
   selectedItemId,
   setSelectedItemId,
   currentFolder,
-  setFolderData,
-  username,
+  setFolderData
 }) {
   if (!isDeleteModalOpen) return null;
+
+  const username=JSON.parse(localStorage.getItem(`user`))
 
   const handleDeleteItem = async () => {
     if (!selectedItemId) {

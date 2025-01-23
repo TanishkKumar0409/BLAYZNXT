@@ -47,10 +47,6 @@
   justify-items: center;
 }
 
-.nav-link.textDeepBlue:hover {
-  color: #16143bcf;
-}
-
 .btn-outline-deep {
   background: white;
   border: 2px solid #16143b;
@@ -152,6 +148,10 @@ input[type="range"]::-moz-range-thumb {
 
 .breadcrumb-item + .breadcrumb-item::before {
   color: white !important;
+}
+
+.nav-link.textDeepBlue:hover {
+  color: #16143bcf;
 }
 
 .mainBanner {
@@ -321,5 +321,6 @@ footer a {
 }
 
 .footer-nav-link:hover {
+  font-weight: 600;
   transform: translateX(5px);
 }

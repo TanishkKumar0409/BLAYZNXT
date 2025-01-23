@@ -14,7 +14,7 @@ export default function FileExplorer({ username }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState(null);
   const [isHover, setIsHover] = useState("");
   const [userData, setUserData] = useState();
   const redirector = useNavigate();
@@ -107,16 +107,24 @@ export default function FileExplorer({ username }) {
     }
 
     let successCount = 0;
-    const progressArray = [...uploadProgress];
-    for (let i = 0; i < files.length; i++) {
+    const totalFiles = files.length;
+    const progressArray = Array(totalFiles).fill(0);
+
+    const updateProgress = () => {
+      const totalProgress = progressArray.reduce(
+        (acc, progress) => acc + progress,
+        0
+      );
+      const overallProgress = Math.round(totalProgress / totalFiles);
+      setUploadProgress(overallProgress);
+    };
+
+    for (let i = 0; i < totalFiles; i++) {
       const file = files[i];
 
       const formData = new FormData();
       formData.append("parentId", currentFolderId);
       formData.append("files", file);
-
-      progressArray[i] = { fileName: file.name, progress: 0 };
-      setUploadProgress([...progressArray]);
 
       try {
         const response = await API.post(
@@ -127,22 +135,22 @@ export default function FileExplorer({ username }) {
               const percentCompleted = Math.round(
                 (progressEvent.loaded * 100) / progressEvent.total
               );
-              progressArray[i].progress = percentCompleted;
-              setUploadProgress([...progressArray]);
+
+              progressArray[i] = percentCompleted;
+              updateProgress();
             },
           }
         );
 
-        const uploadedFile = response.data;
+        const uploadedFile = await response.data;
         folderData.push(uploadedFile);
         currentFolder.children.push(uploadedFile.id);
         setSelectedItemId(uploadedFile.id);
-        setUploadProgress([]);
+        setUploadProgress(null);
 
         successCount++;
       } catch (error) {
         toast.error(error.response?.data?.error);
-        setUploadProgress([]);
         console.error(error);
       }
     }
@@ -152,7 +160,6 @@ export default function FileExplorer({ username }) {
     }
 
     getData();
-
     event.target.value = "";
   };
 
@@ -370,26 +377,23 @@ export default function FileExplorer({ username }) {
             currentFolder={currentFolder}
             folderData={folderData}
             setFolderData={setFolderData}
-            username={username}
           />
-          {uploadProgress.length > 0 && (
+          {uploadProgress && (
             <div
               className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
               style={{ zIndex: 99 }}
             >
-              {uploadProgress.map((progress, index) => (
-                <div key={index}>
-                  <h3 className="fs-6 fw-bold text-nowrap">
-                    {progress.fileName}: {progress.progress}%
-                  </h3>
-                  <div className="progress" key={index}>
-                    <div
-                      className="progress-bar bg-deep"
-                      style={{ width: `${progress.progress}%` }}
-                    ></div>
-                  </div>
+              <div>
+                <h3 className="fs-6 fw-bold text-nowrap">
+                  Uploaded File: {uploadProgress}%
+                </h3>
+                <div className="progress">
+                  <div
+                    className="progress-bar bg-deep"
+                    style={{ width: `${uploadProgress}%` }}
+                  ></div>
                 </div>
-              ))}
+              </div>
             </div>
           )}
         </div>
