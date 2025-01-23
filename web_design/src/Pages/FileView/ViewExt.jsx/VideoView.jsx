@@ -198,7 +198,7 @@ export default function VideoView({ data }) {
                 )}
 
                 <div
-                  className={`controls text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`}
+                  className={`controls bottom-0 text-light py-2 px-2 d-flex align-items-center justify-content-between position-absolute w-100`}
                   style={{ opacity: hover || !isPlaying ? 1 : 0 }}
                 >
                   <button

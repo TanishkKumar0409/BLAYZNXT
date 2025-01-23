@@ -215,7 +215,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .controls {
-  bottom: 5px;
   transition: opacity 0.3s ease-in-out;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);

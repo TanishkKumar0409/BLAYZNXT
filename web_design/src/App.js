@@ -38,7 +38,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ToastContainer position="top-center" theme="light" bodyClassName={`p-0`} hideProgressBar={true} draggable />
+      <ToastContainer position="top-center" theme="light" bodyClassName={`textDeep fw-bold`} hideProgressBar={true} draggable />
       {loginToken ? <Navbar /> : <LoginNavbar />}
       <Routes>
         <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
