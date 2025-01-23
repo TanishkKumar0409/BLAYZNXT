@@ -10,7 +10,7 @@ export default function ImageView({ data }) {
             <div className="col-md-7 align-content-center">
               <img
                 src={`${APIurl}${data.filePath}`}
-                className="rounded shadow img-fluid"
+                className="rounded img-fluid"
                 alt=""
               />
             </div>

@@ -51,13 +51,18 @@ export default function FileView() {
     if (audioExtensions.includes(extension)) return "audio";
     return "unknown";
   };
-  const unkowns = { filePath: "unkownFileType.pptx" };
+  const unkowns = { filePath: "Uploads/ZipFolder/FCRA.pptx" };
 
   const fileType = fileName ? getFileType(fileName) : "unknown";
 
+  const handleDownload = (fileId) => {
+    const APIurl = process.env.REACT_APP_API;
+    window.location.href = `${APIurl}api/storage/file/download?username=${username}&folderId=${fileId}`;
+  };
+
   if (error) {
     return (
-      <section className="bgGradient py-5">
+      <section className="py-5">
         <div className="container">
           <div className="row">
             <div className="col text-center py-md-5 pt-5">
@@ -82,6 +87,17 @@ export default function FileView() {
               {fileType === "doc" && <DocView data={data} />}
               {fileType === "audio" && <AudioView data={data} />}
               {fileType === "unknown" && <DocView data={unkowns} />}
+              <div className="row pb-5 justify-content-center">
+                <div className="col-md-6 d-flex justify-content-between align-items-center">
+                  <h2>{data?.root}</h2>
+                  <button
+                    className="btn btn-outline-deep"
+                    onClick={() => handleDownload(data?.folderId)}
+                  >
+                    <i className="fa fa-download me-2"></i>Download
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

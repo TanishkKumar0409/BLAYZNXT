@@ -65,14 +65,16 @@ export default function Footer() {
   const socialLinks = ["facebook", "instagram", "youtube"];
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const handleScoller = () => {
       const scrolled = window.scrollY;
       if (scrolled > 100) {
         setScrollBtn("");
       } else {
         setScrollBtn("d-none");
       }
-    });
+    };
+    handleScoller();
+    window.addEventListener("scroll", handleScoller);
   }, []);
 
   return (
