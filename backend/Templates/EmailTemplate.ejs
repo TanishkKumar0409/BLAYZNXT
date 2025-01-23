@@ -1,198 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Sharing - Download Files</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Sharing - Download Link</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f7ff;
-            color: #333;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: #1e3c72;
-            background: linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%);
-            overflow: hidden;
-        }
-
-        .ball {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) scale(0.8);
-            }
-
-            50% {
-                transform: translateY(-100px) scale(1.2);
-            }
-
-            100% {
-                transform: translateY(0) scale(0.8);
-            }
-        }
-
-        .ball:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            background-color: #007bff;
-            animation-duration: 6s;
-            animation-delay: 0s;
-            top: 20%;
-            left: 10%;
-        }
-
-        .ball:nth-child(2) {
-            width: 90px;
-            height: 90px;
-            background-color: #00c4cc;
-            animation-duration: 5s;
-            animation-delay: 2s;
-            top: 30%;
-            left: 40%;
-        }
-
-        .ball:nth-child(3) {
-            width: 50px;
-            height: 50px;
-            background-color: #6a89cc;
-            animation-duration: 7s;
-            animation-delay: 1s;
-            top: 60%;
-            left: 70%;
-        }
-
-        .ball:nth-child(4) {
-            width: 70px;
-            height: 70px;
-            background-color: #38ada9;
-            animation-duration: 8s;
-            animation-delay: 3s;
-            top: 40%;
-            left: 80%;
-        }
-
-        .ball:nth-child(5) {
-            width: 80px;
-            height: 80px;
-            background-color: #1e90ff;
-            animation-duration: 6.5s;
-            animation-delay: 4s;
-            top: 10%;
-            left: 60%;
-        }
-
-        .content-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 40px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .heading {
-            font-size: 2.5rem;
-            color: #007bff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-        }
-
-        .paragraph {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #555;
-            opacity: 0.9;
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            color: #fff;
-            background: #007bff;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .download-btn:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f7f9fb;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .email-container {
+        width: 100%;
+        max-width: 650px;
+        margin: 30px auto;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      .email-header {
+        text-align: center;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #eee;
+      }
+      .email-header h1 {
+        color: #16143b;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+      }
+      .email-body {
+        padding: 20px 0;
+      }
+      .email-body p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.5;
+      }
+      .email-body a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #16143b;
+        color: #fff;
+        border-radius: 5px;
+        font-weight: 500;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+      .email-body a:hover {
+        background-color: #0f0c2b;
+      }
+      .Message-box {
+        background: #16143b;
+        text-align: justify;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .email-footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+      }
+      .email-footer p {
+        margin: 5px 0;
+      }
+      .email-footer a {
+        color: #16143b;
+        text-decoration: none;
+      }
+      .email-footer a:hover {
+        text-decoration: underline;
+      }
+      .email-footer .unsubscribe {
+        font-size: 12px;
+        color: #aaa;
+      }
     </style>
-</head>
-
-<body>
-    <div class="animated-bg">
-        <!-- Floating colored balls -->
-        <div class="ball"></div>
-        <div class="ball"></div>
-        <div class="ball"></div>
-        <div class="ball"></div>
-        <div class="ball"></div>
-    </div>
-
-    <section class="content-section">
-        <div class="content-box">
-            <h1 class="heading">Files Shared With You</h1>
-            <p class="paragraph">Someone has shared files with you through our secure platform. You can easily download
-                the files below. Click the button to get started.</p>
-            <a class="download-btn" href="<%= downloadLink %>">Download File</a>
-            <p class="paragraph">If you encounter any issues with the download, feel free to reach out to our support
-                team. We're here to assist you.</p>
+  </head>
+  <body>
+    <div class="email-container bg-red">
+      <div class="email-header">
+        <h1 style="text-decoration: underline">
+          <%= username %> has shared some files
+        </h1>
+      </div>
+      <div class="email-body">
+        <p>
+          Hello, <%= username %> has shared some files with you. You can
+          download it by clicking the link below:
+        </p>
+        <div style="text-align: center; width: 100%; padding: 7px">
+          <a href="<%= downloadLink %>" target="_blank">Download File</a>
         </div>
-    </section>
-</body>
-
+        <div class="Message-box">
+          <h4
+            style="
+              font-weight: 700;
+              font-size: large;
+              color: white;
+              text-align: center;
+            "
+          >
+            <%= username %>'s Message for You
+          </h4>
+          <p style="color: #fff; padding: 0 25px"><%= message %></p>
+        </div>
+      </div>
+      <div class="email-footer">
+        <p>
+          If you have any questions or issues, feel free to
+          <a href="mailto:<%= MailUser %>">contact our support team</a>.
+        </p>
+        <p>
+          &copy; <%= year %>
+          <a href="http://localhost:3000" target="_blank"
+            >File Sharing Website</a
+          >. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </body>
 </html>

@@ -72,6 +72,13 @@
   opacity: 0.9;
   border-color: #16143b;
 }
+.btn:disabled {
+  background: white !important;
+  border: 2px solid #16143b !important;
+  color: #0a0921 !important;
+  font-weight: 600 !important;
+  opacity: 0.7 !important;
+}
 .btn-deep:hover {
   background: #16143b;
   color: white;

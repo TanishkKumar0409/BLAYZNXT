@@ -14,8 +14,6 @@ const DownloadFiles = async (req, res) => {
         .json({ error: "No files found for the given SharingId." });
     }
 
-    console.log(historyRecord);
-
     if (Date.now() > new Date(historyRecord.downloadLinkExpiry)) {
       return res.status(500).json({ error: "This Link Has Been Expired." });
     }

@@ -52,7 +52,7 @@ const ShareFiles = async (req, res) => {
 
     const savedHistory = await newHistory.save();
 
-    SharingMailer({ email, downloadLink });
+    SharingMailer({ email, downloadLink, message, username });
 
     if (savedHistory) {
       return res.status(200).json({

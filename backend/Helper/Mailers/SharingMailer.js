@@ -3,7 +3,7 @@ import ejs from "ejs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const SharingMailer = async ({ email, downloadLink }) => {
+const SharingMailer = async ({ email, downloadLink, message, username }) => {
   try {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
@@ -26,7 +26,13 @@ const SharingMailer = async ({ email, downloadLink }) => {
       __dirname,
       "../../Templates/EmailTemplate.ejs"
     );
-    const htmlContent = await ejs.renderFile(templatePath, { downloadLink });
+    const htmlContent = await ejs.renderFile(templatePath, {
+      downloadLink,
+      message,
+      username,
+      MailUser,
+      year: new Date().getFullYear(),
+    });
 
     const MailSchema = {
       from: MailUser,

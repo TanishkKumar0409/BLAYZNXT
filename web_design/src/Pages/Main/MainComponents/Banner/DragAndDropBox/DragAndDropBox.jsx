@@ -8,10 +8,11 @@ import BannerValidationSchema from "../../../../../Helper/ValidationSchemas/Vali
 
 export default function DragAndDropBox(props) {
   const [files, setFiles] = useState([]);
-  const [totalProgress, setTotalProgress] = useState(0); // Overall progress
+  const [totalProgress, setTotalProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const username = JSON.parse(localStorage.getItem("user"));
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const [btnMessage, setBtnMessage] = useState("Submit");
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
@@ -27,9 +28,9 @@ export default function DragAndDropBox(props) {
 
   const handleSubmit = async (values) => {
     setErrorMessage("");
-    setTotalProgress(0); // Reset progress before uploading
+    setTotalProgress(0);
 
-    const totalSize = files.reduce((acc, file) => acc + file.size, 0); // Total size of all files
+    const totalSize = files.reduce((acc, file) => acc + file.size, 0);
 
     try {
       const formData = new FormData();
@@ -37,7 +38,8 @@ export default function DragAndDropBox(props) {
       formData.append("email", values.email);
       formData.append("message", values.message || "No message provided");
 
-      await API.post(`/share/${username}`, formData, {
+      setBtnMessage("Sending...");
+      const response = await API.post(`/share/${username}`, formData, {
         onUploadProgress: (progressEvent) => {
           const totalUploaded = progressEvent.loaded;
           const overallProgress = Math.round((totalUploaded / totalSize) * 100);
@@ -45,8 +47,11 @@ export default function DragAndDropBox(props) {
         },
       });
 
-      toast.success("Files uploaded successfully!");
+      toast.success(response.data.message);
       props.onSend();
+      if (response) {
+        setBtnMessage("");
+      }
       setFiles([]);
       localStorage.removeItem("userInfo");
       setTotalProgress(0);
@@ -170,8 +175,9 @@ export default function DragAndDropBox(props) {
             <button
               type="submit"
               className="btn btn-deep w-100 border-0 overflow-hidden"
+              disabled={btnMessage === "Sending..."}
             >
-              Submit
+              {btnMessage}
             </button>
           </div>
         </form>
@@ -183,7 +189,9 @@ export default function DragAndDropBox(props) {
           className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
           style={{ zIndex: 99 }}
         >
-          <h3 className="fs-6 fw-bold text-nowrap mb-2">Uploaded Files: {totalProgress}%</h3>
+          <h3 className="fs-6 fw-bold text-nowrap mb-2">
+            Uploaded Files: {totalProgress}%
+          </h3>
           <div className="progress">
             <div
               className="progress-bar bg-deep"
