@@ -47,7 +47,7 @@ const ChangePasswordSendOtp = async (req, res) => {
         {
           $set: {
             passwordOtp: otp,
-            passwordOtpExpiry: new Date(Date.now() + 600000),
+            passwordOtpExpiry: new Date(Date.now() + 3 * 60 * 1000),
           },
         },
         { new: true }

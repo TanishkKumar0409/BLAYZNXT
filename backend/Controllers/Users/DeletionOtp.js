@@ -55,7 +55,7 @@ const DeletionOtp = async (req, res) => {
         {
           $set: {
             deletionOtp: otp,
-            otpExpiry: new Date(Date.now() + 600000),
+            otpExpiry: new Date(Date.now() + 3 * 60 * 1000),
           },
         },
         { new: true }

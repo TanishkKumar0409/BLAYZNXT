@@ -27,6 +27,9 @@
   background: white;
   font-weight: 700;
 }
+.bg-green {
+  background-color: #8ff18f81;
+}
 
 .textGreen {
   color: mediumseagreen;
@@ -62,6 +65,12 @@
   background: #16143b;
   color: white;
   font-weight: 600;
+}
+.btn-deep.show {
+  background: #16143b;
+  color: white;
+  opacity: 0.9;
+  border-color: #16143b;
 }
 .btn-deep:hover {
   background: #16143b;

@@ -36,7 +36,7 @@ setInterval(() => {
   NotChangedPassword();
   StorageCleaner();
   UnVerifyed();
-}, 300000);
+}, 5 * 60 * 1000);
 
 mongoose
   .connect(DbName)
