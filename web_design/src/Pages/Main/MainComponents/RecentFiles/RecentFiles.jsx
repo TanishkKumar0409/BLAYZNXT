@@ -42,32 +42,41 @@ export default function RecentFiles() {
   }, [data, username]);
 
   const getFileIcon = (fileName) => {
+    if (!fileName) return "fa-file text-info";
     const extension = fileName.split(".").pop().toLowerCase();
-
-    const iconMap = {
-      jpg: "fa-file-image",
-      jpeg: "fa-file-image",
-      png: "fa-file-image",
-      gif: "fa-file-image",
-      pdf: "fa-file-pdf",
-      doc: "fa-file-word",
-      docx: "fa-file-word",
-      xls: "fa-file-excel",
-      xlsx: "fa-file-excel",
-      ppt: "fa-file-powerpoint",
-      pptx: "fa-file-powerpoint",
-      txt: "fa-file-alt",
-      rar: "fa-file-archive",
-      zip: "fa-file-archive",
-      mp4: "fa-file-video",
-      mkv: "fa-file-video",
-      mp3: "fa-file-audio",
-      wav: "fa-file-audio",
-      ogg: "fa-file-audio",
-      flac: "fa-file-audio",
-    };
-
-    return iconMap[extension] || "fa-file-circle-exclamation";
+    switch (extension) {
+      case "jpg":
+      case "jpeg":
+      case "png":
+      case "gif":
+        return "fa-image";
+      case "pdf":
+        return "fa-file-pdf";
+      case "doc":
+      case "docx":
+        return "fa-file-word";
+      case "xls":
+      case "xlsx":
+        return "fa-file-excel";
+      case "ppt":
+      case "pptx":
+        return "fa-file-powerpoint";
+      case "txt":
+        return "fa-file-alt";
+      case "zip":
+      case "rar":
+        return "fa-file-archive";
+      case "mkv":
+      case "mp4":
+        return "fa-file-video";
+      case "mp3":
+      case "wav":
+      case "ogg":
+      case "flac":
+        return "fa-file-audio";
+      default:
+        return "fa-file-circle-exclamation";
+    }
   };
 
   return (

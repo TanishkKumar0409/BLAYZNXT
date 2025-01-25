@@ -173,32 +173,41 @@ export default function FileExplorer({ username }) {
   };
 
   const getFileIcon = (fileName) => {
+    if (!fileName) return "fa-file text-info";
     const extension = fileName.split(".").pop().toLowerCase();
-
-    const iconMap = {
-      jpg: "fa-file-image textGreen",
-      jpeg: "fa-file-image textGreen",
-      png: "fa-file-image textGreen",
-      gif: "fa-file-image textGreen",
-      pdf: "fa-file-pdf text-danger",
-      doc: "fa-file-word text-primary",
-      docx: "fa-file-word text-primary",
-      xls: "fa-file-excel textDarkGreen",
-      xlsx: "fa-file-excel textDarkGreen",
-      ppt: "fa-file-powerpoint textOrange",
-      pptx: "fa-file-powerpoint textOrange",
-      txt: "fa-file-alt text-muted",
-      rar: "fa-file-archive text-warning",
-      zip: "fa-file-archive text-warning",
-      mp4: "fa-file-video textRoyalBlue",
-      mkv: "fa-file-video textRoyalBlue",
-      mp3: "fa-file-audio textMaroon",
-      wav: "fa-file-audio textMaroon",
-      ogg: "fa-file-audio textMaroon",
-      flac: "fa-file-audio textMaroon",
-    };
-
-    return iconMap[extension] || "fa-file-circle-exclamation textDeep";
+    switch (extension) {
+      case "jpg":
+      case "jpeg":
+      case "png":
+      case "gif":
+        return "fa-image textGreen";
+      case "pdf":
+        return "fa-file-pdf text-danger";
+      case "doc":
+      case "docx":
+        return "fa-file-word text-primary";
+      case "xls":
+      case "xlsx":
+        return "fa-file-excel textDarkGreen";
+      case "ppt":
+      case "pptx":
+        return "fa-file-powerpoint textOrange";
+      case "txt":
+        return "fa-file-alt text-muted";
+      case "zip":
+      case "rar":
+        return "fa-file-archive text-warning";
+      case "mkv":
+      case "mp4":
+        return "fa-file-video textRoyalBlue";
+      case "mp3":
+      case "wav":
+      case "ogg":
+      case "flac":
+        return "fa-file-audio textMaroon";
+      default:
+        return "fa-file-circle-exclamation textDeep";
+    }
   };
 
   let touchCounter = 0;
