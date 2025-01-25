@@ -45,26 +45,29 @@ export default function RecentFiles() {
     const extension = fileName.split(".").pop().toLowerCase();
 
     const iconMap = {
-      pdf: "fa-file-pdf",
-      xlsx: "fa-file-excel",
-      xls: "fa-file-excel",
-      png: "fa-file-image",
       jpg: "fa-file-image",
       jpeg: "fa-file-image",
+      png: "fa-file-image",
       gif: "fa-file-image",
-      mp4: "fa-file-video",
-      docx: "fa-file-word",
+      pdf: "fa-file-pdf",
       doc: "fa-file-word",
-      pptx: "fa-file-powerpoint",
+      docx: "fa-file-word",
+      xls: "fa-file-excel",
+      xlsx: "fa-file-excel",
       ppt: "fa-file-powerpoint",
-      csv: "fa-file-csv",
+      pptx: "fa-file-powerpoint",
+      txt: "fa-file-alt",
+      rar: "fa-file-archive",
+      zip: "fa-file-archive",
+      mp4: "fa-file-video",
+      mkv: "fa-file-video",
       mp3: "fa-file-audio",
-      html: "fa-file-code",
-      css: "fa-file-code",
-      js: "fa-file-code",
+      wav: "fa-file-audio",
+      ogg: "fa-file-audio",
+      flac: "fa-file-audio",
     };
 
-    return iconMap[extension] || "fa-file-alt";
+    return iconMap[extension] || "fa-file-circle-exclamation";
   };
 
   return (

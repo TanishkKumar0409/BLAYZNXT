@@ -55,7 +55,7 @@ export default function ContactUs() {
                 <div className="row textDeep">
                   <div className="d-flex col-md-6 pe-1 align-items-center">
                     <div className="bg-white rounded d-flex p-2 w-100">
-                      <i className="fa fa-envelope fs-3 mx-2 align-content-center"></i>
+                      <i className="fa fa-envelope fs-3 mx-2 me-3 align-content-center"></i>
                       <div>
                         <h5 className="mb-1 fs-5 fw-bold">Email</h5>
                         <a
@@ -69,7 +69,7 @@ export default function ContactUs() {
                   </div>
                   <div className="d-flex col-md-6 ps-1 align-items-center">
                     <div className="bg-white rounded d-flex p-2 w-100">
-                      <i className="fa fa-phone fs-3 mx-2 align-content-center"></i>
+                      <i className="fa fa-phone fs-3 mx-2 me-3 align-content-center"></i>
                       <div>
                         <h5 className="mb-1 fs-5  fw-bold">Contact</h5>
                         <a

@@ -317,6 +317,13 @@ circle {
   stroke-width: 20px;
   stroke-dasharray: var(--circumference);
   stroke-dashoffset: var(--circumference);
+  animation: StorageProgress 2s linear forwards;
+}
+
+@keyframes StorageProgress {
+  100% {
+    stroke-dashoffset: var(--array);
+  }
 }
 
 .forgotBtn:hover {
