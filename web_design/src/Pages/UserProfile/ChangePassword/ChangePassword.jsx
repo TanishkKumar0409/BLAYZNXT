@@ -110,10 +110,13 @@ export default function ChangePassword() {
   });
 
   return (
-    <section>
-      <div className="container mt-5 align-content-center">
+    <section
+      className="othersBanner align-content-center"
+      style={{ minHeight: "92vh" }}
+    >
+      <div className="container">
         <div className="row">
-          <div className="col-md-6 p-5 shadow-sm textDeep rounded mx-auto">
+          <div className="col-md-6 p-5 shadow-sm bg-white textDeep rounded mx-auto">
             <h3 className="text-center">
               {step === 1
                 ? "Enter Your Email"

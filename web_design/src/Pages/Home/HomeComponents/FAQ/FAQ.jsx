@@ -11,10 +11,10 @@ export default function FAQ() {
 
   return (
     <>
-      <section className="bg-white py-5">
+      <section className="bg-white py-5 othersBanner">
         <div className="container">
           <div className="row justify-content-center py-3">
-            <div className="col-md-8 textDeep">
+            <div className="col-md-8 text-white">
               <h2
                 className="text-center mb-4 mainHeading text-uppercase fw-bold"
                 style={{ "--text": "'FAQs'" }}
@@ -32,7 +32,7 @@ export default function FAQ() {
             className="carousel slide"
             data-bs-ride="carousel"
           >
-            <div className="carousel-inner rounded-5 textDeep">
+            <div className="carousel-inner rounded-5 text-white">
               {selectedFAQs.map((faq, index) => (
                 <div
                   key={index}
@@ -55,7 +55,7 @@ export default function FAQ() {
               type="button"
               data-bs-target="#faqCarousel"
               data-bs-slide="prev"
-              style={{ filter: "invert(1)" }}
+              style={{ mixBlendMode: "difference" }}
             >
               <span
                 className="carousel-control-prev-icon position-absolute start-0 ps-5"
@@ -68,7 +68,7 @@ export default function FAQ() {
               type="button"
               data-bs-target="#faqCarousel"
               data-bs-slide="next"
-              style={{ filter: "invert(1)" }}
+              style={{ mixBlendMode: "difference" }}
             >
               <span
                 className="carousel-control-next-icon position-absolute end-0 pe-5"

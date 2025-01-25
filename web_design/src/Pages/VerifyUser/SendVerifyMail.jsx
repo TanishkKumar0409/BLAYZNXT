@@ -53,10 +53,13 @@ export default function SendVerifyMail() {
 
   return (
     <>
-      <section>
-        <div className="container mt-5">
-          <div className="row pt-5">
-            <div className="col-md-6 rounded shadow-sm p-5 mx-auto textDeep text-center">
+      <section
+        className="othersBanner align-content-center"
+        style={{ minHeight: "92vh" }}
+      >
+        <div className="container">
+          <div className="row py-5">
+            <div className="col-md-6 bg-white rounded shadow-sm p-5 mx-auto textDeep text-center">
               <h3 className="text-center mb-4">Verify Your Account</h3>
               <p>Enter your email address to receive a verification OTP.</p>
               <input

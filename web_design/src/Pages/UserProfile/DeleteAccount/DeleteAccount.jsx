@@ -100,8 +100,11 @@ export default function DeleteAccount() {
   };
 
   return (
-    <section>
-      <div className="container mt-5">
+    <section
+      className="othersBanner align-content-center"
+      style={{ minHeight: "92vh" }}
+    >
+      <div className="container">
         <div className="row">
           <div className="col-md-6 bg-white rounded p-5 shadow-sm mx-auto">
             <h3 className="text-center mb-4 text-dark">Delete Account</h3>
@@ -114,12 +117,13 @@ export default function DeleteAccount() {
                   </label>
                   <input
                     type="email"
-                    className="form-control border-deep"
+                    className="form-control border-deep bg-white"
                     id="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
+                    required4
+                    disabled
                     autoComplete="email"
                   />
                 </div>

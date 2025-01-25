@@ -60,9 +60,12 @@ export default function VerifyUser() {
 
   return (
     <>
-      <section>
-        <div className="container mt-5">
-          <div className="row pt-5 justify-content-center">
+      <section
+        className="othersBanner align-content-center"
+        style={{ minHeight: "92vh" }}
+      >
+        <div className="container">
+          <div className="row py-5 justify-content-center">
             <div className="col-md-6">
               <div className="card shadow-sm border-0">
                 <div className="card-header text-center bg-white border-0">
