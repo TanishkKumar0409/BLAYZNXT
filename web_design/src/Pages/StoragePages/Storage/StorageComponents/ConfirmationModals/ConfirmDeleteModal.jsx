@@ -53,13 +53,13 @@ export default function ConfirmDeleteModal({
       <div className="modal-backdrop modalBg-1 blurBg-1" />
       <div className="modal d-block">
         <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className="modal-content border-0">
+            <div className="modal-header border-0">
               <div>
                 <h5 className="modal-title mb-3 text-center">
                   Confirm Deletion
                 </h5>
-                <p>
+                <p className="m-0">
                   Are you sure you want to delete these file/folder? This action
                   cannot be undone.
                 </p>

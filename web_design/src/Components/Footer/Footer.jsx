@@ -10,6 +10,7 @@ export default function Footer() {
   const [isForm, setIsForm] = useState("");
   const username = JSON.parse(localStorage.getItem(`user`));
   const [scrollBtn, setScrollBtn] = useState("");
+  const [newError, setNewsError] = useState("");
 
   const noFooter = useMemo(
     () => [
@@ -44,6 +45,7 @@ export default function Footer() {
       }
     } catch (error) {
       toast.error(error.response.data.error);
+      setNewsError(error.response.data.error);
     }
   };
 
@@ -156,11 +158,16 @@ export default function Footer() {
                   <input
                     id="newsletter"
                     type="email"
-                    className="form-control border-deep"
+                    className={`form-control border-deep ${
+                      newError ? "is-invalid" : ""
+                    } `}
                     placeholder="Enter your email"
                     aria-label="Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setNewsError("");
+                    }}
                   />
                   <button
                     className="btn btn-outline-deep border-1"
@@ -169,6 +176,7 @@ export default function Footer() {
                     <i className="fa fa-paper-plane"></i>
                   </button>
                 </div>
+                <p className="text-danger">{newError}</p>
               </form>
             </div>
           </div>

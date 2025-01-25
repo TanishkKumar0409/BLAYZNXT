@@ -42,7 +42,9 @@ const DeleteFolder = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: "Deleted Successfully",
+      message: `${
+        isFolder.type === "file" ? "File" : "Folder"
+      } is Deleted Successfully`,
       storageFreed: totalSizeFreed,
     });
   } catch (error) {

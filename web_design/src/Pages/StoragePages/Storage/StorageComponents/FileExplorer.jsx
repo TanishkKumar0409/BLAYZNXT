@@ -156,7 +156,11 @@ export default function FileExplorer({ username }) {
     }
 
     if (successCount > 0) {
-      toast.success(`${successCount} file(s) uploaded successfully`);
+      toast.success(
+        `${
+          successCount > 1 ? `${successCount} Files are` : "File is"
+        } uploaded successfully`
+      );
     }
 
     getData();
