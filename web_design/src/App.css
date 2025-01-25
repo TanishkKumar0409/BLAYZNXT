@@ -22,11 +22,13 @@
   color: #0e0966be;
   background: white;
 }
+
 .textDeepBlue.active {
   color: #16143b !important;
   background: white;
   font-weight: 700;
 }
+
 .bg-green {
   background-color: #8ff18f81;
 }
@@ -34,18 +36,23 @@
 .textGreen {
   color: mediumseagreen;
 }
+
 .textDarkGreen {
   color: forestgreen;
 }
+
 .textOrange {
   color: orangered;
 }
+
 .textRoyalBlue {
   color: royalblue;
 }
+
 .textMaroon {
   color: maroon;
 }
+
 .react-pdf__Page {
   justify-items: center;
 }
@@ -56,6 +63,7 @@
   color: #0a0921;
   font-weight: 600;
 }
+
 .btn-outline-deep:hover {
   background: #16143b;
   color: white;
@@ -66,12 +74,14 @@
   color: white;
   font-weight: 600;
 }
+
 .btn-deep.show {
   background: #16143b;
   color: white;
   opacity: 0.9;
   border-color: #16143b;
 }
+
 .btn:disabled {
   background: white !important;
   border: 2px solid #16143b !important;
@@ -79,6 +89,7 @@
   font-weight: 600 !important;
   opacity: 0.7 !important;
 }
+
 .btn-deep:hover {
   background: #16143b;
   color: white;
@@ -88,6 +99,7 @@
 .blurBg-1 {
   backdrop-filter: blur(10px);
 }
+
 .modalBg-1 {
   background-color: #16143ba6;
 }
@@ -155,9 +167,11 @@ input[type="range"]::-moz-range-thumb {
 .owl-dot span {
   background: #16143ba6 !important;
 }
+
 .owl-dot:hover span {
   background: #16143bc1 !important;
 }
+
 .owl-dot.active span {
   background: #16143b !important;
 }
@@ -179,6 +193,7 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url(./Image/ContactUsBanner.jpg) no-repeat fixed center center / cover;
 }
+
 .testimonialsBanner {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url(./Image/TestimonialBanner.jpg) no-repeat fixed center center / cover;
@@ -298,13 +313,6 @@ circle {
   stroke-width: 20px;
   stroke-dasharray: var(--circumference);
   stroke-dashoffset: var(--circumference);
-  animation: animate 2s linear forwards;
-}
-
-@keyframes animate {
-  100% {
-    stroke-dashoffset: var(--array);
-  }
 }
 
 .forgotBtn:hover {
