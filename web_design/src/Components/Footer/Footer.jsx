@@ -14,7 +14,6 @@ export default function Footer() {
 
   const noFooter = useMemo(
     () => [
-      "/form",
       `/main/user/delete/account/${username}`,
       `/main/user/account/password/${username}`,
       `/verify/send/${username}`,

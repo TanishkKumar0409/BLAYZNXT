@@ -198,6 +198,10 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(#0a0921cf, #0a0921cf),
     url(./Image/TestimonialBanner.jpg) no-repeat fixed center center / cover;
 }
+.othersBanner {
+  background: linear-gradient(#0a0921cf, #0a0921cf),
+    url(./Image/OthersBanner.jpg) no-repeat fixed center center / cover;
+}
 
 .mainHeading {
   z-index: 0;

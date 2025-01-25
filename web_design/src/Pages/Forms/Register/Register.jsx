@@ -73,8 +73,8 @@ export default function Register(props) {
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      <div className={`w-100 py-3 rounded bg-white px-md-5`}>
-        <h3 className="text-center mb-4">
+      <div className={`w-100 rounded bg-white px-md-4`}>
+        <h3 className="text-center my-4">
           Login to{" "}
           <Link
             to={`/`}
@@ -98,7 +98,7 @@ export default function Register(props) {
               onChange={handleImageChange}
               accept="image/*"
             />
-            <div className="d-flex justify-content-center align-items-center mb-3">
+            <div className="d-flex justify-content-center align-items-center">
               <div
                 className="profile-preview position-relative d-flex justify-content-center align-items-center"
                 style={{ width: "100px", height: "100px" }}
@@ -120,7 +120,10 @@ export default function Register(props) {
               </div>
             </div>
 
-            <label htmlFor="profile" className="form-label fs-5 cursorPointer">
+            <label
+              htmlFor="profile"
+              className="form-label fs-5 m-0 cursorPointer"
+            >
               Profile Picture
             </label>
             {formik.touched.profile && formik.errors.profile && (
@@ -129,13 +132,17 @@ export default function Register(props) {
           </div>
 
           <div className="row">
-            <div className="col-md-6 mb-3">
+            <div className="col-md-6 mb-1">
               <label htmlFor="username" className="form-label">
                 Username
               </label>
               <input
                 type="text"
-                className="form-control border-deep"
+                className={`form-control border-deep ${
+                  formik.touched.username &&
+                  formik.errors.username &&
+                  "is-invalid"
+                }`}
                 placeholder="Enter a Unique Username"
                 id="username"
                 name="username"
@@ -149,13 +156,15 @@ export default function Register(props) {
               )}
             </div>
 
-            <div className="col-md-6 mb-3">
+            <div className="col-md-6 mb-1">
               <label htmlFor="name" className="form-label">
                 Full Name
               </label>
               <input
                 type="text"
-                className="form-control border-deep"
+                className={`form-control border-deep ${
+                  formik.touched.name && formik.errors.name && "is-invalid"
+                }`}
                 placeholder="Enter Your Full Name"
                 id="name"
                 name="name"
@@ -171,13 +180,15 @@ export default function Register(props) {
           </div>
 
           <div className="row">
-            <div className="col-md-6 mb-3">
+            <div className="col-md-6 mb-1">
               <label htmlFor="email" className="form-label">
                 Email Address
               </label>
               <input
                 type="email"
-                className="form-control border-deep"
+                className={`form-control border-deep ${
+                  formik.touched.email && formik.errors.email && "is-invalid"
+                }`}
                 placeholder="Enter Your Email"
                 id="email"
                 name="email"
@@ -191,13 +202,17 @@ export default function Register(props) {
               )}
             </div>
 
-            <div className="col-md-6 mb-3">
+            <div className="col-md-6 mb-1">
               <label htmlFor="contact" className="form-label">
                 Contact Number
               </label>
               <input
                 type="tel"
-                className="form-control border-deep"
+                className={`form-control border-deep ${
+                  formik.touched.contact &&
+                  formik.errors.contact &&
+                  "is-invalid"
+                }`}
                 placeholder="Enter Your Contact Number"
                 id="contact"
                 name="contact"
@@ -211,7 +226,7 @@ export default function Register(props) {
             </div>
           </div>
 
-          <div className="mb-3">
+          <div className="mb-1">
             <label htmlFor="password" className="form-label">
               Password
             </label>
@@ -219,8 +234,12 @@ export default function Register(props) {
               type="password"
               id="password"
               name="password"
-              className="form-control border-deep"
               placeholder="Enter a Strong Password"
+              className={`form-control border-deep ${
+                formik.touched.password &&
+                formik.errors.password &&
+                "is-invalid"
+              }`}
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -230,7 +249,7 @@ export default function Register(props) {
             )}
           </div>
 
-          <div className="d-grid">
+          <div className="d-grid mt-2">
             <button
               type="submit"
               className="btn btn-deep"
@@ -240,7 +259,7 @@ export default function Register(props) {
             </button>
           </div>
 
-          <p className="text-center fw-normal mt-3">
+          <p className="text-center fw-normal mt-1">
             Already have an account?{" "}
             <Link
               className="forgotBtn fw-bold text-decoration-none textDeep"

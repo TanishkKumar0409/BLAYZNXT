@@ -42,7 +42,9 @@ export default function Login(props) {
 
   return (
     <div className="d-flex justify-content-center align-items-center my-5 w-100">
-      <div className={`w-100 p-3 bg-white align-content-center rounded px-md-5`}>
+      <div
+        className={`w-100 p-3 bg-white align-content-center rounded px-md-5`}
+      >
         <h3 className="text-center mb-4">
           Login to
           <Link
@@ -63,7 +65,9 @@ export default function Login(props) {
             </label>
             <input
               type="email"
-              className="form-control border-deep"
+              className={`form-control border-deep ${
+                formik.touched.email && formik.errors.email && "is-invalid"
+              }`}
               id="email"
               name="email"
               placeholder="Enter Your Email"
@@ -84,7 +88,11 @@ export default function Login(props) {
             </label>
             <input
               type="password"
-              className="form-control border-deep"
+              className={`form-control border-deep ${
+                formik.touched.password &&
+                formik.errors.password &&
+                "is-invalid"
+              }`}
               id="password"
               name="password"
               placeholder="Enter Your Password"
