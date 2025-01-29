@@ -227,6 +227,54 @@ export default function FileExplorer({ username }) {
     }
   };
 
+  const [toastId, setToastId] = useState(null);
+
+  useEffect(() => {
+    if (uploadProgress > 0 && uploadProgress < 100) {
+      if (!toastId) {
+        const id = toast.loading(
+          <div>
+            <h3 className="fs-6 fw-bold text-nowrap">
+              Uploading File: {uploadProgress}%
+            </h3>
+            <div className="progress">
+              <div
+                className="progress-bar bg-deep"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+          </div>,
+          { position: "bottom-right" }
+        );
+        setToastId(id);
+      } else {
+        toast.update(toastId, {
+          render: (
+            <div>
+              <h3 className="fs-6 fw-bold text-nowrap">
+                Uploading File: {uploadProgress}%
+              </h3>
+              <div className="progress">
+                <div
+                  className="progress-bar bg-deep"
+                  style={{ width: `${uploadProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          ),
+        });
+      }
+    } else if (uploadProgress === 100 && toastId) {
+      toast.update(toastId, {
+        render: "Upload Completed!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
+      setToastId(null);
+    }
+  }, [uploadProgress, toastId]);
+
   return (
     <>
       <section>
@@ -382,24 +430,6 @@ export default function FileExplorer({ username }) {
             folderData={folderData}
             setFolderData={setFolderData}
           />
-          {uploadProgress && (
-            <div
-              className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
-              style={{ zIndex: 99 }}
-            >
-              <div>
-                <h3 className="fs-6 fw-bold text-nowrap">
-                  Uploaded File: {uploadProgress}%
-                </h3>
-                <div className="progress">
-                  <div
-                    className="progress-bar bg-deep"
-                    style={{ width: `${uploadProgress}%` }}
-                  ></div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
     </>

@@ -289,6 +289,10 @@ input[type="range"]::-moz-range-thumb {
   transition: 0.2s;
 }
 
+.table-hover>tbody>tr:hover>*{
+  background: #0d00ff11;
+}
+
 .skill {
   width: 200px;
   height: 200px;
