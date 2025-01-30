@@ -380,7 +380,7 @@ export default function FileExplorer({ username }) {
                   key={index}
                 >
                   <div
-                    className={`icon-container cursorPointer ${
+                    className={`cursorPointer ${
                       selectedItemId === child.folderId
                         ? "bg-light border-deep"
                         : "bg-white shadow-sm"
@@ -402,7 +402,14 @@ export default function FileExplorer({ username }) {
                       }`}
                     ></i>
                   </div>
-                  <span className="folder-name mt-2">{child.root}</span>
+                  <span
+                    className="folder-name mt-2 cursorPointer"
+                    onDoubleClick={() => handleFolderClick(child)}
+                    onTouchStart={(e) => handleTouchStart(e, child)}
+                    onClick={() => setSelectedItemId(child.folderId)}
+                  >
+                    {child.root}
+                  </span>
                 </div>
               ))
             ) : (

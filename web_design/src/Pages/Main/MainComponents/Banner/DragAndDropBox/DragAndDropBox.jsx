@@ -148,7 +148,7 @@ export default function DragAndDropBox(props) {
                     key={index}
                     className="list-group-item d-flex justify-content-between border-deep fw-bold align-items-center shadow-sm"
                   >
-                    <span className="truncated-file-name">{file.name}</span>
+                    <span className="text-truncate">{file.name}</span>
                     <button
                       type="button"
                       className="btn btn-outline-deep"
