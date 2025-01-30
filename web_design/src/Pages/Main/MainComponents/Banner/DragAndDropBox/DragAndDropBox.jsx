@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -67,6 +67,53 @@ export default function DragAndDropBox(props) {
     validationSchema: BannerValidationSchema(),
     onSubmit: handleSubmit,
   });
+  const [toastId, setToastId] = useState(null);
+
+  useEffect(() => {
+    if (totalProgress > 0 && totalProgress < 100) {
+      if (!toastId) {
+        const id = toast.loading(
+          <div>
+            <h3 className="fs-6 fw-bold text-nowrap">
+              Uploading File: {totalProgress}%
+            </h3>
+            <div className="progress">
+              <div
+                className="progress-bar bg-deep"
+                style={{ width: `${totalProgress}%` }}
+              ></div>
+            </div>
+          </div>,
+          { position: "bottom-right" }
+        );
+        setToastId(id);
+      } else {
+        toast.update(toastId, {
+          render: (
+            <div>
+              <h3 className="fs-6 fw-bold text-nowrap">
+                Uploading File: {totalProgress}%
+              </h3>
+              <div className="progress">
+                <div
+                  className="progress-bar bg-deep"
+                  style={{ width: `${totalProgress}%` }}
+                ></div>
+              </div>
+            </div>
+          ),
+        });
+      }
+    } else if (totalProgress === 100 && toastId) {
+      toast.update(toastId, {
+        render: "Upload Completed!",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
+      setToastId(null);
+    }
+  }, [totalProgress, toastId]);
 
   return (
     <div className="container-fluid py-5">
@@ -182,28 +229,6 @@ export default function DragAndDropBox(props) {
           </div>
         </form>
       </div>
-
-      {/* Overall Progress Display */}
-      {totalProgress > 0 && (
-        <div
-          className="bg-white shadow border-deep p-3 rounded position-fixed bottom-0 end-0 m-2"
-          style={{ zIndex: 99 }}
-        >
-          <h3 className="fs-6 fw-bold text-nowrap mb-2">
-            Uploaded Files: {totalProgress}%
-          </h3>
-          <div className="progress">
-            <div
-              className="progress-bar bg-deep"
-              role="progressbar"
-              style={{ width: `${totalProgress}%` }}
-              aria-valuenow={totalProgress}
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
