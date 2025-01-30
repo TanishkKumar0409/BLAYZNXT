@@ -4,7 +4,7 @@
     "title": "Admins",
     "description": "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
     "component": "AdminTable",
-    "bgColor": "bg-white",
+    "bgColor": "bg-light",
     "link": "info"
   },
   {
@@ -12,7 +12,7 @@
     "title": "Users",
     "description": "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
     "component": "UsersTable",
-    "bgColor": "bg-light",
+    "bgColor": "bg-white",
     "link": "user"
   },
   {
@@ -20,7 +20,7 @@
     "title": "Contact Us Querys",
     "description": "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
     "component": "Query",
-    "bgColor": "bg-white",
+    "bgColor": "bg-light",
     "link": "query"
   },
   {
@@ -28,7 +28,7 @@
     "title": "Newsletter",
     "description": "Stay updated with the latest documents and resources in the Recent Files section, making it easy to access and manage your most relevant files.",
     "component": "Newsletter",
-    "bgColor": "bg-light",
+    "bgColor": "bg-white",
     "link": "newsletter"
   }
 ]
