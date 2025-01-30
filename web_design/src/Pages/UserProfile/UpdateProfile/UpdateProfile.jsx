@@ -113,10 +113,10 @@ export default function UpdateProfile() {
   const handleUpload = () => document.getElementById("image-upload").click();
 
   return (
-    <section>
+    <section className="othersBanner">
       <div className="container py-4">
         <div className="row justify-content-center">
-          <div className="col-md-6 rounded p-5 shadow-sm">
+          <div className="col-md-6 rounded p-4 bg-white shadow-sm">
             <h3 className="text-center mb-4 textDeep fw-bold">
               Update Account
             </h3>
