@@ -1,8 +1,14 @@
 import nodemailer from "nodemailer";
 import Users from "../../Modals/Users.js";
+import ejs from "ejs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const VerifyMail = async ({ username, email, emailType }) => {
   try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     const verifyOTP = Math.floor(Math.random() * 9000 + 1000);
 
     if (emailType === "VERIFY") {
@@ -32,16 +38,23 @@ const VerifyMail = async ({ username, email, emailType }) => {
       },
     });
 
-    const verifyLink = `http://localhost:3000/verify/${username}`;
+    const templatePath = path.join(
+      __dirname,
+      "../../Templates/EmailTemplate.ejs"
+    );
+    const htmlContent = await ejs.renderFile(templatePath, {
+      verifyOTP,
+      username,
+      MailUser,
+      year: new Date().getFullYear(),
+    });
 
     const MailSchema = {
       from: MailUser,
       to: email,
-      subject: "Verifier",
-      text: "You Got Email With File Download Link",
-      html: `
-      otp:${verifyOTP}
-      <a href='${verifyLink}'>Verify</a>`,
+      subject: "User Verification OTP",
+      text: "You Got Email With Your User Verification OTP.",
+      html: htmlContent,
     };
 
     const info = await transport.sendMail(MailSchema);

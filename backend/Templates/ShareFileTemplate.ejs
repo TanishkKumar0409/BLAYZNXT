@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verify OTP</title>
+    <title>File Sharing - Download Link</title>
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -21,6 +21,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
       .email-header {
+        text-align: center;
         padding-bottom: 25px;
         border-bottom: 1px solid #eee;
       }
@@ -56,6 +57,7 @@
       .Message-box {
         background: #16143b;
         text-align: justify;
+        padding: 10px;
         border-radius: 8px;
       }
       .email-footer {
@@ -83,32 +85,31 @@
   <body>
     <div class="email-container">
       <div class="email-header">
-        <h1 style="text-decoration: underline">Dear <%= username %>,</h1>
+        <h1 style="text-decoration: underline">
+          <%= username %> has shared some files
+        </h1>
       </div>
       <div class="email-body">
-        <p>We hope this email finds you well.</p>
         <p>
-          To complete your account verification, please use the One-Time
-          Password (OTP) provided below:
+          Hello, <%= username %> has shared some files with you. You can
+          download it by clicking the link below:
         </p>
+        <div style="text-align: center; width: 100%; padding: 7px">
+          <a href="<%= downloadLink %>" target="_blank">Download File</a>
+        </div>
         <div class="Message-box">
           <h4
             style="
-              font-weight: 900;
-              font-size: 5rem;
+              font-weight: 700;
+              font-size: large;
               color: white;
               text-align: center;
-              letter-spacing: 3rem;
-              margin: 0;
             "
           >
-            <%= verifyOTP %>
+            <%= username %>'s Message for You
           </h4>
+          <p style="color: #fff; padding: 0 25px"><%= message %></p>
         </div>
-        <p>
-          This OTP is valid for the next 1 Hour. Please ensure to enter it on
-          the verification page to successfully verify your account.
-        </p>
       </div>
       <div class="email-footer">
         <p>

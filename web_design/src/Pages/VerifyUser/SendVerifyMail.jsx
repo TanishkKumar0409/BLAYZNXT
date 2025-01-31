@@ -71,7 +71,11 @@ export default function SendVerifyMail() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               <div className="btn-group">
-                <button className="btn btn-deep" onClick={handleSendOtp}>
+                <button
+                  className="btn btn-deep"
+                  onClick={handleSendOtp}
+                  disabled={btnMessage === "Sending...." ? true : false}
+                >
                   {btnMessage}
                 </button>
               </div>

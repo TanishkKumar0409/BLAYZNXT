@@ -24,7 +24,7 @@ const SharingMailer = async ({ email, downloadLink, message, username }) => {
 
     const templatePath = path.join(
       __dirname,
-      "../../Templates/EmailTemplate.ejs"
+      "../../Templates/ShareFileTemplate.ejs"
     );
     const htmlContent = await ejs.renderFile(templatePath, {
       downloadLink,
