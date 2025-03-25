@@ -20,7 +20,7 @@ const DbName = process.env.DbName;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.use(express.static("public"));
 app.use("/Uploads", express.static("Uploads"));

@@ -75,10 +75,9 @@ const registerUser = async (req, res) => {
 
       const savedFolder = await createFolder.save();
 
-      VerifyMail({ username, email, emailType: "VERIFY" });
+      await VerifyMail({ username, email, emailType: "VERIFY" });
 
       return res.status(201).json({
-        message: `${username} Registered Successfully`,
         loginUser,
         loginToken,
         savedFolder,
