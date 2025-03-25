@@ -38,6 +38,10 @@ setInterval(() => {
   UnVerifyed();
 }, 5 * 60 * 1000);
 
+app.get("/", (req, res) => {
+  return res.send("Hello");
+});
+
 mongoose
   .connect(DbName)
   .then(() => console.log(`Database Connected`))
