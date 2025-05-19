@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.jodit-status-bar a {
+  display: none !important;
+}
+
+.jodit-status-bar {
+  background: white !important;
+}
+
+.jodit-toolbar__box {
+  background: white !important;
+}
+.jodit-container:not(.jodit_inline) .jodit-wysiwyg {
+  margin: 0;
+  outline: 0;
+  overflow-x: auto;
+  padding: 8px;
+  position: relative;
+  max-height: 500px;
+}

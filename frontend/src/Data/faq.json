@@ -1,0 +1,86 @@
+[
+  {
+    "question": "How do I register an account?",
+    "answer": "To register, click on the 'Sign Up' button on the homepage, fill in your details, and submit the form to create your account."
+  },
+  {
+    "question": "Is my data secure?",
+    "answer": "Yes, all files are stored securely using encryption and access controls to ensure your data remains private and protected."
+  },
+  {
+    "question": "What types of files can I upload?",
+    "answer": "You can upload all standard file types, including documents, images, videos, audio, and compressed files like ZIP and RAR."
+  },
+  {
+    "question": "Can I share files without an account?",
+    "answer": "Some basic sharing features may be available without an account, but for full control and security, an account is recommended."
+  },
+  {
+    "question": "How do I share a file?",
+    "answer": "After uploading a file, click the 'Share' button to generate a shareable link or send the file directly via email."
+  },
+  {
+    "question": "Can I delete a file after uploading?",
+    "answer": "Yes, you can delete any file you've uploaded at any time through your file manager dashboard."
+  },
+  {
+    "question": "Can I organize files into folders?",
+    "answer": "Yes, the system allows you to create folders and organize your files for better management."
+  },
+  {
+    "question": "Is there a file expiration feature?",
+    "answer": "Yes, you can set an expiration date for shared links, after which the file will no longer be accessible."
+  },
+  {
+    "question": "How do I reset my password?",
+    "answer": "Click 'Forgot Password' on the login page and follow the instructions to reset your password via email."
+  },
+  {
+    "question": "What happens if I exceed my storage quota?",
+    "answer": "You won't be able to upload new files until you delete some or upgrade your storage plan."
+  },
+  {
+    "question": "Is the platform mobile-friendly?",
+    "answer": "Yes, the platform is fully responsive and works smoothly on smartphones and tablets."
+  },
+  {
+    "question": "Do you support drag and drop uploads?",
+    "answer": "Yes, you can drag and drop files directly into the upload area for quick uploading."
+  },
+  {
+    "question": "Can I change my email address?",
+    "answer": "Yes, go to your account settings and update your email address from the profile section."
+  },
+  {
+    "question": "What browsers are supported?",
+    "answer": "The platform supports all modern browsers, including Chrome, Firefox, Edge, Safari, and Opera."
+  },
+  {
+    "question": "What happens if a shared link is accessed after expiration?",
+    "answer": "If a link has expired, anyone trying to access it will see a message indicating that the link is no longer available."
+  },
+  {
+    "question": "Can I upload multiple files at once?",
+    "answer": "Yes, you can select and upload multiple files in one go using the upload interface."
+  },
+  {
+    "question": "How long are files stored in the system?",
+    "answer": "Files are stored indefinitely unless deleted manually or removed due to expiration or storage limits."
+  },
+  {
+    "question": "Are shared files publicly accessible?",
+    "answer": "Only if you generate a public share link. Otherwise, files remain private by default."
+  },
+  {
+    "question": "Can I share a file with multiple people at once?",
+    "answer": "Yes, you can share the file link with as many people as you want or send it to multiple email addresses."
+  },
+  {
+    "question": "Can I see the upload progress?",
+    "answer": "Yes, an upload progress bar is shown during the file upload process so you can track it in real time."
+  },
+  {
+    "question": "Does the system support ZIP or RAR file uploads?",
+    "answer": "Yes, ZIP and RAR file formats are fully supported for uploading, sharing, and storing."
+  }
+]

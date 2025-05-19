@@ -1,0 +1,45 @@
+[
+  {
+    "content": "The interface of the platform is intuitive, responsive, and easy to navigate on all devices. File uploading and management becomes second nature, given how smooth everything runs. I adore how quickly one can navigate — obviously a testament to a well-crafted frontend. Props to the frontend team!",
+    "name": "Ankit Verma",
+    "role": "Student",
+    "image": "https://github.com/TanishkKumar0409/ReactAndBootstrapPortfolio/blob/master/public/Images/ankit.jpg?raw=true",
+    "rating": 3
+  },
+
+  {
+    "content": "Visually impressive and so user-friendly! All the buttons and page navigation feel right, and the entire experience seems so intuitive and smooth. Uploading and sharing files is almost a pleasure! Whoever created this site has done an excellent job of balancing beauty and functionality.",
+    "name": "Ria Dhiman",
+    "role": "Student",
+    "image": "https://github.com/RIA-DHIMAN/Portfolio-Web/blob/master/public/Images/rio3.jpg?raw=true",
+    "rating": 4
+  },
+  {
+    "content": "I didn’t have to waste time figuring out how to use the platform. The guides, FAQs, and in-app tips are super helpful and easy to follow. It’s clear that someone put serious thought into making support and documentation user-friendly.",
+    "name": "Akshay Kumar",
+    "role": "Student",
+    "image": "https://github.com/TanishkKumar0409/ReactAndBootstrapPortfolio/blob/master/public/Images/akshay.jpg?raw=true",
+    "rating": 4
+  },
+  {
+    "content": "From uploading to sharing, every action on this platform feels snappy and reliable. The site runs smoothly on all my devices, and everything just works. Real-time syncing and responsiveness are major wins — clearly handled by someone who knows web performance inside out.",
+    "name": "Parth Bisht",
+    "role": "Student",
+    "image": "https://github.com/TanishkKumar0409/ReactAndBootstrapPortfolio/blob/master/public/Images/akshay.jpg?raw=true",
+    "rating": 4
+  },
+  {
+    "content": "This file-sharing service simply does what it's supposed to do — even large uploads and simultaneous downloads. I've never experienced a problem accessing my files securely, and all of it operates smoothly. It is evident that the backend is stable and well-optimized. Security and speed? Absolutely top-notch.",
+    "name": "Prince Parmar",
+    "role": "Student",
+    "image": "https://github.com/TanishkKumar0409/ReactAndBootstrapPortfolio/blob/master/public/Images/prince.jpg?raw=true",
+    "rating": 5
+  },
+  {
+    "content": "This platform feels like it was built with users in mind. Features are rolled out just when you need them, and everything feels purposeful. You can tell there’s someone steering the ship carefully and making sure everything aligns with what users actually want.",
+    "name": "Gagandeep Singh",
+    "role": "Student",
+    "image": "https://github.com/TanishkKumar0409/ReactAndBootstrapPortfolio/blob/master/public/Images/akshay.jpg?raw=true",
+    "rating": 4
+  }
+]
