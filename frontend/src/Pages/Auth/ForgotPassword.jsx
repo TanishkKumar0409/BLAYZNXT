@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, ArrowLeft, Upload } from "lucide-react";
+import { Mail, ArrowLeft, Upload, Loader } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
   const navigator = useNavigate();
+  const [isSending, setIsSending] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -19,6 +20,8 @@ const ForgotPassword = () => {
         .required("Email is required"),
     }),
     onSubmit: async (values) => {
+      console.log("run");
+      setIsSending(true);
       try {
         const response = await API.post(`/password/change/opt`, {
           email: values.email,
@@ -26,7 +29,10 @@ const ForgotPassword = () => {
         toast.success(response.data.message);
         navigator(`/reset/password/${values.email}`);
       } catch (error) {
+        console.log(error);
         toast.error(error?.response?.data?.error || "Internal Server Error");
+      } finally {
+        setIsSending(false);
       }
     },
   });
@@ -138,9 +144,19 @@ const ForgotPassword = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-3 rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all"
+                disabled={isSending}
+                className={`w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-3 rounded-lg hover:shadow-lg hover:shadow-blue-500/20 transition-all ${
+                  isSending && "opacity-50"
+                }`}
               >
-                Send Reset Link
+                {isSending ? (
+                  <div className="flex justify-center align-middle">
+                    <Loader className="h-5 w-5 mr-2 animate-spin" />
+                    Sending...
+                  </div>
+                ) : (
+                  "Send Reset Link"
+                )}
               </motion.button>
             </form>
           </div>
