@@ -17,12 +17,6 @@ const FileUpload = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     const folder = await Storage.findOne({
       folderId: parentId,
       username,
@@ -86,7 +80,7 @@ const FileUpload = async (req, res) => {
       uploadedFiles,
     });
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

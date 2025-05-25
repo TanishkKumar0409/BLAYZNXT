@@ -8,7 +8,7 @@ const DeleteProfileImageModal = ({ setIsDeletingProfile }) => {
   const { username } = useParams();
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleSendVerification = async () => {
+  const handleDeleteProfile = async () => {
     setIsDeleting(true);
     try {
       const response = await API.delete(`/user/${username}`);
@@ -59,7 +59,7 @@ const DeleteProfileImageModal = ({ setIsDeletingProfile }) => {
             Cancel
           </button>
           <button
-            onClick={handleSendVerification}
+            onClick={handleDeleteProfile}
             disabled={isDeleting}
             className={`px-4 py-2 text-white bg-orange-600 rounded-lg transition-colors flex items-center ${
               !isDeleting

@@ -104,7 +104,7 @@ const SecurityPromise = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
-                    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all"
+                    className="bg-white rounded-xl p-6 shadow-sm hover:shadow transition-all"
                   >
                     <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-3 rounded-lg inline-block mb-4">
                       {item.icon}

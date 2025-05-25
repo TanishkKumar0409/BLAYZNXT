@@ -3,124 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verify OTP</title>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f7f9fb;
-        margin: 0;
-        padding: 0;
-        color: #333;
-      }
-      .email-container {
-        width: 100%;
-        max-width: 650px;
-        margin: 30px auto;
-        border-radius: 8px;
-        padding: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-      .email-header {
-        padding-bottom: 25px;
-        border-bottom: 1px solid #eee;
-      }
-      .email-header h1 {
-        color: #16143b;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 0;
-      }
-      .email-body {
-        padding: 20px 0;
-      }
-      .email-body p {
-        font-size: 16px;
-        color: #555;
-        line-height: 1.5;
-      }
-      .email-body a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 12px 25px;
-        background-color: #16143b;
-        color: #fff;
-        border-radius: 5px;
-        font-weight: 500;
-        margin-top: 15px;
-        transition: all 0.3s ease;
-        text-align: center;
-      }
-      .email-body a:hover {
-        background-color: #0f0c2b;
-      }
-      .Message-box {
-        background: #16143b;
-        text-align: justify;
-        border-radius: 8px;
-      }
-      .email-footer {
-        margin-top: 30px;
-        text-align: center;
-        font-size: 14px;
-        color: #888;
-      }
-      .email-footer p {
-        margin: 5px 0;
-      }
-      .email-footer a {
-        color: #16143b;
-        text-decoration: none;
-      }
-      .email-footer a:hover {
-        text-decoration: underline;
-      }
-      .email-footer .unsubscribe {
-        font-size: 12px;
-        color: #aaa;
-      }
-    </style>
+    <title>Verify Your Email</title>
   </head>
   <body>
-    <div class="email-container">
-      <div class="email-header">
-        <h1 style="text-decoration: underline">Dear <%= username %>,</h1>
+    <div>
+      <div>
+        <h1>Verify Your Email</h1>
       </div>
-      <div class="email-body">
-        <p>We hope this email finds you well.</p>
+
+      <div>
+        <p>Welcome <%= username %>!</p>
+
         <p>
-          To complete your account verification, please use the One-Time
-          Password (OTP) provided below:
+          Thank you for signing up! To complete your account setup and start
+          using our services, please verify your email address using the code
+          below.
         </p>
-        <div class="Message-box">
-          <h4
-            style="
-              font-weight: 900;
-              font-size: 5rem;
-              color: white;
-              text-align: center;
-              letter-spacing: 3rem;
-              margin: 0;
-            "
-          >
-            <%= verifyOTP %>
-          </h4>
+
+        <div>
+          <div>Your Verification Code</div>
+          <div><b><%= verifyOTP %></b></div>
+          <div>This code expires in 2 Hours</div>
         </div>
+
+        <div>
+          <div>Welcome to Our Platform!</div>
+          <p>
+            Once verified, you'll have access to all our features and services.
+            We're excited to have you join our community!
+          </p>
+        </div>
+
         <p>
-          This OTP is valid for the next 1 Hour. Please ensure to enter it on
-          the verification page to successfully verify your account.
+          If you did not create an account with us, please ignore this email or
+          contact our support team if you have concerns.
         </p>
       </div>
-      <div class="email-footer">
+
+      <div>
         <p>
-          If you have any questions or issues, feel free to
-          <a href="mailto:<%= MailUser %>">contact our support team</a>.
+          This is an automated verification email. Please do not reply to this
+          message.
         </p>
-        <p>
-          &copy; <%= year %>
-          <a href="http://localhost:3000" target="_blank"
-            >File Sharing Website</a
-          >. All rights reserved.
-        </p>
+        <p>Need help? Contact our support team for assistance.</p>
       </div>
     </div>
   </body>

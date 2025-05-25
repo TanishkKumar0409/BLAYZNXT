@@ -1,18 +1,19 @@
 import nodemailer from "nodemailer";
 import Users from "../../Models/User.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import ejs from "ejs";
 
 const SendForgotPasswordOtp = async (req, res) => {
   try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     const { email } = req.body;
 
     const isUser = await Users.findOne({ email });
     if (!isUser) {
       return res.status(404).json({ error: "Email Not Found" });
-    }
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${isUser.username}, You are Blocked.` });
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000);
@@ -30,13 +31,21 @@ const SendForgotPasswordOtp = async (req, res) => {
         pass: MailPassword,
       },
     });
+    const templatePath = path.join(
+      __dirname,
+      "../../Templates/ForgotPasswordTemplate.ejs"
+    );
+    const htmlContent = await ejs.renderFile(templatePath, {
+      otp,
+      username: isUser.username,
+    });
 
     const MailSchema = {
       from: MailUser,
       to: email,
       subject: "Your Password OTP",
-      text: `Your OTP is: ${otp}`,
-      html: `<h1>OTP: ${otp}</h1>`,
+      text: `Your Reset Password OTP is: ${otp}`,
+      html: htmlContent,
     };
 
     const info = await transport.sendMail(MailSchema);
@@ -63,6 +72,7 @@ const SendForgotPasswordOtp = async (req, res) => {
       return res.status(500).json({ error: "Failed to send OTP email" });
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -50,6 +50,11 @@ const PolicyMail = async ({ title }) => {
           ?.toLowerCase()
           .replace(/\s+/g, "-")}`,
         title: title,
+        updateDate: new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
       });
 
       const MailSchema = {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { handleLogout } from "../../context/CallBacks";
+import { handlehide, handleLogout } from "../../context/CallBacks";
 import {
   Menu,
   X,
@@ -43,13 +43,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <nav
+      className={`sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm ${handlehide(
+        location.pathname
+      )}`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
+          {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="ml-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-              File Share
-            </span>
+            <img
+              src="/Images/logo.png"
+              alt="Logo"
+              className="h-15 w-auto object-cover"
+            />
           </Link>
 
           {/* Mobile menu button */}

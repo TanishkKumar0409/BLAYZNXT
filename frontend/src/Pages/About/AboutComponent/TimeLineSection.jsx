@@ -44,7 +44,7 @@ const TimelineSection = () => {
             <TimelineEvent
               year="2025"
               title="Project Foundation"
-              description="Turning ambition into action, we began building the core framework — late nights, whiteboards, and countless lines of code."
+              description="Fueled by ambition, I began building the core framework — late nights, whiteboards, and countless lines of code on my own."
               alignment="left"
               delay={0.2}
               imageUrl="/Images/foundation.jpeg"
@@ -53,7 +53,7 @@ const TimelineSection = () => {
             <TimelineEvent
               year="2025"
               title="Going Live"
-              description="With real dedication and teamwork, our platform finally launched to the world — a proud moment born from vision and persistence."
+              description="After months of dedication and persistence, I finally launched the platform to the world — a proud solo achievement driven by vision and hard work."
               alignment="right"
               delay={0.4}
               imageUrl="/Images/going_live.jpeg"

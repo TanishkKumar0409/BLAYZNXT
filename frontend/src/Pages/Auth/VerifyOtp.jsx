@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Upload, ArrowLeft } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { API } from "../../context/API";
 import { VerifyOptValidation } from "../../context/ValidationSchemas";
@@ -87,14 +87,6 @@ const VerifyOTP = () => {
       </div>
 
       <div className="max-w-md w-full">
-        <button
-          onClick={() => navigate(-1)}
-          className="inline-flex items-center text-gray-600 hover:text-blue-600 mb-8 transition-colors z-10 relative"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Login
-        </button>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -102,13 +94,14 @@ const VerifyOTP = () => {
           className="relative"
         >
           {/* Logo */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center space-x-2">
-              <Upload className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">
-                FileShare
-              </span>
-            </div>
+          <div className="text-center">
+            <Link to={`/`} className="inline-flex items-center space-x-2">
+              <img
+                src="/Images/logo.png"
+                className="w-auto h-20 relative z-10"
+                alt=""
+              />
+            </Link>
           </div>
 
           {/* Card Background Effects */}
@@ -116,11 +109,8 @@ const VerifyOTP = () => {
           <div className="absolute -inset-4 bg-white/80 rounded-2xl backdrop-blur-xl" />
 
           {/* Form */}
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-xl p-8 shadow-xl">
+          <div className="relative backdrop-blur-xl rounded-xl p-8 pt-0">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Verify OTP
-              </h2>
               <p className="text-gray-600">
                 Enter the 6-digit code sent to your email
               </p>

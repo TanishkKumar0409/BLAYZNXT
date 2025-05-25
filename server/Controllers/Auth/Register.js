@@ -7,16 +7,9 @@ const registerUser = async (req, res) => {
   try {
     const { username, name, email, contact, password } = req.body;
 
-    const role = "USER";
-    const status = "ACTIVE";
-
-    const salt = bcryptjs.genSaltSync(10);
-    const hashedPassword = bcryptjs.hashSync(password, salt);
-
     if (!username || !name || !email || !contact || !password) {
-      return res.status().json({ error: "Required fields missing" });
+      return res.status(400).json({ error: "Required fields missing" });
     }
-
     const blockedUser = await Users.findOne({
       $or: [{ email }, { contact }],
       status: "BLOCKED",
@@ -42,6 +35,15 @@ const registerUser = async (req, res) => {
       return res.status(409).json({ error: "Contact Already Exists." });
     }
 
+    const totalUsers = await Users.countDocuments();
+    const uniqueId = totalUsers + 1;
+
+    const role = uniqueId === 1 ? "ADMIN" : "USER";
+    const status = "ACTIVE";
+
+    const salt = bcryptjs.genSaltSync(10);
+    const hashedPassword = bcryptjs.hashSync(password, salt);
+
     const newUser = new Users({
       username,
       name,
@@ -52,7 +54,7 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
     });
 
-    const createFolder = Storage({
+    const createFolder = new Storage({
       folderId: 1,
       username,
       root: username,
@@ -67,6 +69,7 @@ const registerUser = async (req, res) => {
 
     return res.status(201).json({ message: "You are Registered Successfully" });
   } catch (error) {
+    console.error("Register Error:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };

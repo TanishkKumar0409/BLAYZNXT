@@ -75,14 +75,6 @@ const ForgotPassword = () => {
       </div>
 
       <div className="max-w-md w-full">
-        <Link
-          to="/login"
-          className="inline-flex items-center text-gray-600 hover:text-blue-600 mb-8 transition-colors relative z-10"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Login
-        </Link>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,15 +88,16 @@ const ForgotPassword = () => {
           <div className="absolute -inset-4 bg-white/80 rounded-2xl backdrop-blur-xl" />
 
           {/* Form */}
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-xl p-8 shadow-xl">
+          <div className="relative backdrop-blur-xl rounded-xl p-8">
             <div className="text-center mb-8">
               <div className="text-center">
-                <div className="inline-flex items-center space-x-2">
-                  <Upload className="h-8 w-8 text-blue-600" />
-                  <span className="text-2xl font-bold text-gray-900">
-                    FileShare
-                  </span>
-                </div>
+                <Link to={`/`} className="inline-flex items-center space-x-2">
+                  <img
+                    src="/Images/logo.png"
+                    className="w-auto h-20 relative z-10"
+                    alt=""
+                  />
+                </Link>
               </div>
               <p className="text-gray-600">
                 Enter your email to reset your password

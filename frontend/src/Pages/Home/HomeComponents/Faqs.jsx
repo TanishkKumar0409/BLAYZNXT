@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import faqsData from "../../../Data/faq.json";
+import { Link } from "react-router-dom";
 
 const getRandomFaqs = (count) => {
   const shuffled = [...faqsData].sort(() => 0.5 - Math.random());
@@ -42,9 +43,12 @@ const FAQ = () => {
                 Still have questions?
               </h3>
               <p className="mb-4">Our support team is here to help you 24/7</p>
-              <button className="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors">
+              <Link
+                to={`/contact`}
+                className="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors"
+              >
                 Contact Support
-              </button>
+              </Link>
             </div>
           </motion.div>
 

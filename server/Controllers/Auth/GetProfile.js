@@ -14,25 +14,22 @@ const GetProfile = async (req, res) => {
 
     const user = await Users.findOne({ username: decoded.username });
 
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     if (user.status === "BLOCKED") {
       res.clearCookie("token", {
         httpOnly: true,
         secure: true,
         sameSite: "Strict",
       });
-    }
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    if (user.status === "BLOCKED") {
-      res.clearCookie("token", { httpOnly: true, sameSite: "Strict" });
       return res.status(403).json({ error: `${user.username} is blocked` });
     }
 
     return res.status(200).json(user);
   } catch (error) {
-    return res.status(401).json({ error: "Invalid token" });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

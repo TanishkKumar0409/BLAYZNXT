@@ -13,9 +13,9 @@ const redirector = async (req, res) => {
       return res.status(410).json({ error: "This link has expired." });
     }
 
-    res.redirect(find.downloadLink);
+    return res.redirect(find.downloadLink);
   } catch (error) {
-    return res.status(500).send("Server error");
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

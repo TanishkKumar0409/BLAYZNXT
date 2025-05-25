@@ -12,11 +12,6 @@ const ShareFiles = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isExisting.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
     if (!email) {
       return res.status(401).json({ error: "Receiver Email Is Required" });
     }
@@ -55,7 +50,7 @@ const ShareFiles = async (req, res) => {
 
     const savedHistory = await newHistory.save();
 
-    SharingMailer({ email, downloadLink, message, username });
+    SharingMailer({ email, id: savedHistory._id, message, username });
 
     if (savedHistory) {
       return res.status(200).json({

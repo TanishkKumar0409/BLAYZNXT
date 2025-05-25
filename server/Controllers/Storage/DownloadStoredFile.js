@@ -16,12 +16,6 @@ const DownloadStoredFile = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     const file = await Storage.findOne({ username, folderId });
 
     if (!file || (!file.filePath && !file.root)) {

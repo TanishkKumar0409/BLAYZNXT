@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, FileText, Globe, Clock } from "lucide-react";
+import { Users, FileText } from "lucide-react";
 
 const ImpactSection = () => {
   return (
@@ -37,7 +37,7 @@ const ImpactSection = () => {
           />
           <StatCard
             icon={<FileText className="h-10 w-10 text-purple-600" />}
-            value="1500+"
+            value="150+"
             label="Files Shared"
             description="Securely transferred in our early access phase"
             delay={0.1}

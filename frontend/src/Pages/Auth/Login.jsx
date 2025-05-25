@@ -72,23 +72,21 @@ const Login = () => {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center space-x-2">
-              <Upload className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">
-                FileShare
-              </span>
-            </div>
+          <div className="text-center">
+            <Link to={`/`} className="inline-flex items-center space-x-2">
+              <img
+                src="/Images/logo.png"
+                className="w-auto h-20 relative z-10"
+                alt=""
+              />
+            </Link>
           </div>
 
           <div className="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl transform rotate-2" />
           <div className="absolute -inset-4 bg-white/80 rounded-2xl backdrop-blur-xl" />
 
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-xl p-8 shadow-xl">
+          <div className="relative backdrop-blur-xl rounded-xl p-8 pt-0">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome Back
-              </h2>
               <p className="text-gray-600">Login to your account</p>
             </div>
 

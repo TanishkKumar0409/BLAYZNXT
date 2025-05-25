@@ -3,9 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>BLAZNXT</title>
   </head>
   <body>
-    <%= otp %>
+    <div>
+      <div>
+        <h1>Account Deletion Verification</h1>
+      </div>
+
+      <p>Hello User,</p>
+
+      <p>
+        We received a request to delete your account. This is a permanent action
+        that cannot be undone. If you initiated this request, please use the
+        verification code below to confirm the account deletion.
+      </p>
+
+      <div>
+        <div>Verification Code</div>
+        <div><b><%=otp%></b></div>
+        <div>This code expires in 3 minutes</div>
+      </div>
+
+      <div>
+        <p>
+          This is an automated security email. Please do not reply to this
+          message.
+        </p>
+        <p>If you need assistance, please contact our support team.</p>
+      </div>
+    </div>
   </body>
 </html>

@@ -15,12 +15,6 @@ const DeleteFolder = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     if (folderId === 1) {
       return res.status(403).json({ error: "You cannot delete this folder" });
     }

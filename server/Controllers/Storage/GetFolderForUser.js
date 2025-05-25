@@ -10,12 +10,6 @@ const GetFolderForUser = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     const folders = await Storage.find({ username });
 
     if (folders) {
@@ -24,7 +18,7 @@ const GetFolderForUser = async (req, res) => {
       return res.status(404).json({ error: "No Folder Found" });
     }
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

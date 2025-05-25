@@ -22,7 +22,7 @@ const UploadForm = ({ setShowLoginModal }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white/80 backdrop-blur-xl rounded-2xl p-8 shadow-xl"
+        className="backdrop-blur-xl rounded-2xl p-8"
       >
         <div
           className={`relative border-2 border-dashed rounded-xl p-8 mb-6 text-center transition-all cursor-pointer

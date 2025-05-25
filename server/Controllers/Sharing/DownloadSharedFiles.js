@@ -58,7 +58,6 @@ const DownloadSharedFiles = async (req, res) => {
       res.status(500).end("Error while creating ZIP archive.");
     });
 
-    // Add each file using proper original name
     for (let i = 0; i < filePaths.length; i++) {
       const resolvedFilePath = path.resolve(filePaths[i]);
       const originalFileName = fileNames[i];
@@ -75,7 +74,6 @@ const DownloadSharedFiles = async (req, res) => {
       }
     }
 
-    // Pipe the archive to the response using pipeline
     pipeline(archive, res, (err) => {
       if (err) {
         console.error("Pipeline failed:", err);
@@ -85,12 +83,10 @@ const DownloadSharedFiles = async (req, res) => {
       }
     });
 
-    // Finalize after all files are queued
     await archive.finalize();
   } catch (error) {
-    console.error("Unexpected error:", error);
     if (!res.headersSent) {
-      res.status(500).json({ error: "Internal server error." });
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   }
 };

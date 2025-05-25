@@ -29,22 +29,22 @@ const ContactInfo = () => {
           <InfoItem
             icon={<Mail className="h-5 w-5 text-blue-600" />}
             label="Email Us"
-            value="example@gmail.com"
-            link="mailto:example@gmail.com"
+            value={import.meta.env.VITE_APP_EMAIL}
+            link={`mailto:${import.meta.env.VITE_APP_EMAIL}`}
           />
 
           <InfoItem
             icon={<Phone className="h-5 w-5 text-blue-600" />}
             label="Call Us"
-            value="+91 12345 67890"
-            link="tel:+15551234567"
+            value={import.meta.env.VITE_APP_CONTACT}
+            link={`tel:${import.meta.env.VITE_APP_CONTACT}`}
           />
 
           <InfoItem
             icon={<Globe className="h-5 w-5 text-blue-600" />}
             label="Website"
-            value="www.fileshare.com"
-            link="https://www.fileshare.com"
+            value={import.meta.env.VITE_APP_URL}
+            link={import.meta.env.VITE_APP_URL}
           />
         </div>
       </div>

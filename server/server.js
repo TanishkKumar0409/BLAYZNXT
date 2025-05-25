@@ -44,9 +44,9 @@ app.get("/:id", redirector);
 
 app.get("/", (req, res) => {
   try {
-    return res.status(200).json("Welcome To ProjectTK");
+    return res.status(200).json("Welcome To BLAYZNXT");
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

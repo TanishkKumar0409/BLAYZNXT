@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/Images/featured_image.jpeg')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-[url('/Images/featured_image.jpeg')] bg-cover bg-center opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
       </div>
       <FloatingIcon

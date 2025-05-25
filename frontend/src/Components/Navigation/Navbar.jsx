@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, FileText, File } from "lucide-react";
 import { motion } from "framer-motion";
+import { handlehide } from "../../context/CallBacks";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,14 +14,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="lg:px-20 sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <nav
+      className={`lg:px-20 sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm ${handlehide(
+        location.pathname
+      )}`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="ml-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-              File Share
-            </span>
+            <img
+              src="/Images/logo.png"
+              alt="Logo"
+              className="h-15 w-auto object-cover"
+            />
           </Link>
 
           <button

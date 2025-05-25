@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Upload, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import OTPVerificationForm from "./ResetPasswordComponents/OptVerificationForm";
 import NewPasswordForm from "./ResetPasswordComponents/NewPasswordForm";
@@ -31,17 +30,7 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* <AnimatedBackground /> */}
-
       <div className="max-w-md w-full">
-        <Link
-          to="/login"
-          className="inline-flex items-center text-gray-600 hover:text-blue-600 mb-8 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Login
-        </Link>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,13 +38,14 @@ const ResetPassword = () => {
           className="relative"
         >
           {/* Logo */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center space-x-2">
-              <Upload className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">
-                FileShare
-              </span>
-            </div>
+          <div className="text-center">
+            <Link to={`/`} className="inline-flex items-center space-x-2">
+              <img
+                src="/Images/logo.png"
+                className="w-auto h-20 relative z-10"
+                alt=""
+              />
+            </Link>
           </div>
 
           {/* Card Background Effects */}
@@ -63,11 +53,8 @@ const ResetPassword = () => {
           <div className="absolute -inset-4 bg-white/80 rounded-2xl backdrop-blur-xl" />
 
           {/* Form Container */}
-          <div className="relative bg-white/90 backdrop-blur-xl rounded-xl p-8 shadow-xl">
+          <div className="relative backdrop-blur-xl rounded-xl p-8 pt-0">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Reset Password
-              </h2>
               <p className="text-gray-600">
                 {currentStep === "otp"
                   ? "Enter the verification code sent to your email"

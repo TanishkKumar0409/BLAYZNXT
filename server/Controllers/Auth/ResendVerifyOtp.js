@@ -9,12 +9,6 @@ const ResendVerifyOTP = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(400)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     const mailMessage = await VerifyMail({
       username,
       email: isUser?.email,
@@ -23,7 +17,7 @@ const ResendVerifyOTP = async (req, res) => {
 
     return res.status(200).json({ message: mailMessage });
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

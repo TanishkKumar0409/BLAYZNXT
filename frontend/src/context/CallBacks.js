@@ -75,3 +75,26 @@ export const getStatusColor = (status) => {
       return "bg-gray-100 text-gray-800";
   }
 };
+
+const hidePath = [
+  "/login",
+  "/register",
+  /^\/verify\/[^/]+$/,
+  "/forgot-password",
+  /^\/reset\/password\/[^/]+$/,
+];
+
+export const handlehide = (path) => {
+  if (
+    hidePath.some((p) =>
+      typeof p === "string"
+        ? p === path
+        : p instanceof RegExp
+        ? p.test(path)
+        : false
+    )
+  ) {
+    return "hidden";
+  }
+  return "";
+};

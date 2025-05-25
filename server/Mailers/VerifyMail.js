@@ -42,8 +42,6 @@ const VerifyMail = async ({ username, email, emailType }) => {
     const htmlContent = await ejs.renderFile(templatePath, {
       verifyOTP,
       username,
-      MailUser,
-      year: new Date().getFullYear(),
     });
 
     const MailSchema = {

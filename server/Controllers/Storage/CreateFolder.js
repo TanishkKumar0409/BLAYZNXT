@@ -14,12 +14,6 @@ const CreateFolder = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
     const RepeatedFolder = await Storage.findOne({ username, root, parentId });
     if (RepeatedFolder) {
       return res.status(409).json({ error: "This Folder is Already exist" });
@@ -66,7 +60,7 @@ const CreateFolder = async (req, res) => {
       }
     }
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

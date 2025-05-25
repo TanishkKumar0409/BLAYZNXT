@@ -3,125 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Sharing - Download Link</title>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f7f9fb;
-        margin: 0;
-        padding: 0;
-        color: #333;
-      }
-      .email-container {
-        width: 100%;
-        max-width: 650px;
-        margin: 30px auto;
-        border-radius: 8px;
-        padding: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-      .email-header {
-        text-align: center;
-        padding-bottom: 25px;
-        border-bottom: 1px solid #eee;
-      }
-      .email-header h1 {
-        color: #16143b;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 0;
-      }
-      .email-body {
-        padding: 20px 0;
-      }
-      .email-body p {
-        font-size: 16px;
-        color: #555;
-        line-height: 1.5;
-      }
-      .email-body a {
-        text-decoration: none;
-        display: inline-block;
-        padding: 12px 25px;
-        background-color: #16143b;
-        color: #fff;
-        border-radius: 5px;
-        font-weight: 500;
-        margin-top: 15px;
-        transition: all 0.3s ease;
-        text-align: center;
-      }
-      .email-body a:hover {
-        background-color: #0f0c2b;
-      }
-      .Message-box {
-        background: #16143b;
-        text-align: justify;
-        padding: 10px;
-        border-radius: 8px;
-      }
-      .email-footer {
-        margin-top: 30px;
-        text-align: center;
-        font-size: 14px;
-        color: #888;
-      }
-      .email-footer p {
-        margin: 5px 0;
-      }
-      .email-footer a {
-        color: #16143b;
-        text-decoration: none;
-      }
-      .email-footer a:hover {
-        text-decoration: underline;
-      }
-      .email-footer .unsubscribe {
-        font-size: 12px;
-        color: #aaa;
-      }
-    </style>
+    <title>Files Shared Email</title>
   </head>
   <body>
-    <div class="email-container">
-      <div class="email-header">
-        <h1 style="text-decoration: underline">
-          <%= username %> has shared some files
-        </h1>
+    <div>
+      <div>
+        <h1>Files Shared With You</h1>
       </div>
-      <div class="email-body">
+
+      <div>
+        <p>Hello <%= username %>,</p>
+
         <p>
-          Hello, <%= username %> has shared some files with you. You can
-          download it by clicking the link below:
+          <strong><%= username %></strong> has shared some files with you. You
+          can access them using the secure link below.
         </p>
-        <div style="text-align: center; width: 100%; padding: 7px">
-          <a href="<%= downloadLink %>" target="_blank">Download File</a>
+        <div>
+          <div>Message from <%= username %>:</div>
+          <p>"<%=message%>"</p>
         </div>
-        <div class="Message-box">
-          <h4
-            style="
-              font-weight: 700;
-              font-size: large;
-              color: white;
-              text-align: center;
-            "
-          >
-            <%= username %>'s Message for You
-          </h4>
-          <p style="color: #fff; padding: 0 25px"><%= message %></p>
+
+        <div>
+          <div>Access Your Files</div>
+          <a href="<%=link%>" target="_blank">Download Files</a>
+          <div>Link: <%=link%></div>
+        </div>
+
+        <div>
+          <div>🔒 Security Notice</div>
+          <p>
+            This link is secure and will expire in 24hours. Please do not share
+            this link with others. If you believe you received this email in
+            error, please ignore it.
+          </p>
         </div>
       </div>
-      <div class="email-footer">
+
+      <div>
         <p>
-          If you have any questions or issues, feel free to
-          <a href="mailto:<%= MailUser %>">contact our support team</a>.
+          This is an automated notification email. Please do not reply to this
+          message.
         </p>
-        <p>
-          &copy; <%= year %>
-          <a href="http://localhost:3000" target="_blank"
-            >File Sharing Website</a
-          >. All rights reserved.
-        </p>
+        <p>Need help? Contact our support team for assistance.</p>
       </div>
     </div>
   </body>

@@ -23,7 +23,6 @@ const UploadForm = ({ setShowLink }) => {
   const [isUploading, setIsUploading] = useState(false);
 
   const onDrop = (acceptedFiles) => {
-    // Merge new files with existing ones
     setFiles((prevFiles) => [...prevFiles, ...acceptedFiles]);
     setIsDragging(false);
   };
@@ -92,7 +91,7 @@ const UploadForm = ({ setShowLink }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className="bg-white/80 backdrop-blur-xl rounded-2xl p-8 shadow-xl"
+      className="backdrop-blur-xl rounded-2xl p-8"
     >
       {!isUploading && (
         <div

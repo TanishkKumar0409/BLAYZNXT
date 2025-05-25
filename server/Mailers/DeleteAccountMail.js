@@ -28,9 +28,7 @@ const DeleteAccountMail = async (email, otp) => {
       "../Templates/DeleteUserTemplate.ejs"
     );
 
-    const htmlContent = await ejs.renderFile(templatePath, {
-      otp: otp,
-    });
+    const htmlContent = await ejs.renderFile(templatePath, { otp });
 
     const mailOptions = {
       from: MailUser,

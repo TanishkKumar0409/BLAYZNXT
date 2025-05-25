@@ -88,10 +88,13 @@ const Register = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Upload className="h-8 w-8 text-blue-600 z-1" />
-                  <span className="text-2xl font-bold text-gray-900 z-1">
-                    FileShare
-                  </span>
+                  <Link to={`/`} className="inline-flex items-center space-x-2">
+                    <img
+                      src="/Images/logo.png"
+                      className="w-auto h-20 relative z-10"
+                      alt=""
+                    />
+                  </Link>
                 </motion.div>
               </div>
               <p className="text-gray-600">Join our community today</p>

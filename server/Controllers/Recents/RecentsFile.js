@@ -14,16 +14,8 @@ const RecentFile = async (req, res) => {
       return res.status(401).json({ error: "Please Register" });
     }
 
-    if (isUser.status === "BLOCKED") {
-      return res
-        .status(403)
-        .json({ error: `Sorry ${username}, You are Blocked` });
-    }
-
-    // Check if the user has a recent history entry
     const isRecent = await Recent.findOne({ username });
 
-    // If no Recent object exists for this username, create a new one
     if (!isRecent) {
       const createNewRecent = new Recent({
         username,
@@ -37,7 +29,6 @@ const RecentFile = async (req, res) => {
 
     const recentLength = isRecent.recentFiles.length;
 
-    // Check if this folderId already exists in the recentFiles array
     const isExisting = isRecent.recentFiles.some(
       (file) => file.folderId === folderId
     );
@@ -46,7 +37,6 @@ const RecentFile = async (req, res) => {
       return res.status(400).json({ error: "Same File" });
     }
 
-    // If the recentFiles array is full (6 items), remove the oldest and add the new file
     if (recentLength >= 6) {
       const oldestFile = isRecent.recentFiles.reduce((oldest, current) => {
         return current.usedDate < oldest.usedDate ? current : oldest;
@@ -65,7 +55,6 @@ const RecentFile = async (req, res) => {
 
       return res.status(200).json({ message: "File Added to Recent" });
     } else {
-      // Otherwise, just add the new recent file
       const addRecentFile = await Recent.findOneAndUpdate(
         { username },
         { $push: { recentFiles: { folderId, usedDate: Date.now() } } },
@@ -77,7 +66,7 @@ const RecentFile = async (req, res) => {
         .json({ message: "File Added to Recent", addRecentFile });
     }
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error", });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

@@ -52,7 +52,7 @@ const Features = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+              className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition-all hover:-translate-y-1"
             >
               <div className="bg-gray-50 p-3 rounded-lg inline-block mb-4">
                 {feature.icon}

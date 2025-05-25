@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  FileUp,
   Twitter,
   Facebook,
   Instagram,
@@ -10,15 +9,16 @@ import {
   Youtube,
   Mail,
   Phone,
-  MapPin,
   Send,
   Globe,
 } from "lucide-react";
 import { API } from "../../context/API";
+import { handlehide } from "../../context/CallBacks";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState("");
+  const location = useLocation();
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -34,7 +34,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="pt-16 pb-8 border-t border-gray-200">
+    <footer
+      className={`pt-16 pb-8 border-t border-gray-200 ${handlehide(
+        location.pathname
+      )}`}
+    >
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto mb-16 text-center">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -73,10 +77,14 @@ const Footer = () => {
           {/* Company & Description */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-4">
-              <FileUp className="h-8 w-8 text-blue-600 mr-2" />
-              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-                FileShare
-              </span>
+              {/* Logo */}
+              <Link to="/" className="flex items-center">
+                <img
+                  src="/Images/logo.png"
+                  alt="Logo"
+                  className="w-full object-cover"
+                />
+              </Link>
             </div>
             <p className="text-gray-600 mb-6">
               Experience secure, lightning-fast file sharing designed for modern
@@ -128,21 +136,27 @@ const Footer = () => {
                   size={18}
                   className="text-blue-600 mr-2 mt-1 flex-shrink-0"
                 />
-                <span className="text-gray-600">example@gmail.com</span>
+                <span className="text-gray-600">
+                  {import.meta.env.VITE_APP_EMAIL}
+                </span>
               </li>
               <li className="flex items-start">
                 <Phone
                   size={18}
                   className="text-blue-600 mr-2 mt-1 flex-shrink-0"
                 />
-                <span className="text-gray-600">+91 12345 67890</span>
+                <span className="text-gray-600">
+                  {import.meta.env.VITE_APP_CONTACT}
+                </span>
               </li>
               <li className="flex items-start">
                 <Globe
                   size={18}
                   className="text-blue-600 mr-2 mt-1 flex-shrink-0"
                 />
-                <span className="text-gray-600">www.fileshare.com</span>
+                <span className="text-gray-600">
+                  {import.meta.env.VITE_APP_URL}
+                </span>
               </li>
             </ul>
           </div>
