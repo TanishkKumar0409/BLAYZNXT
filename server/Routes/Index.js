@@ -46,14 +46,19 @@ import HandleFolderCleaner from "../Controllers/FolderCleaners/FolderCleanersCal
 const routes = express.Router();
 routes.use(express.json({ limit: "10gb" }));
 routes.use(express.urlencoded({ extended: true, limit: "10gb" }));
+
 //? User profile Multer
 const UserProfileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./");
+    const uploadDir = "Uploads/Users";
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
-    cb(null, "Uploads/Users/" + Date.now() + originalExtension);
+    cb(null, Date.now() + originalExtension);
   },
 });
 
@@ -68,15 +73,16 @@ const uploadProfile = multer({
 //? Sharing File Multer
 const FileShare = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./");
+    const uploadDir = "Uploads/shareFiles";
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
     const randomNumber = Math.round(Math.random() * 500000);
-    cb(
-      null,
-      "Uploads/shareFiles/" + randomNumber + Date.now() + originalExtension
-    );
+    cb(null, randomNumber + Date.now() + originalExtension);
   },
 });
 
@@ -91,15 +97,16 @@ const UploadFileShare = multer({
 //? Storage File Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./");
+    const uploadDir = "Uploads/Explorer";
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const originalExtension = path.extname(file.originalname);
     const randomNumber = Math.round(Math.random() * 500000);
-    cb(
-      null,
-      "Uploads/Explorer/" + randomNumber + Date.now() + originalExtension
-    );
+    cb(null, randomNumber + Date.now() + originalExtension);
   },
 });
 
