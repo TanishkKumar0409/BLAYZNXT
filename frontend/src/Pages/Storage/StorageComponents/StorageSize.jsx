@@ -2,22 +2,8 @@ import { HardDrive } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import { API } from "../../../context/API";
 
-export default function StorageSize() {
-  const [profile, setProfile] = useState({});
+export default function StorageSize({ profile }) {
   const [storageData, setStorageData] = useState({ total: 0, used: 0 });
-
-  const getProfile = useCallback(async () => {
-    try {
-      const response = await API.get(`/profile`);
-      setProfile(response.data);
-    } catch (error) {
-      console.error(error.message);
-    }
-  }, []);
-
-  useEffect(() => {
-    getProfile();
-  }, [getProfile]);
 
   useEffect(() => {
     setStorageData({
@@ -56,10 +42,10 @@ export default function StorageSize() {
           <div
             className={`absolute left-0 top-0 h-full rounded-full transition-all duration-300 ${
               usagePercentage > 80
-                ? "bg-gradient-to-r from-orange-700 to-red-700"
+                ? "bg-gradient-to-r from-orange-500 to-red-500"
                 : usagePercentage > 50
-                ? "bg-gradient-to-r from-yellow-700 to-orange-700"
-                : "bg-gradient-to-r from-green-700 to-yellow-700"
+                ? "bg-gradient-to-r from-yellow-500 to-orange-500"
+                : "bg-gradient-to-r from-green-500 to-green-500"
             }`}
             style={{ width: `${usagePercentage}%` }}
           />

@@ -147,27 +147,39 @@ const Storage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-8">
       <div className="container mx-auto px-4">
-        <StorageSize />
+        <StorageSize profile={profile} />
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
           <div className="flex items-center space-x-4">
             <button
               onClick={handleBack}
               disabled={folderStack.length === 0}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-15"
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
             <div className="flex items-center space-x-2 text-gray-600">
               <nav className="text-gray-400 text-sm">
-                <ol className="flex items-center space-x-2">
+                <ol className="flex items-center space-x-2 capitalize">
+                  <li className="flex items-center">
+                    <span
+                      className={`hover:text-purple-600 transition-colors duration-200 ${
+                        folderStactRoots.length === 0 && "text-gray-700"
+                      }`}
+                    >
+                      dashboard
+                    </span>
+                  </li>
                   {folderStactRoots.map((item, index) => (
                     <li key={index} className="flex items-center">
-                      <span className="hover:text-white transition-colors duration-200">
+                      <span className="mx-2 text-gray-400">/</span>
+                      <span
+                        className={`hover:text-purple-600 transition-colors duration-200 ${
+                          folderStactRoots?.length === index + 1 &&
+                          "text-purple-700"
+                        }`}
+                      >
                         {item}
                       </span>
-                      {index < folderStack.length - 1 && (
-                        <span className="mx-2 text-gray-600">/</span>
-                      )}
                     </li>
                   ))}
                 </ol>
@@ -191,6 +203,7 @@ const Storage = () => {
             userData={profile}
             currentFolderId={currentFolderId}
             getData={getAllFolders}
+            getProfile={getProfile}
           />
           {selectedItem &&
             folderData.find((item) => item.folderId === selectedItem)?.type ===
@@ -253,6 +266,7 @@ const Storage = () => {
           onClose={getAllFolders}
           selectedItem={selectedItem}
           userData={profile}
+          getProfile={getProfile}
           setIsOpen={setShowDeleteModal}
           setSelectedItem={setSelectedItem}
         />

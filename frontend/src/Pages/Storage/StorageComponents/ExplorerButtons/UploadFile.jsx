@@ -8,6 +8,7 @@ export default function UploadFileButton({
   userData,
   currentFolderId,
   getData,
+  getProfile,
 }) {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
@@ -69,6 +70,7 @@ export default function UploadFileButton({
     }
 
     getData();
+    getProfile();
     event.target.value = "";
   };
 

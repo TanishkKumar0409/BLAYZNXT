@@ -11,6 +11,7 @@ const DeleteModal = ({
   userData,
   setSelectedItem,
   setIsOpen,
+  getProfile,
 }) => {
   const handleDeleteItem = async () => {
     if (!selectedItem) {
@@ -25,10 +26,12 @@ const DeleteModal = ({
 
       setSelectedItem(null);
       setIsOpen(false);
-      onClose();
       toast.success(response.data.message);
     } catch (error) {
       toast.error(error?.response?.data?.error || "Internal Server Error");
+    } finally {
+      onClose();
+      getProfile();
     }
   };
 

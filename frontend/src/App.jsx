@@ -59,7 +59,7 @@ function App() {
   }, [FolderAndDatebaseCleaners]);
   return (
     <BrowserRouter>
-    <Toaster/>
+    <Toaster position="top-right"/>
       {!token ? <Navbar /> : <AuthNavbar />}
       <Routes>
         <Route path="/" element={<Protected><Home /></Protected>}/>
