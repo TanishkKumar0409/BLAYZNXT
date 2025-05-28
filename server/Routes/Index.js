@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 import registerUser from "../Controllers/Auth/Register.js";
 import Login from "../Controllers/Auth/Login.js";
